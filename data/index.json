@@ -1,0 +1,68 @@
+{
+  "site": {
+    "name": "RELAY",
+    "tagline": "Automated Reading Archive",
+    "categories": [
+      "Technology",
+      "Culture",
+      "Business",
+      "Science"
+    ]
+  },
+  "posts": [
+    {
+      "id": "comfyui-lora-training",
+      "category": "Technology",
+      "title": "ComfyUI에서 LoRA 직접 학습하기 — 도구 선택부터 파라미터까지",
+      "source": "RELAY Original",
+      "date": "2026.06.07",
+      "read": "7분",
+      "summary": "별도 프로그램 설치 없이 ComfyUI 노드만으로 LoRA를 학습하는 시대가 왔다. 추론에 쓰던 환경 그대로 학습까지 끝내는 방법과, 결과를 좌우하는 데이터셋·캡션·핵심 파라미터를 정리한다."
+    },
+    {
+      "id": "new-archive-form",
+      "category": "Technology",
+      "title": "기계가 읽고, 사람이 머무는 새로운 아카이브의 형태",
+      "source": "TechReview",
+      "date": "2026.06.03",
+      "read": "4분",
+      "summary": "AI 크롤러가 12개 출처를 동시에 읽고, 중복과 노이즈를 걷어낸 뒤 단일한 흐름으로 재구성한다. 사람은 더 이상 검색하지 않고 읽기만 하면 된다."
+    },
+    {
+      "id": "on-device-inference",
+      "category": "Technology",
+      "title": "온디바이스 추론, 클라우드의 종말을 말하다",
+      "source": "Wired KR",
+      "date": "2026.06.03",
+      "read": "5분",
+      "summary": "모델 경량화와 NPU 성능 향상으로 추론이 단말로 내려오고 있다. 비용·지연·프라이버시 세 축에서 클라우드 의존을 줄이려는 흐름이 뚜렷하다."
+    },
+    {
+      "id": "generative-editorial-design",
+      "category": "Culture",
+      "title": "생성형 이미지가 바꾼 편집 디자인의 문법",
+      "source": "Design+",
+      "date": "2026.06.02",
+      "read": "6분",
+      "summary": "무한히 생성되는 이미지 시대에 디자이너의 역할은 '만드는 사람'에서 '고르고 배치하는 사람'으로 이동한다. 큐레이션이 새로운 창작이다."
+    },
+    {
+      "id": "semiconductor-export-controls",
+      "category": "Business",
+      "title": "반도체 수출 규제, 다음 분기의 변수들",
+      "source": "The Ledger",
+      "date": "2026.06.01",
+      "read": "4분",
+      "summary": "신규 규제안이 공급망 재편을 가속한다. 단기 비용 상승은 불가피하나, 중장기적으로 지역 분산이 리스크 완화 요인으로 작용할 전망."
+    },
+    {
+      "id": "protein-structure-prediction",
+      "category": "Science",
+      "title": "단백질 구조 예측, 신약 개발의 시계를 당기다",
+      "source": "Nature Brief",
+      "date": "2026.05.30",
+      "read": "5분",
+      "summary": "구조 예측 정확도 향상으로 후보 물질 탐색 기간이 단축되고 있다. 실험실 검증과 결합한 하이브리드 워크플로가 표준으로 자리 잡는 중."
+    }
+  ]
+}

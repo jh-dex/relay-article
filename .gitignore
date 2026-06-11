@@ -1,0 +1,16 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Node (자동화 단계에서 생길 수 있음)
+node_modules/
+npm-debug.log*
+
+# 임시 글 작성 파일 (템플릿 예시는 추적)
+scripts/*.json
+!scripts/_new-article.example.json

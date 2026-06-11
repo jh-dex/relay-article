@@ -1,0 +1,28 @@
+{
+  "id": "unique-slug-2026-06-12",
+  "category": "Technology",
+  "title": "글 제목 — 여기에",
+  "source": "RELAY Original",
+  "sourceUrl": "",
+  "date": "2026.06.12",
+  "read": "5분",
+  "summary": "피드와 리딩 뷰 상단에 들어가는 한 줄 AI 요약. 2~3문장.",
+  "lede": "도입부(선택). 굵게는 <strong>이렇게</strong>.",
+  "cover": {
+    "img": "https://commons.wikimedia.org/wiki/Special:FilePath/파일명.png?width=1600",
+    "alt": "대체 텍스트",
+    "caption": "<b>커버 캡션.</b> 설명.",
+    "credit": "이미지: 출처 · 라이선스"
+  },
+  "body": [
+    {"type": "h2", "text": "소제목"},
+    {"type": "p", "html": "문단. 인라인 강조 <strong>볼드</strong>, 코드 <code>flux1-dev</code> 가능."},
+    {"type": "ul", "items": [
+      "<strong>항목1</strong> — 설명",
+      "<strong>항목2</strong> — 설명"
+    ]},
+    {"type": "figure", "img": "https://.../image.png?width=1200", "alt": "alt", "caption": "<b>그림 설명.</b>", "credit": "이미지: 출처 · 라이선스"},
+    {"type": "h2", "text": "다음 소제목"},
+    {"type": "p", "html": "본문 계속."}
+  ]
+}
