@@ -11,6 +11,15 @@
   },
   "posts": [
     {
+      "id": "comfyui-latest-models-2026-06",
+      "category": "Technology",
+      "title": "이번 주 ComfyUI 모델 지형 — Z-Image부터 Wan·FLUX.2까지",
+      "source": "RELAY Briefing",
+      "date": "2026.06.11",
+      "read": "6분",
+      "summary": "최근 ComfyUI 생태계에 쏟아진 신규·갱신 모델을 한자리에 정리했다. 알리바바 Z-Image와 Qwen, 텐센트 Hunyuan Image 3.0, 영상 쪽 Wan 2.2·Wan-Animate, 그리고 FLUX.2 Klein의 NVFP4 양자화까지 — 이미지·영상·경량화 세 갈래의 흐름을 짚는다."
+    },
+    {
       "id": "comfyui-lora-training",
       "category": "Technology",
       "title": "ComfyUI에서 LoRA 직접 학습하기 — 도구 선택부터 파라미터까지",
