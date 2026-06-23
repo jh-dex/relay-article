@@ -11,6 +11,15 @@
   },
   "posts": [
     {
+      "id": "a24-deepmind-ai-film",
+      "category": "Business",
+      "title": "AI는 영화의 적인가 도구인가 — A24·딥마인드 협약이 그린 분기점",
+      "source": "RELAY Original",
+      "date": "2026.06.23",
+      "read": "9분",
+      "summary": "A24와 구글 딥마인드의 약 7,500만 달러 연구 협약은 'AI=비용 절감'에서 'AI=창작 도구'로 무게추가 옮겨가는 신호다. 라이언스게이트·런웨이, 디즈니 소송, 소라의 몰락까지 — 영화와 AI의 충돌과 동맹을 한자리에 정리한다."
+    },
+    {
       "id": "comfyui-latest-models-2026-06",
       "category": "Technology",
       "title": "이번 주 ComfyUI 모델 지형 — Z-Image부터 Wan·FLUX.2까지",
