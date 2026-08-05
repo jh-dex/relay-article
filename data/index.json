@@ -6,10 +6,20 @@
       "Technology",
       "Culture",
       "Business",
-      "Science"
+      "Science",
+      "AI Media"
     ]
   },
   "posts": [
+    {
+      "id": "ai-media-daily-2026-08-05",
+      "category": "AI Media",
+      "title": "AI 이미지·영상 생성 동향 · 8월 5일",
+      "source": "RELAY Briefing",
+      "date": "2026.08.05",
+      "read": "5분",
+      "summary": "형태가 다른 대상 사이에서 움직임을 옮기는 영상 모션 전이 연구가 오늘의 중심입니다. Kling 팀의 Motion Beyond Morphology가 논문과 함께 코드·데이터셋을 공개했고, 오픈 웨이트로 풀린 MiniMax H3를 둘러싼 로컬 학습·양자화 생태계가 빠르게 갖춰지고 있습니다. 업계에서는 xAI 그록 이매진의 대규모 업그레이드와 AI 미감 평가 데이터 사업의 시드 투자를 다룹니다."
+    },
     {
       "id": "a24-deepmind-ai-film",
       "category": "Business",

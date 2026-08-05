@@ -1,0 +1,157 @@
+{
+  "id": "ai-media-daily-2026-08-05",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 5일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.05",
+  "read": "5분",
+  "summary": "형태가 다른 대상 사이에서 움직임을 옮기는 영상 모션 전이 연구가 오늘의 중심입니다. Kling 팀의 Motion Beyond Morphology가 논문과 함께 코드·데이터셋을 공개했고, 오픈 웨이트로 풀린 MiniMax H3를 둘러싼 로컬 학습·양자화 생태계가 빠르게 갖춰지고 있습니다. 업계에서는 xAI 그록 이매진의 대규모 업그레이드와 AI 미감 평가 데이터 사업의 시드 투자를 다룹니다.",
+  "body": [
+    {
+      "type": "h2",
+      "kicker": "영상 리서치 · 8월 4일",
+      "text": "형태를 넘어서는 모션 전이 — Kling 팀의 Motion Beyond Morphology"
+    },
+    {
+      "type": "figure",
+      "video": "https://miniz233.github.io/MotionBeyondMorphology/motion_videos/1.mp4",
+      "caption": "<b>교차 카테고리 모션 전이 데모.</b> 참조 영상의 동작을 형태가 다른 대상에 이식한 결과."
+    },
+    {
+      "type": "p",
+      "html": "Motion Beyond Morphology가 공개되었습니다. 참조 영상에 담긴 움직임을, 형태와 관절 구조가 크게 다른 대상에 옮겨 붙이는 영상 모션 전이 방법입니다. arXiv에 8월 3일 최초 등재된 뒤 8월 4일 개정판이 올라왔고, 같은 날 코드와 데이터셋이 GitHub에 공개되었습니다. 저자진에는 Kling 영상 모델을 개발하는 콰이쇼우 계열의 연구자가 포함됩니다."
+    },
+    {
+      "type": "p",
+      "html": "핵심은 형태에 얽매이지 않는 추상 모션 표현입니다. 기존 방식은 원본과 대상의 골격이 대응해야 자연스러운 결과를 얻었지만, 이 연구는 서로 다른 형태에서도 의미가 유지되는 동작만 추려 학습합니다. 사람의 연기 동작을 형태가 다른 크리처나 오브젝트에 옮기는 캐릭터 리타게팅 공정의 선택지를 넓히는 접근입니다. 다만 현시점에서 ComfyUI 연동은 확인되지 않습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.01628",
+          "u": "https://arxiv.org/abs/2608.01628"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://miniz233.github.io/MotionBeyondMorphology/"
+        },
+        {
+          "t": "GitHub",
+          "u": "https://github.com/miniz233/MBM"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "오픈 웨이트 · 8월 3~4일",
+      "text": "MiniMax H3 로컬 생태계 확장 — LoRA 학습 도구와 커뮤니티 양자화판"
+    },
+    {
+      "type": "p",
+      "html": "8월 3일 오픈 웨이트로 공개된 <strong>MiniMax H3</strong>를 로컬에서 다루기 위한 도구가 빠르게 갖춰지고 있습니다. Ostris의 <code>AI Toolkit</code>이 H3용 LoRA 학습을 지원하기 시작했고, 학습 중 VRAM을 줄이는 NVFP4 양자화와 VAE 그래디언트 체크포인팅을 적용해 소비자 그래픽카드에서도 파인튜닝이 가능해졌습니다."
+    },
+    {
+      "type": "p",
+      "html": "양자화 쪽은 커뮤니티가 채우고 있습니다. Hugging Face의 GGUF 모음은 공개 하루 만에 4만 회 넘게 내려받혔고, r/comfyui에서는 가지치기한 BF16 변형도 확인됩니다. 폐쇄형 API에 기대지 않고 자체 소재로 모델을 파인튜닝하려는 프로덕션의 진입 문턱이 낮아지는 흐름입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-03-ai-toolkit-minimax-h3-training"
+        },
+        {
+          "t": "Hugging Face",
+          "u": "https://huggingface.co/realrebelai/MiniMax-H3_GGUFs"
+        },
+        {
+          "t": "r/comfyui",
+          "u": "https://www.reddit.com/r/comfyui/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "관련 업계 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "모델 업데이트 · 8월 1일",
+      "text": "xAI 그록 이매진 대규모 업그레이드 — 네이티브 1080p와 캐릭터 일관성"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.aitimes.com/news/photo/202608/213444_216918_1150.jpg",
+      "alt": "그록 이매진 업그레이드",
+      "caption": "<b>그록 이매진.</b> 네이티브 1080p와 참조 이미지 기반 캐릭터 일관성을 더한 업데이트.",
+      "credit": "이미지: AI타임스"
+    },
+    {
+      "type": "p",
+      "html": "<strong>xAI</strong>가 영상 생성 서비스 그록 이매진을 크게 손봤습니다. 이미지·텍스트 양쪽에서 네이티브 1080p 생성을 지원하고, 시작 이미지 없이 프롬프트만으로 영상을 만드는 텍스트-대-영상 경로가 추가되었습니다. 최대 7개의 참조 이미지로 동일 인물의 외형을 여러 장면에 걸쳐 유지하고, 앞서 생성한 캐릭터의 음성을 <code>@</code> 태그로 불러와 같은 목소리를 이어 쓸 수 있습니다. 인물과 음색을 장면 사이에 고정하는 방식은 여러 샷을 이어 붙이는 작업에서 활용도가 높습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=213444"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "투자 · 8월 3일",
+      "text": "DesignArena 운영사 Intelligence, 790만 달러 시드 유치"
+    },
+    {
+      "type": "figure",
+      "img": "https://techcrunch.com/wp-content/uploads/2026/08/Screenshot-2026-08-03-at-12.31.35-PM.jpg?w=1024",
+      "alt": "DesignArena",
+      "caption": "<b>DesignArena.</b> 두 결과물을 비교해 선호를 고르는 방식으로 미감 데이터를 수집한다.",
+      "credit": "이미지: TechCrunch"
+    },
+    {
+      "type": "p",
+      "html": "AI 생성물의 미감을 사람 손으로 평가해 파는 사업이 주목받고 있습니다. DesignArena를 운영하는 <strong>Intelligence</strong>가 790만 달러 규모의 시드 라운드를 유치했다고 TechCrunch가 8월 3일 보도했습니다. 라운드는 Index Ventures가 주도했습니다."
+    },
+    {
+      "type": "p",
+      "html": "사업 모델의 핵심은 인간 취향의 데이터화입니다. 이용자가 두 개의 AI 생성 결과물을 나란히 놓고 나은 쪽을 고르면, 이렇게 쌓인 선호 데이터가 프론티어 랩에 학습 신호로 판매됩니다. 기술적 정확도만으로는 채우기 어려운 미감과 취향을 정량 신호로 공급한다는 점에서, 생성 모델 품질 경쟁의 다음 국면을 보여주는 사례입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "배경 및 기존 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 7월 30일",
+      "text": "OpenPose Studio 2.1 — ComfyUI 내장형 포즈 편집 도구"
+    },
+    {
+      "type": "p",
+      "html": "OpenPose Studio가 2.1 버전으로 갱신되었습니다. ComfyUI 워크플로 안에서 OpenPose 스켈레톤을 직접 편집하는 커스텀 노드로, 포즈 갤러리와 손 편집 기능이 개선되고 새 제스처 프리셋이 추가되었습니다. 키포인트 출력을 ControlNet이나 OpenPose 호환 노드에 연결해, 캐릭터의 포즈를 명시적으로 지정해 생성 결과를 통제하려는 작업에 대응합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub andreszs/ComfyUI-OpenPose-Studio",
+          "u": "https://github.com/andreszs/ComfyUI-OpenPose-Studio"
+        }
+      ]
+    }
+  ]
+}

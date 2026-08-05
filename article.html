@@ -61,6 +61,19 @@
   figure img{width:100%;display:block}
   figcaption{font-size:12.5px;color:var(--ink-faint);margin-top:10px;padding-left:2px;line-height:1.5}
   figcaption b{color:var(--ink-soft);font-weight:600}
+  figure video{width:100%;display:block}
+
+  /* ── 데일리 리포트 확장 (라벨→제목 위계, 항목별 출처, 섹션 구분) ── */
+  .body .kick{display:block;font-size:11.5px;letter-spacing:.1em;color:var(--accent);font-weight:600;margin:46px 0 11px}
+  .body > .kick:first-child{margin-top:6px}
+  .body .kick + h2,.body .kick + h3{margin-top:0}
+  .body .group{margin:74px 0 6px;padding-top:26px;border-top:1px solid var(--line);
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .body .group + .kick{margin-top:24px}
+  .body .src-line{font-size:13px;color:var(--ink-faint);margin:-12px 0 0;letter-spacing:.01em;line-height:1.65}
+  .body .src-line b{color:var(--ink-soft);font-weight:600}
+  .body .src-line a{color:var(--accent);font-weight:600}
+  .body .src-line a:hover{text-decoration:underline}
 
   .reveal{opacity:0;transform:translateY(14px);animation:rise .7s ease forwards}
   @keyframes rise{to{opacity:1;transform:none}}
@@ -112,15 +125,27 @@
     root.outerHTML = '<div class="notfound">글을 찾을 수 없습니다. <a href="/">아카이브로 돌아가기</a></div>';
   }
 
+  const kick = b => b.kicker ? `<span class="kick">${b.kicker}</span>` : '';
+
   function renderBlock(b){
     switch(b.type){
       case 'lede':  return `<p class="lede">${b.html||b.text||''}</p>`;
       case 'p':     return `<p>${b.html||b.text||''}</p>`;
-      case 'h2':    return `<h2>${b.text||''}</h2>`;
-      case 'h3':    return `<h3>${b.text||''}</h3>`;
+      case 'h2':    return `${kick(b)}<h2>${b.text||''}</h2>`;
+      case 'h3':    return `${kick(b)}<h3>${b.text||''}</h3>`;
+      case 'group': return `<div class="group">${b.text||''}</div>`;
       case 'ul':    return `<ul>${(b.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul>`;
-      case 'figure':return `<figure class="reveal"><div class="frame"><img src="${b.img}" alt="${b.alt||''}" loading="lazy" onerror="this.style.display='none'"></div>`+
-                           `<figcaption>${b.caption||''}${b.credit?`<span class="credit">${b.credit}</span>`:''}</figcaption></figure>`;
+      case 'figure':{
+        const media = b.video
+          ? `<video controls muted playsinline preload="metadata" src="${b.video}" onerror="this.closest('figure').style.display='none'"></video>`
+          : `<img src="${b.img}" alt="${b.alt||''}" loading="lazy" onerror="this.closest('figure').style.display='none'">`;
+        return `<figure class="reveal"><div class="frame">${media}</div>`+
+               `<figcaption>${b.caption||''}${b.credit?`<span class="credit">${b.credit}</span>`:''}</figcaption></figure>`;
+      }
+      case 'src':{
+        const links = (b.links||[]).map(l=>`<a href="${l.u}" target="_blank" rel="noopener">${l.t}</a>`).join(' · ');
+        return `<div class="src-line"><b>출처:</b> ${b.html||links}</div>`;
+      }
       default:      return '';
     }
   }
