@@ -12,6 +12,15 @@
   },
   "posts": [
     {
+      "id": "ai-media-daily-2026-08-06",
+      "category": "AI Media",
+      "title": "AI 이미지·영상 생성 동향 · 8월 6일",
+      "source": "RELAY Briefing",
+      "date": "2026.08.06",
+      "read": "약 6분",
+      "summary": "실시간 영상 편집이 오늘의 중심입니다. JD가 지시어로 프레임을 즉시 고치는 JoyAI-Video-Edit를 코드·가중치와 함께 오픈소스로 공개했고, ComfyUI 코어는 0.30에서 미니맥스 H3 네이티브 지원과 LTX 2.3 디코딩 가속을 더했습니다. 업계에서는 바이트댄스 시댄스 2.5의 광범위 공개와, 권리자 동의를 앞세운 스포티파이·멀린의 AI 커버·리믹스 확대를 다룹니다."
+    },
+    {
       "id": "ai-media-daily-2026-08-05",
       "category": "AI Media",
       "title": "AI 이미지·영상 생성 동향 · 8월 5일",

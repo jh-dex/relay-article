@@ -1,0 +1,197 @@
+{
+  "id": "ai-media-daily-2026-08-06",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 6일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.06",
+  "read": "약 6분",
+  "summary": "실시간 영상 편집이 오늘의 중심입니다. JD가 지시어로 프레임을 즉시 고치는 JoyAI-Video-Edit를 코드·가중치와 함께 오픈소스로 공개했고, ComfyUI 코어는 0.30에서 미니맥스 H3 네이티브 지원과 LTX 2.3 디코딩 가속을 더했습니다. 업계에서는 바이트댄스 시댄스 2.5의 광범위 공개와, 권리자 동의를 앞세운 스포티파이·멀린의 AI 커버·리믹스 확대를 다룹니다.",
+  "body": [
+    {
+      "type": "h2",
+      "kicker": "영상 리서치 · 8월 5일",
+      "text": "실시간으로 지시를 반영하는 영상 편집 — JD의 JoyAI-Video-Edit"
+    },
+    {
+      "type": "figure",
+      "img": "https://raw.githubusercontent.com/jd-opensource/JoyAI-Video-Edit/main/assets/teaser.jpg",
+      "alt": "JoyAI-Video-Edit 편집 예시",
+      "caption": "<b>JoyAI-Video-Edit.</b> 지시어로 피사체·배경·스타일·모션을 실시간으로 편집한 사례.",
+      "credit": "이미지: JD JoyAI"
+    },
+    {
+      "type": "p",
+      "html": "JD(징둥)의 오픈소스 조직이 8월 5일 <strong>JoyAI-Video-Edit</strong>를 공개했습니다. 들어오는 영상 프레임을 순차적으로 받아, 전체 영상이 끝나기를 기다리지 않고 지시어에 따라 실시간으로 편집하는 방법입니다. 기술 보고서가 arXiv에 8월 4일 등재되었고, 배포 코드와 모델 가중치가 GitHub·Hugging Face에 함께 공개되었으며 라이선스는 Apache 2.0입니다."
+    },
+    {
+      "type": "p",
+      "html": "핵심은 지연을 억제한 인과적 생성입니다. 16B 규모의 멀티모달 디퓨전 트랜스포머에 MLLM 기반 조건 인코더와 인과적 영상 VAE를 결합해, 720x1280 해상도에서 종단 간 초당 30.19프레임을 낸다고 저자진은 밝혔습니다. 피사체 교체, 국소 편집, 배경 변경, 스타일 전이, 모션 변경, 참조 기반 편집을 지원하며, RTX 5090 같은 소비자용 그래픽카드에 맞춰 배포를 최적화했습니다. 스트리밍 방식으로 결과를 즉시 확인하며 컴프·클린업 단계를 조율하려는 작업에 활용도가 높습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.03974",
+          "u": "https://arxiv.org/abs/2608.03974"
+        },
+        {
+          "t": "GitHub",
+          "u": "https://github.com/jd-opensource/JoyAI-Video-Edit"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://joyai-labs.jd.com/v2v/"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "도구 · 8월 3일",
+      "text": "ComfyUI 0.30 — 미니맥스 H3 네이티브 지원과 LTX 2.3 디코딩 가속"
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI 코어가 8월 3일 0.30.0에 이어 0.30.1을 내놨습니다. 오픈 웨이트로 풀린 미니맥스 H3 영상 모델을 네이티브로 지원하고, Pruna의 LTX VAE를 통합해 LTX 2.3 디코딩 속도를 끌어올린 것이 이번 릴리스의 핵심입니다. xAI 그록 이매진 비디오 1.5 노드와 Ideogram P-Image 파트너 노드도 함께 들어왔습니다."
+    },
+    {
+      "type": "p",
+      "html": "실무에 바로 닿는 개선이 여럿입니다. 영상 저장 노드에 <code>CRF</code> 압축 옵션이 추가돼 용량과 품질을 조절할 수 있고, MP4 메타데이터를 파일 앞으로 옮겨 탐색을 빠르게 했습니다. 가중치를 최근 사용 순으로 시스템 RAM에 얹는 캐시로 VRAM이 빠듯한 환경에서 더 큰 모델을 돌릴 여지를 넓혔고, 오디오 없이 샘플링할 때 발생하던 LTXAV 충돌도 바로잡았습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Changelog",
+          "u": "https://docs.comfy.org/changelog"
+        },
+        {
+          "t": "GitHub Releases",
+          "u": "https://github.com/Comfy-Org/ComfyUI/releases"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "3D 연구 · 8월 3일",
+      "text": "텐센트 Hunyuan3D-Buffalo — 3D 생성·이해·편집을 한 모델로"
+    },
+    {
+      "type": "p",
+      "html": "텐센트 Hunyuan3D 팀이 8월 3일 <strong>Hunyuan3D-Buffalo 1.0</strong> 논문을 공개했습니다. 3D 질의응답과 그라운딩, 텍스트-대-3D 생성, 지시 기반 편집, 텍스트로 지정한 부위 생성을 하나의 아키텍처에서 처리하는 통합 멀티모달 모델입니다. 기하 정합이 맞는 편집 데이터가 부족하다는 문제를 풀기 위해 8,700만 규모의 코퍼스를 구축했다고 밝혔습니다."
+    },
+    {
+      "type": "p",
+      "html": "텍스트 지시만으로 기존 3D 자산의 특정 부위를 수정하거나 부위 단위로 생성하는 접근은 룩뎁·프리비즈 단계에서 에셋을 다듬는 공정과 맞닿아 있습니다. 다만 코드·가중치 공개 여부는 현재 프로젝트 페이지에서 확인되지 않습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.02711",
+          "u": "https://arxiv.org/abs/2608.02711"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://tencent-hunyuan.github.io/Hunyuan3D-Buffalo1.0/"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "커스텀 노드 · 8월 5일",
+      "text": "ComfyUI-sol-attn — 블랙웰 GPU용 희소 어텐션 커널과 H3 전용 노드"
+    },
+    {
+      "type": "p",
+      "html": "소비자용 블랙웰 그래픽카드(RTX 50 시리즈)를 겨냥한 커스텀 노드 <strong>ComfyUI-sol-attn</strong>이 8월 5일 0.5 계열로 갱신되었습니다. 엔비디아 Sol-Attn 희소 어텐션 커널을 Triton으로 구현해, 미니맥스 H3의 융합 qkv를 복사 없이 참조하는 메모리 효율 어텐션, 샘플링 단계별로 희소도를 조절하는 스케줄드 어텐션, 피드포워드 정점 메모리를 낮추는 청크 노드를 제공합니다."
+    },
+    {
+      "type": "p",
+      "html": "저장소 설명에 따르면 8,192 토큰에서 SageAttention 대비 약 1.14배, 32,768 토큰에서 약 1.44배 빠르며, 청크 피드포워드로 H3의 MLP 정점 VRAM을 37% 낮춘다고 합니다. 실측은 SM120에서만 이뤄졌다고 명시했고, 라이선스는 Apache 2.0입니다. 로컬에서 H3를 돌릴 때 속도와 메모리 여유를 확보하려는 사용자에게 실용적인 선택지입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub Saganaki22/ComfyUI-sol-attn",
+          "u": "https://github.com/Saganaki22/ComfyUI-sol-attn"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "관련 업계 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "영상 모델 · 8월 7일",
+      "text": "바이트댄스 시댄스 2.5, 광범위 공개 — 네이티브 30초 오디오·영상"
+    },
+    {
+      "type": "p",
+      "html": "바이트댄스가 6월 23일 볼케이노 엔진 FORCE에서 공개한 <strong>시댄스(Seedance) 2.5</strong>의 API와 체험센터가 8월 7일 광범위하게 열립니다. 이어 붙이지 않고 한 번에 최대 30초 길이의 단일 영상을 생성하며, 장면 전환과 템포 변화까지 담는 것이 특징입니다. 최대 50개의 멀티모달 참조(이미지 30·영상 10·오디오 10)를 받고, 10개 이상 언어의 네이티브 오디오를 지원합니다."
+    },
+    {
+      "type": "p",
+      "html": "대부분의 영상 모델이 클립당 5~15초에 머무는 가운데, 단일 패스로 30초 서사를 만든다는 점은 여러 샷을 이어 붙이는 부담을 줄입니다. 참조를 폭넓게 받아 캐릭터와 톤을 유지하는 방식은 광고·프리비즈처럼 짧은 서사를 빠르게 뽑아야 하는 작업과 맞물립니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "TechTimes",
+          "u": "https://www.techtimes.com/articles/318975/20260624/bytedance-seedance-25-native-30-second-ai-video-no-stitching-required.htm"
+        },
+        {
+          "t": "모델 정보(Morphic)",
+          "u": "https://morphic.com/resources/models/seedance-2-5"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "플랫폼·저작권 · 8월 4일",
+      "text": "스포티파이, 멀린과 AI 커버·리믹스 확대 — '합법적 참여' 내세워"
+    },
+    {
+      "type": "p",
+      "html": "스포티파이가 2분기 실적 발표에서 3만 개 이상의 독립 레이블·유통사를 대표하는 <strong>멀린(Merlin)</strong>이 유니버설뮤직에 이어 AI 커버·리믹스 제품에 합류했다고 8월 4일 밝혔습니다. 참여 아티스트의 음악을 팬이 AI로 커버·리믹스하는 유료 기능으로, 아티스트 동의(opt-in)와 크레디트, 수익 배분을 전제로 설계했습니다."
+    },
+    {
+      "type": "p",
+      "html": "회사는 이를 'AI 흐름에 참여하는 첫 합법적 경로'라고 표현했습니다. 배경에는 생성 음원의 범람이 있습니다. 디저(Deezer)는 7월 기준 하루 업로드의 절반 이상이 AI 생성물이라고 밝힌 바 있습니다. 권리자 동의를 전제로 한 이 모델은 생성 미디어의 저작권·보상 프레임을 놓고 플랫폼이 어떤 선을 그으려 하는지 보여주는 사례입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/04/spotify-adds-merlin-to-its-ai-music-remix-and-covers-effort/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "배경 및 기존 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "정책 · 7월 22일",
+      "text": "AI 슬롭 범람에 플랫폼 대응 강화"
+    },
+    {
+      "type": "p",
+      "html": "배경에서는 'AI 슬롭' 대응 흐름이 이어집니다. 생성 AI가 제작 문턱을 낮추면서 완성도가 낮은 반복 콘텐츠와 AI 스팸이 빠르게 늘고 있고, 유튜브와 틱톡 등 글로벌 플랫폼은 이에 대응해 콘텐츠 관리 정책을 잇달아 손보고 있다고 ZDNet Korea가 7월 22일 전했습니다. 생성 영상·이미지의 유통 환경이 조정되는 국면으로, 노출과 수익화 규칙의 변화가 제작 측에도 영향을 미칩니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ZDNet Korea",
+          "u": "https://zdnet.co.kr/view/?no=20260722152055"
+        }
+      ]
+    }
+  ]
+}
