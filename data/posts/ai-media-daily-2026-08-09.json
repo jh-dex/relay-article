@@ -1,0 +1,286 @@
+{
+  "id": "ai-media-daily-2026-08-09",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 9일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.09",
+  "read": "약 7분",
+  "summary": "오픈 웨이트 캐릭터 애니메이션이 오늘의 중심입니다. 알리바바 통이랩의 Wan Animate 2가 구동 영상을 그대로 받아 캐릭터를 움직이고 교체하는 엔드투엔드 모델로 공개돼 ComfyUI 네이티브 노드로 편입됐고, 코어 0.31.0은 PSD식 레이어 컴포지팅 노드와 바이트댄스 시댄스 2.5·시드림 5.0 프로 파트너 노드를 더했습니다. 로컬 쪽에서는 미니맥스 H3를 12.5GB 4비트 가중치로 낮춰 소비자용 GPU에서 돌리는 흐름이 퍼졌고, xAI는 편집을 앞세운 이미지 모델 이매진 이미지 2.0을 내놨습니다. 업계에서는 오픈AI의 넥스트슬라이드 인수와 미니맥스를 둘러싼 저작권 소송을 다룹니다.",
+  "body": [
+    {
+      "type": "h2",
+      "kicker": "오픈 웨이트 · 8월 8일",
+      "text": "알리바바 통이랩 Wan Animate 2 — 구동 영상 그대로 받는 엔드투엔드 캐릭터 애니메이션, ComfyUI 네이티브 지원"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-07-wan-animate-2/pipeline-v1.png",
+      "alt": "Wan Animate 2 파이프라인 구조도",
+      "caption": "<b>Wan Animate 2.</b> 별도 모션 추출기 없이 구동 영상을 디퓨전 트랜스포머가 직접 소비하는 엔드투엔드 구조.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "알리바바 통이랩이 8월 7일 캐릭터 애니메이션·교체 모델 <strong>Wan Animate 2</strong>를 공개했고, ComfyUI가 8월 8일 이를 네이티브로 흡수했습니다. 이전 세대와 달리 별도의 모션 추출기를 두지 않고, 움직임을 옮겨 올 구동(driving) 영상을 다시 설계한 디퓨전 트랜스포머가 직접 받아 처리하는 엔드투엔드 구조가 핵심입니다. 라이선스는 Apache-2.0이며, 베이스 모델과 증류 모델 가중치가 허깅페이스에 공개됐습니다."
+    },
+    {
+      "type": "p",
+      "html": "정지 캐릭터 이미지에 참조 영상의 표정과 몸짓을 입히는 애니메이션과, 원본 영상 속 인물을 대체하면서 장면의 조명·톤까지 맞추는 교체를 모두 지원합니다. 원본 영상과 분리된 텍스트 기반 시점 제어와 다중 캐릭터 처리에 더해, 실시간 지연을 겨냥한 경량판 <strong>Wan-Animate-2-Lite</strong>로 스트리밍 아바타까지 노렸습니다. ComfyUI에는 두 개의 노드가 추가됐습니다. <code>WanAnimate2ToVideo</code>는 참조 캐릭터와 구동 영상을 받아 포즈 강도·타이밍을 조절하고, <code>WanAnimate2Cache</code>는 포즈 브랜치 계산을 캐싱해 생성 시간을 대략 절반으로 줄입니다. 캐시 노드는 480×832 해상도·81프레임 기준 약 12.5GB의 시스템 RAM을 씁니다."
+    },
+    {
+      "type": "p",
+      "html": "캐릭터를 원본 영상에 이식하거나 교체하며 장면의 광원·색조까지 정합하는 작업은 로토·매트와 캐릭터 리플레이스먼트 공정에 직접 닿습니다. 새 영상 모델이 나올 때 ComfyUI에서 바로 돌아가는지는 이 분야 작업자에게 일급 정보인데, Wan Animate 2는 공개 다음 날 네이티브 노드로 편입돼 워크플로 안에서 곧바로 쓸 수 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Comfy Org 블로그",
+          "u": "https://blog.comfy.org/p/wan-animate-2-is-now-available-in"
+        },
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-07-wan-animate-2"
+        },
+        {
+          "t": "Hugging Face",
+          "u": "https://huggingface.co/Comfy-Org/Wan-Animate-2"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "도구 · 8월 8일",
+      "text": "ComfyUI 0.31.0 — PSD식 레이어 컴포지팅 노드와 파트너 모델 대거 편입"
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI 코어가 8월 8일 <strong>0.31.0</strong>을 내놨습니다. 눈에 띄는 신설은 컴포지터에서 레이어 스택을 직접 다루는 노드들입니다. 블렌드 모드를 지원해 PSD처럼 층을 쌓는 <code>Create Layered Image</code>, 레이어 스택을 관리하는 <code>Add Layer</code>, 바운딩 박스에서 레이어를 만드는 <code>Layers From Bounding Boxes</code>가 더해져, 노드 그래프 안에서 레이어 기반 합성을 구성할 수 있게 됐습니다."
+    },
+    {
+      "type": "p",
+      "html": "모델 지원도 넓어졌습니다. 앞의 Wan Animate 2를 네이티브로 흡수했고, 바이트댄스 시댄스 2.5와 레이어 분리를 지원하는 시드림 5.0 프로가 파트너 노드로 들어왔습니다. 여기에 LTX·완 계열 속도 개선, 미니맥스 H3용 비대칭 <code>w4a8_int</code> 양자화와 <code>int8 convrot</code> VAE 지원, H3 오디오·샘플러 관련 다수의 버그 수정이 포함됐습니다. 다만 업데이트 직후 문제를 겪었다며 갱신을 미루라는 커뮤니티 주의 글도 올라온 만큼(커뮤니티 관찰 기준), 실무 환경에서는 검증 후 반영하는 편이 안전합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Changelog",
+          "u": "https://docs.comfy.org/changelog"
+        },
+        {
+          "t": "GitHub Releases",
+          "u": "https://github.com/Comfy-Org/ComfyUI/releases"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "이미지 모델 · 8월 7일",
+      "text": "xAI 이매진 이미지 2.0 — 편집을 일급 기능으로 앞세운 이미지 모델, 아레나 2위"
+    },
+    {
+      "type": "figure",
+      "img": "https://the-decoder.com/wp-content/uploads/2026/08/xai_image2.png",
+      "alt": "xAI 이매진 이미지 2.0 생성 예시",
+      "caption": "<b>이매진 이미지 2.0.</b> 영역 지정 편집과 배경 제거, 다중 참조를 편집 중심으로 묶었다.",
+      "credit": "이미지: The Decoder"
+    },
+    {
+      "type": "p",
+      "html": "xAI가 8월 7일 차세대 이미지 모델 <strong>이매진 이미지 2.0</strong>을 grok.com/imagine과 모바일 앱의 퀄리티 모드로 공개했습니다. 편집을 부가 기능이 아니라 일급 기능으로 설계한 것이 특징입니다. 가리킨 영역만 바꾸는 매직 완드, 정밀 영역을 고르는 세그멘테이션, 대상을 투명 배경 PNG로 내보내는 배경 제거, 한 번에 최대 5장의 참조를 받는 멀티 레퍼런스 편집, 원하는 비율로 자동 채워 넣는 스마트 리사이즈를 갖췄고, 작은 글씨를 또렷하게 유지하는 타이포·레이아웃 처리도 내세웠습니다."
+    },
+    {
+      "type": "p",
+      "html": "xAI는 8월 7일 기준 아레나 리더보드에서 이미지 편집 Elo 1,439로 2위(1위 오픈AI GPT-Image-2 1,463), 텍스트-대-이미지 Elo 1,320으로 2위(GPT-Image-2 1,380)에 올랐다고 밝혔습니다. API는 곧 제공될 예정이며 요금은 공개되지 않았습니다. 영역 단위 편집과 투명 배경 내보내기, 여러 참조를 한 번에 합치는 방식은 손으로 하던 합성 단계를 줄여 매트·컴프와 목업 준비 공정에 곧바로 닿습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "The Decoder",
+          "u": "https://the-decoder.com/xais-imagine-image-2-0-lands-just-behind-openais-gpt-image-2-in-arena-benchmarks/"
+        },
+        {
+          "t": "Unite.AI",
+          "u": "https://www.unite.ai/xai-ships-grok-imagine-image-2-0-with-precise-editing-and-a-top-arena-ranking/"
+        },
+        {
+          "t": "TestingCatalog",
+          "u": "https://www.testingcatalog.com/xai-launches-imagine-image-2-0-in-grok-quality-mode/"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "오픈 웨이트 · 8월 7일",
+      "text": "미니맥스 H3, 12.5GB 4비트 가중치로 소비자 GPU 진입 — Kijai 실험판"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-05-kijai-minimax-h3-w4a8/pr90-w4a8-demo-poster.jpg",
+      "alt": "Kijai의 MiniMax H3 4비트 양자화 데모",
+      "caption": "<b>MiniMax H3 w4a8.</b> 4비트 저장·int8 연산으로 FL2VA 체크포인트를 12.5GB로 낮췄다.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "오픈 웨이트로 풀린 <strong>미니맥스 H3</strong>의 로컬 실행 저변이 빠르게 넓어지고 있습니다. 그 중심에 Kijai가 공개한 비대칭 4비트(w4a8) 실험 가중치가 있습니다. 가중치를 원소당 약 0.56바이트로 저장하되 연산은 int8 GEMM으로 돌리는 방식으로, 프루닝한 FL2VA 체크포인트를 <strong>12.5GB</strong>까지 낮췄습니다. Ref2VA는 11.8GB, 함께 쓰는 int8 convrot VAE는 3.2GB이며, 별도 캘리브레이션이 필요 없고 int8 대비 약 1.09배 빠릅니다."
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI 지원은 코어 PR #15308(비대칭 w4a8_int)과 #15334(int8 convrot VAE)가 8월 6~7일 병합되며 0.31.0에 반영됐습니다. 게시자는 이를 테스트용 실험 릴리스로 못 박으며 품질·속도 수치를 초기 데이터로 봐 달라고 밝혔습니다. 커뮤니티에서는 16GB 소비자용 그래픽카드에서 H3를 완전히 로컬로 돌렸다는 사례가 공유됐고(커뮤니티 관찰 기준), 컴피 오그가 미니맥스 H3 팀을 초청해 진행한 스트림 요약도 함께 돌며 오픈 웨이트 영상 모델을 둘러싼 관심을 보여줬습니다. 무거운 80GB급 VRAM을 전제하던 H3를 소비자 GPU로 끌어내리는 흐름은 로컬 반복 생성의 회전 속도를 직접 끌어올립니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-05-kijai-minimax-h3-w4a8"
+        },
+        {
+          "t": "Hugging Face Kijai/MiniMax-H3-experimental",
+          "u": "https://huggingface.co/Kijai/MiniMax-H3-experimental"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "영상 리서치 · 8월 8일",
+      "text": "Kandinsky Lab KVAE — 이미지·영상·오디오 토크나이저 제품군, 코드·가중치 공개"
+    },
+    {
+      "type": "p",
+      "html": "잠재 디퓨전 모델의 바탕이 되는 토크나이저를 정면으로 다룬 연구 <strong>KVAE</strong>가 8월 8일 arXiv에 올라왔습니다. 이미지를 다루는 KVAE-2D, 두 가지 압축률의 영상용 KVAE-3D, 48kHz 연속 병목을 쓰는 KVAE-Audio로 구성된 토크나이저 제품군으로, 입력 신호를 디퓨전 모델이 다루기 좋은 잠재 표현으로 압축하는 것을 목표로 합니다."
+    },
+    {
+      "type": "p",
+      "html": "핵심 관찰은 재구성 품질이 좋다고 해서 생성 성능까지 좋아지지는 않는다는 점입니다. 저자진은 잠재 공간이 디퓨전 학습에 얼마나 적합한지를 가리키는 '디퓨저빌리티' 개념과, 토크나이저를 저비용으로 선별하는 지표 CDS(Correlation Decay Slope)를 제안했습니다. VAE·디코더의 품질은 최종 생성 결과를 좌우하는 저층 요소인 만큼, 생성 파이프라인의 근간을 다듬는 작업에 닿습니다. 코드와 가중치는 MIT 라이선스로 공개됐습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.05798",
+          "u": "https://arxiv.org/abs/2608.05798"
+        },
+        {
+          "t": "GitHub kandinskylab/kvae",
+          "u": "https://github.com/kandinskylab/kvae"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "관련 업계 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "인수 · 8월 8일",
+      "text": "오픈AI, 프레젠테이션 스타트업 넥스트슬라이드 인수"
+    },
+    {
+      "type": "p",
+      "html": "오픈AI가 프레젠테이션 제작 스타트업 <strong>넥스트슬라이드(NextSlide)</strong>를 인수했다고 8월 8일 확인됐습니다. 넥스트슬라이드는 프롬프트와 메모, 문서, 리서치를 편집 가능한 프레젠테이션으로 바꾸는 도구로, 창업팀은 ChatGPT 개발에 합류합니다. 인수 금액은 공개되지 않았고, 창업자 아메드 베슈리는 실제 거래가 올해 초 마무리됐으며 발표가 다소 늦었다고 밝혔습니다."
+    },
+    {
+      "type": "p",
+      "html": "직접적인 이미지·영상 생성 사안은 아니지만, 문서를 시각 자료로 자동 구성하는 기능이 범용 챗봇 안으로 흡수되는 사례입니다. 앞서 어도비의 크리에이티브 도구가 ChatGPT에 통합된 흐름과 같은 방향으로, 시각 커뮤니케이션과 디자인 산출의 접점이 어디로 모이는지를 보여줍니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/08/openai-acquires-presentation-startup-nextslide/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "국내 산업 · 8월 7일",
+      "text": "서울AI재단·전자신문, 제1회 AI 이미지 챌린지 개최"
+    },
+    {
+      "type": "figure",
+      "img": "https://img.etnews.com/news/article/2026/08/07/news-p.v1.20260807.e66d5886f93345718593f91768574de4_P1.jpg",
+      "alt": "제1회 AI 이미지 챌린지 포스터",
+      "caption": "<b>AI 이미지 챌린지.</b> 직접 촬영한 사진을 생성형 AI 도구로 재구성해 출품하는 공모전.",
+      "credit": "이미지: 전자신문"
+    },
+    {
+      "type": "p",
+      "html": "국내에서는 생성형 이미지 창작을 공적 행사로 끌어들이는 시도가 나왔습니다. 서울AI재단과 전자신문, 한국사진기자협회가 8월 7일 <strong>제1회 AI 이미지 챌린지</strong> 개최를 알렸습니다. 주제는 'AI와 만나는 순간, 도시는 깨어난다'로, 20세 이상 전국민이 직접 촬영한 사진을 생성형 AI 도구로 재구성해 미래지향적 이미지를 만들어 출품하는 방식입니다."
+    },
+    {
+      "type": "p",
+      "html": "접수는 8월 1일부터 9월 7일까지이며, 선정작은 10월 6~8일 코엑스에서 열리는 스마트라이프위크(SLW) 2026과 연계해 전시됩니다. 심사는 완성도와 창의성, AI 활용도를 함께 봅니다. 촬영 원본과 생성 도구를 결합하는 창작 방식을 공모 형식으로 제도화했다는 점에서, 국내 창작 현장의 생성형 이미지 수용을 보여주는 사례입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "전자신문",
+          "u": "https://www.etnews.com/20260807000086"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "배경 및 기존 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "영상 모델 · 8월 8일",
+      "text": "바이트댄스 시댄스 2.5·시드림 5.0 프로, ComfyUI 파트너 노드로 편입"
+    },
+    {
+      "type": "p",
+      "html": "바이트댄스가 7월 말 볼케이노 엔진 2026에서 공개한 영상 모델 <strong>시댄스 2.5</strong>와 이미지 모델 <strong>시드림 5.0 프로</strong>가 8월 8일 ComfyUI 0.31.0의 파트너 노드로 들어왔습니다. 시댄스 2.5는 한 번의 생성으로 30초 길이를 만들고, R2V 참조를 최대 50장까지 받아 광고·소셜·커머스·스토리텔링을 겨냥합니다. 회사는 더 긴 서사에서도 캐릭터가 흔들리지 않는 롱폼 샷 일관성을 핵심 개선으로 내세웠고, 기존 시댄스 2.0은 4K 출력으로 상향됐습니다."
+    },
+    {
+      "type": "p",
+      "html": "시드림 5.0 프로는 대화형 편집과 함께 요소를 알파 PNG 레이어로 분리하는 기능을 담았습니다. 화살표를 긋거나 영역을 원으로 감싸 편집하고, 요소를 드래그·스케일이 가능한 개별 레이어로 떼어낼 수 있습니다. 알파 채널 단위의 레이어 분리는 매트·컴프 준비 공정에 곧바로 닿는 기능입니다. 두 모델 모두 로컬 가중치를 내려받는 방식이 아니라 API를 호출하는 파트너 노드로, 생성은 원격에서 이뤄집니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Changelog",
+          "u": "https://docs.comfy.org/changelog"
+        },
+        {
+          "t": "TestingCatalog",
+          "u": "https://www.testingcatalog.com/bytedance-debuts-seedream-5-0-pro-with-advanced-reasoning/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "저작권 · 5월 26일",
+      "text": "미니맥스, 디즈니 등 스튜디오 저작권 소송 각하 기각 — 오픈 웨이트 확산과 맞물린 그림자"
+    },
+    {
+      "type": "p",
+      "html": "미니맥스가 H3를 오픈 웨이트로 풀며 로컬 생태계가 커지는 한편, 회사를 겨냥한 미국 저작권 소송이 그림자로 남아 있습니다. 디즈니와 마블, 루카스필름, 20세기 스튜디오, 유니버설, 드림웍스, 워너브러더스 디스커버리는 2025년 9월 16일 캘리포니아 중부지방법원에 미니맥스와 미국 운영사 나노노블, 모회사 상하이 시위 지즈를 제소했습니다. 미니맥스의 영상 서비스 하이라오(Hailuo)가 스파이더맨과 다스베이더, 슈렉 같은 캐릭터를 무단으로 생성한다는 주장입니다."
+    },
+    {
+      "type": "p",
+      "html": "2026년 5월 26일 스탠리 블루먼펠드 판사는 미니맥스의 소송 각하 신청을 기각해 본안 심리로 진행하도록 했습니다. 침해 여부를 판단한 것이 아니라 재판을 받을 만한 주장이 갖춰졌다는 결정입니다. 학습 데이터와 산출물의 책임을 둘러싼 이 다툼은 오픈 웨이트로 배포된 생성 모델을 실무에 쓰는 작업의 저작권 리스크와 직접 맞닿아 있어, 클라이언트 대면 작업에서 눈여겨볼 사안입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Variety",
+          "u": "https://variety.com/2025/digital/news/disney-warner-bros-discovery-nbcu-lawsuit-minimax-chinese-ai-company-1236520395/"
+        },
+        {
+          "t": "Crypto Briefing (Reuters)",
+          "u": "https://cryptobriefing.com/minimax-disney-copyright-lawsuit-ai-2/"
+        }
+      ]
+    }
+  ]
+}
