@@ -12,6 +12,15 @@
   },
   "posts": [
     {
+      "id": "ai-media-daily-2026-08-11",
+      "category": "AI Media",
+      "title": "AI 이미지·영상 생성 동향 · 8월 11일",
+      "source": "RELAY Briefing",
+      "date": "2026.08.11",
+      "read": "약 7분",
+      "summary": "오늘은 오픈 웨이트 영상 모델 미니맥스 H3와 이미지 모델 Krea 2를 둘러싼 ComfyUI 실행 생태계가 하루 사이 여러 갈래로 성숙했습니다. Krea 2 풀 파인튠 체크포인트 Kroma v0.2가 공개됐고, H3 쪽에서는 텍스트 인코더를 4B로 바꿔 컨디셔닝 VRAM을 71% 낮춘 ClipProj, 영상과 오디오를 한 번에 손보는 LanPaint 2.0, 컷을 넘어 모션과 소리를 잇는 H3 Motion Context가 잇따라 나왔습니다. 연구에서는 엔비디아가 재학습 없이 영상 월드모델의 장기 기억을 다잡는 WorldTrace를 공개했고, 업계에서는 힉스필드가 AI 장편의 제작 데이터 전체를 열었으며 일레븐랩스가 더빙 v2 API를 내놨습니다."
+    },
+    {
       "id": "ai-media-daily-2026-08-10",
       "category": "AI Media",
       "title": "AI 이미지·영상 생성 동향 · 8월 10일",

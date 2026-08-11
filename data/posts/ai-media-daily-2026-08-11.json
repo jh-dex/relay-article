@@ -1,0 +1,305 @@
+{
+  "id": "ai-media-daily-2026-08-11",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 11일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.11",
+  "read": "약 7분",
+  "summary": "오늘은 오픈 웨이트 영상 모델 미니맥스 H3와 이미지 모델 Krea 2를 둘러싼 ComfyUI 실행 생태계가 하루 사이 여러 갈래로 성숙했습니다. Krea 2 풀 파인튠 체크포인트 Kroma v0.2가 공개됐고, H3 쪽에서는 텍스트 인코더를 4B로 바꿔 컨디셔닝 VRAM을 71% 낮춘 ClipProj, 영상과 오디오를 한 번에 손보는 LanPaint 2.0, 컷을 넘어 모션과 소리를 잇는 H3 Motion Context가 잇따라 나왔습니다. 연구에서는 엔비디아가 재학습 없이 영상 월드모델의 장기 기억을 다잡는 WorldTrace를 공개했고, 업계에서는 힉스필드가 AI 장편의 제작 데이터 전체를 열었으며 일레븐랩스가 더빙 v2 API를 내놨습니다.",
+  "body": [
+    {
+      "type": "h2",
+      "kicker": "오픈 웨이트 · 8월 9일",
+      "text": "Kroma v0.2 — Krea 2를 통째로 파인튠한 풀 체크포인트, ComfyUI 네이티브 실행"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/krea-2-teaser.jpg",
+      "alt": "Krea 2 계열 이미지 생성 예시",
+      "caption": "<b>Kroma v0.2.</b> Krea 2를 이어 학습한 풀 파인튠 체크포인트의 예시 출력.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "Chroma 모델로 알려진 Lodestones가 8월 9일 이미지 모델 <strong>Krea 2</strong>를 통째로 파인튠한 <strong>Kroma v0.2</strong>를 공개했습니다. 앞서 7월 말 나온 v0.1이 베이스 Krea 2 위에 얹는 rank-256 LoRA였던 반면, v0.2는 LoRA 압축을 걷어낸 독립 실행형 풀 체크포인트로 형식을 바꿨습니다. v0.1 위에 학습을 더 얹었고, Krea 2 Turbo 델타는 파일 안에 rank-512 LoRA로 병합해 한 파일에서 파인튠 품질과 터보 속도를 함께 쓰도록 묶었습니다."
+    },
+    {
+      "type": "p",
+      "html": "배포는 두 갈래입니다. 베이스판 <code>kroma-v0.2-base.safetensors</code>가 약 51.3GB, 터보판 <code>kroma-v0.2-turbo.safetensors</code>가 약 25.6GB이며, Silveroxides의 커뮤니티 INT8 convrot 양자화는 약 14GB까지 내려갑니다. ComfyUI에서는 별도 커스텀 노드 없이 네이티브 Krea 2 지원으로 돌아갑니다. 체크포인트를 <code>models/diffusion_models</code>에 두고, Qwen3-VL 텍스트 인코더(12층)를 CLIPLoader로 불러온 뒤 Krea 2 VAE를 붙여 8~12스텝, CFG 1.0~1.5, shift 1.15로 샘플링하는 구성입니다. 허깅페이스와 Civitai에 올라왔고, 공개 직후 커뮤니티에서 사용기가 이어졌습니다(커뮤니티 관찰 기준). 로컬 이미지 생성의 베이스 모델을 다시 고르는 단계에 곧바로 닿는 공개입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-09-kroma-v0-2"
+        },
+        {
+          "t": "Hugging Face lodestones/Kroma",
+          "u": "https://huggingface.co/lodestones/Kroma"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "도구 · 8월 9일",
+      "text": "LanPaint 2.0.0 — 미니맥스 H3의 영상과 오디오를 한 번에 인페인팅"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/lanpaint-h3-av/InPainted_Drag_Me_to_ComfyUI.gif",
+      "alt": "LanPaint 2.0으로 인페인팅한 결과 애니메이션",
+      "caption": "<b>LanPaint 2.0.</b> 영상 프레임과 오디오 구간을 한 패스에서 함께 복원한 결과.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "학습이 필요 없는 디퓨전 인페인팅 샘플러 <strong>LanPaint</strong>이 8월 9일 2.0.0으로 올라오며 오픈 웨이트 영상 모델 <strong>미니맥스 H3</strong>를 겨냥한 영상·오디오 통합 인페인팅을 더했습니다. 프레임별 마스크와 되살릴 오디오 구간을 한 에디터에서 칠한 다음, 영상과 소리를 단일 패스에서 함께 복원하는 방식입니다."
+    },
+    {
+      "type": "p",
+      "html": "파이프라인은 네 단계로 움직입니다. <code>LanPaint_VideoMaskEditor</code>로 키프레임에 마스크를 칠하고 오디오 구간을 표시한 뒤, <code>LanPaint_AVEncode</code>가 영상과 오디오를 하나의 잠재 표현으로 묶고, 샘플러가 두 스트림을 같은 디노이징 스케줄로 처리하며, <code>LanPaint_AVDecode</code>가 프레임 레이트와 오디오 품질을 지키며 되돌립니다. 480~880p에서 40~81프레임을 20스텝으로 인페인팅할 때 대략 38~43GB의 VRAM을 쓰고, 24GB 그래픽카드는 짧은 클립을 감당합니다. H3 외에도 SDXL, Flux, Hunyuan, Qwen-Image, Krea 2, Z-Image, Ideogram 4, Wan 2.2를 함께 지원하는 오픈소스이며, 컴프·클린업과 인페인팅 공정에 직접 닿습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-09-lanpaint-h3-av"
+        },
+        {
+          "t": "GitHub scraed/LanPaint",
+          "u": "https://github.com/scraed/LanPaint"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "커스텀 노드 · 8월 9일",
+      "text": "ClipProj — H3의 32B 텍스트 인코더를 4B로 바꿔 컨디셔닝 VRAM 71% 절감"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-09-clipproj-minimax-h3/clipproj-pipeline.png",
+      "alt": "ClipProj의 텍스트 인코더 대체 파이프라인 구조도",
+      "caption": "<b>ClipProj.</b> 큰 텍스트 인코더를 작은 모델과 학습된 프로젝션으로 대체하는 구조.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "nicolab28이 8월 9일 공개한 커스텀 노드 <strong>ClipProj</strong>는 미니맥스 H3의 큰 텍스트 인코더를 작은 인코더와 학습된 선형 프로젝션으로 갈음해 컨디셔닝에 드는 VRAM을 크게 줄입니다. 원래 쓰던 Qwen3-VL-32B를 훨씬 작은 Qwen3-VL-4B에 프로젝션 한 겹을 얹어 대체하는데, 두 인코더가 같은 토크나이저(15만 1,936 토큰)를 써서 위치별로 대응이 맞아떨어집니다."
+    },
+    {
+      "type": "p",
+      "html": "프로젝션은 통상적인 학습이 아니라 릿지 회귀 캘리브레이션으로 구합니다. 여러 프롬프트를 두 모델로 각각 인코딩한 뒤 선형 방정식을 푸는 방식이라 경사하강도, 에포크도, 학습률도 없습니다. 그 결과 컨디셔닝 VRAM이 NVFP4 32B 기준 15.7GB에서 4B와 프로젝션을 int8_convrot로 담은 4.5GB로, 약 71% 내려갑니다. 다만 제작자는 이를 개념 증명(proof of concept)으로 못 박고 Windows 11·엔비디아 GPU·ComfyUI 0.31.0에서만 제한적으로 시험했다고 밝힌 만큼, 실무 반영 전 검증이 필요합니다. 저장소는 GitHub의 nicolab28/ComfyUI-ClipProj, 프로젝션 행렬은 허깅페이스에 함께 올라왔습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-09-clipproj-minimax-h3"
+        },
+        {
+          "t": "Hugging Face NicoLab28/ClipProj-MiniMax-H3",
+          "u": "https://huggingface.co/NicoLab28/ClipProj-MiniMax-H3"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "커스텀 노드 · 8월 9일",
+      "text": "H3 Motion Context v0.2.0 — 컷을 넘어 모션과 오디오를 잇는 H3 클립 체이닝"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/h3-motion-context/motion-context-v020-demo.png",
+      "alt": "H3 Motion Context v0.2.0 데모 화면",
+      "caption": "<b>H3 Motion Context.</b> 앞 클립의 프레임과 소리를 이어받아 다음 클립을 매끄럽게 잇는다.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "NikoDemon80이 8월 9일 내놓은 <strong>H3 Motion Context v0.2.0</strong>은 미니맥스 H3로 만든 여러 클립을 이음매 없이 잇는 커스텀 노드 팩입니다. 앞 클립의 마지막 프레임과 오디오를 노드에 넣으면 다음 클립이 바로 그 지점에서 같은 움직임과 속도, 방향으로 재개하고, 소리도 새로 만들지 않고 자연스럽게 이어집니다."
+    },
+    {
+      "type": "p",
+      "html": "이번 버전은 앞 클립의 잠재 표현에서 고정 프레임을 바로 뽑아내 디코드·인코드 왕복을 건너뛰는 방식으로 이음매를 없앴습니다. 이미지·영상·오디오 참조를 유지한 채 연결용 오디오를 더할 수 있고, 컨텍스트 윈도를 5·22·39·56프레임 중에서 고르며, 설정을 여섯 개에서 두 개로 줄였습니다. 오디오 격자 정렬로 타이밍 어긋남도 바로잡았습니다. 클립 길이 제약이 있는 생성 워크플로에서 샷을 이어 붙여 시퀀스를 늘리는 작업에 실용적으로 닿습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-09-h3-motion-context-v0-2-0"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "kicker": "영상 리서치 · 8월 7일",
+      "text": "엔비디아 WorldTrace — 재학습 없이 영상 월드모델의 장기 기억을 다잡는 프레임워크"
+    },
+    {
+      "type": "p",
+      "html": "엔비디아가 프린스턴·토론토대·벡터연구소와 함께 8월 7일 arXiv에 올린 <strong>WorldTrace</strong>는 자기회귀 방식 영상 월드모델의 시각적 지속성 문제를 재학습 없이 다룹니다. 이런 모델은 앞서 본 장면을 다시 불러올 때 두 가지가 겹쳐 무너집니다. 캐싱한 토큰이 학습 때 본 시간 간격을 넘어서면 제대로 읽히지 않고, 메모리를 어설프게 압축하면 RoPE 위상이 상쇄되며 손상됩니다."
+    },
+    {
+      "type": "p",
+      "html": "저자진은 압축한 메모리를 학습 분포 안에 드는 고정된 가상 위치에 두어 이 문제를 피합니다. 시간 일관성을 위해 정규 키를 평균 내는 WorldTrace-Field와, 장면에 처음 들어선 순간의 흔적을 얼려 두고 에피소드 단위로 되살리는 WorldTrace-Landmark 두 갈래로 나뉩니다. 장면 재방문 성능을 재는 벤치마크 LoopBench를 함께 제안했고, 재학습 없이 시간 일관성을 15.5%, 에피소드 회상을 19.5% 높였다고 보고했습니다. 프로젝트 페이지도 함께 공개됐습니다. 긴 영상에서 앞서 등장한 공간과 대상을 다시 불러올 때 흔들리지 않게 하는 접근으로, 롱 비디오의 샷 일관성에 닿는 연구입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.07408",
+          "u": "https://arxiv.org/abs/2608.07408"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://research.nvidia.com/labs/sil/projects/WorldTrace/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "관련 업계 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "제작 사례 · 8월 5일",
+      "text": "힉스필드, AI 장편 '헬 그라인드'의 제작 데이터 전체 공개"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.aitimes.com/news/photo/202608/213739_217283_3432.png",
+      "alt": "힉스필드 AI 장편 '헬 그라인드' 장면",
+      "caption": "<b>헬 그라인드.</b> 95분 분량 AI 장편의 프롬프트·에셋과 제어 프레임워크를 오픈소스로 공개했다.",
+      "credit": "이미지: AI타임스"
+    },
+    {
+      "type": "p",
+      "html": "힉스필드(Higgsfield)가 95분 분량 AI 장편 영화 <strong>'헬 그라인드(Hell Grind)'</strong>의 제작 데이터 전체를 오픈소스로 공개했습니다. 8월 5일 자체 개최한 힉스필드 글로벌 필름 페스티벌에서 밝힌 것으로, 제작에 쓴 프롬프트와 에셋, 캐릭터 일관성 공식, 공간 설계에 활용한 3D 가우시안 스플래팅 기법, 모델·카메라·피사체·룩·액션을 묶은 MCSLA 제어 프레임워크, 파이프라인 문서를 함께 열었습니다. 영화는 힉스필드의 자체 모델 'Soul'과 바이트댄스 시댄스 2.0으로 만들었습니다."
+    },
+    {
+      "type": "p",
+      "html": "제작진은 단발 생성의 완성도가 아니라 정교한 큐레이션이 성패를 가른다는 점을 강조했습니다. 첫 25분 253개 샷을 만드는 데 1만 6,181개의 영상 클립을 생성해 64대 1의 큐레이션 비율을 기록했고, 50만 달러 예산의 80%가 AI 연산 비용으로 들어갔습니다. 시각 비중이 큰 제작의 비용 구조가 기존과 다르게 짜인다는 사실을 드러내는 사례이자, 개별 창작자와 소규모 스튜디오가 참고할 만한 실제 제작 워크플로가 공개됐다는 점에서 눈여겨볼 만합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=213739"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 8월 10일",
+      "text": "일레븐랩스, 음성 직접 변환 방식 '더빙 v2'를 API로 개방"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.aitimes.com/news/photo/202608/213724_217274_106.png",
+      "alt": "일레븐랩스 더빙 v2 소개 이미지",
+      "caption": "<b>더빙 v2.</b> 음성을 음성으로 직접 변환해 원본의 감정과 연기를 살리는 더빙 모델.",
+      "credit": "이미지: AI타임스"
+    },
+    {
+      "type": "p",
+      "html": "일레븐랩스가 8월 10일 더빙 모델 <strong>더빙 v2</strong>를 API로 개방해 기업이 자사 제품과 워크플로에 직접 붙일 수 있게 했습니다. 음성 인식·번역·음성 합성을 차례로 잇는 기존 방식과 달리 음성을 음성으로 곧바로 바꾸는 구조를 써서, 원본 콘텐츠의 감정 표현과 연기 뉘앙스를 살린다는 점을 내세웠습니다."
+    },
+    {
+      "type": "p",
+      "html": "한국어와 일본어를 포함해 92개 언어를 지원하며, 다만 라이브 스트림을 겨냥한 실시간 더빙은 이번 제공 범위에 들어가지 않습니다. 게임 스튜디오의 캐릭터 대사와 컷신 현지화, 소비자 브랜드의 다국어 마케팅 영상, 스트리밍·미디어 기업의 다지역 배급을 주요 용도로 제시했습니다. 영상 후반의 로컬라이제이션과 딜리버리 공정에 닿는 도구입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=213724"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "국내 · 8월 10일",
+      "text": "실제 화석 3D 스캔으로 만든 '백악기 공룡쟁투' — 국내 제작 AI 다큐"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.aitimes.com/news/photo/202608/213769_217328_4744.gif",
+      "alt": "'백악기 공룡쟁투' AI 다큐멘터리 장면",
+      "caption": "<b>백악기 공룡쟁투.</b> 몽골에서 발견된 실제 화석을 3D로 복원해 재현한 장면.",
+      "credit": "이미지: AI타임스"
+    },
+    {
+      "type": "p",
+      "html": "국내에서는 SC전시문화가 카이스트 김재철AI대학원 박진호 초빙교수와 함께 다큐멘터리 <strong>'백악기 공룡쟁투'</strong>를 공개했습니다. 8월 10일 알린 이 작품은 온전히 AI만으로 제작한 세계 최초의 다큐멘터리를 표방합니다. 제작진은 몽골 고생물학연구소와 자연사박물관이 보유한 실제 공룡 화석을 3년에 걸쳐 디지털 스캔해 3D 아카이브 데이터로 만들었고, 합성 데이터가 아닌 이 스캔 자료를 바탕으로 장면을 세웠습니다."
+    },
+    {
+      "type": "p",
+      "html": "작품은 1971년 발견된 '싸우는 공룡' 화석을 근거로 약 8,000만 년 전 고비사막에서 벌어진 벨로키랍토르와 프로토케라톱스의 대결을 그립니다. 아시아공룡협회 박진영 박사가 공룡의 움직임과 백악기 환경 고증을 맡았고, 완성작은 2027년 문을 여는 몽골 자연사박물관에서 몰입형 콘텐츠로 전시될 예정입니다. 생성형 이미지·영상 모델보다 3D 스캔과 복원이 중심이지만, 실측 자료를 바탕으로 다큐멘터리 한 편을 온전히 AI 파이프라인으로 완성했다는 제작 방식이 관전 포인트입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=213769"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "배경 및 기존 동향"
+    },
+    {
+      "type": "h3",
+      "kicker": "투자 · 7월 2일",
+      "text": "콰이쇼우 Kling AI, 180억 달러 평가에 약 30억 달러 유치 — 영상 모델 최대 라운드"
+    },
+    {
+      "type": "p",
+      "html": "오픈 웨이트 생태계가 로컬 실행 저변을 넓히는 한편, 상용 영상 모델을 향한 자본 집중도 이어지고 있습니다. 콰이쇼우의 영상 생성 모델 <strong>Kling AI</strong>는 7월 2일 약 30억 달러 규모의 단독 라운드를 마감하며 포스트머니 180억 달러 평가를 받았습니다. 영상 대형모델 회사로는 사상 최대 규모로, CPE와 텐센트, CITIC이 공동 주도하고 알리바바 클라우드·바이두를 비롯한 38개 투자자가 참여했습니다."
+    },
+    {
+      "type": "p",
+      "html": "이번 투자로 콰이쇼우의 지분은 약 68.33%로 희석됐습니다. Kling의 상용화는 빠르게 붙어 2026년 1분기 매출이 6억 5,000만 위안(약 9,590만 달러)을 넘어섰고 연환산 매출은 5억 달러에 근접했습니다. 시장에서는 콰이쇼우가 향후 12개월 안에 Kling을 분리해 홍콩증시에 독립 상장할 것으로 봅니다. 상용 영상 모델 경쟁의 자본 지형을 가늠하게 하는 배경 지표입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "BigGo Finance",
+          "u": "https://finance.biggo.com/news/ec6ddb2d-dfc5-4712-8355-3249156bf040"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "커뮤니티 관찰 · 8월 10~11일",
+      "text": "미니맥스 H3 로컬 워크플로가 배치 자동화와 카메라 제어로 확장"
+    },
+    {
+      "type": "p",
+      "html": "오픈 웨이트 H3의 로컬 실행이 단발 생성을 넘어 실무 워크플로로 넓어지는 흐름이 커뮤니티에서 확인됩니다(커뮤니티 관찰 기준). r/comfyui에는 이미지·오디오·영상 파일 수십 개를 폴더에 넣고 프롬프트 텍스트로 참조를 걸어 여러 클립을 한 번에 자동 생성하는 배치 처리 튜토리얼(8월 11일)과, 기본 카메라 경로 프롬프트만으로 가상 카메라 무빙을 구성하는 FFLF 워크플로 사례(8월 10일)가 올라왔습니다."
+    },
+    {
+      "type": "p",
+      "html": "앞서 소개한 ClipProj·LanPaint·H3 Motion Context 같은 도구 공개와 함께, 이런 워크플로 공유는 오픈 웨이트 영상 모델의 로컬 활용이 도구 계층에서 실제 제작 루틴으로 옮겨 가고 있음을 보여줍니다. 다만 개별 게시글에 근거한 커뮤니티 관찰인 만큼, 실무 적용 전에는 각자 환경에서 검증이 필요합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Reddit r/comfyui",
+          "u": "https://www.reddit.com/r/comfyui/new/"
+        }
+      ]
+    }
+  ]
+}
