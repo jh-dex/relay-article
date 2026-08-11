@@ -10,7 +10,7 @@
   "body": [
     {
       "type": "h2",
-      "kicker": "영상 리서치 · 8월 4일",
+      "kicker": "연구 · 8월 4일",
       "text": "형태를 넘어서는 모션 전이 — Kling 팀의 Motion Beyond Morphology"
     },
     {
@@ -45,7 +45,7 @@
     },
     {
       "type": "h2",
-      "kicker": "오픈 웨이트 · 8월 3~4일",
+      "kicker": "도구 · 노드 · 8월 3~4일",
       "text": "MiniMax H3 로컬 생태계 확장 — LoRA 학습 도구와 커뮤니티 양자화판"
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "type": "h3",
-      "kicker": "모델 업데이트 · 8월 1일",
+      "kicker": "상용 모델 · 8월 1일",
       "text": "xAI 그록 이매진 대규모 업그레이드 — 네이티브 1080p와 캐릭터 일관성"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "type": "h3",
-      "kicker": "투자 · 8월 3일",
+      "kicker": "투자 · M&A · 8월 3일",
       "text": "DesignArena 운영사 Intelligence, 790만 달러 시드 유치"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "type": "h3",
-      "kicker": "도구 · 7월 30일",
+      "kicker": "도구 · 노드 · 7월 30일",
       "text": "OpenPose Studio 2.1 — ComfyUI 내장형 포즈 편집 도구"
     },
     {

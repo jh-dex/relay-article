@@ -21,6 +21,27 @@ const POSTS_DIR = resolve(ROOT, 'data/posts');
 const META = ['id', 'category', 'title', 'source', 'date', 'read', 'summary'];
 const REQUIRED = ['id', 'category', 'title', 'source', 'date', 'summary', 'body'];
 
+// kicker 분류 고정 어휘 — 축은 "사건 유형" 하나. 매체 종류·지역은 분류로 쓰지 않는다.
+// 어긋나도 발행은 막지 않고 경고만 한다(무인 실행이 분류 하나로 통째로 실패하면 손해가 크다).
+const KICKER_VOCAB = [
+  '오픈 웨이트', '상용 모델', '도구 · 노드', '연구', '서비스 · 플랫폼',
+  '투자 · M&A', '정책 · 저작권', '제작 사례', '하드웨어', '산업 동향', '커뮤니티',
+];
+
+function warnKickers(body) {
+  const bad = [];
+  for (const b of body) {
+    if (!b || !b.kicker) continue;
+    const m = String(b.kicker).match(/^(.*) · (\d+월.*)$/);
+    if (!m) { bad.push(`${b.kicker}  (형식은 "<분류> · M월 D일")`); continue; }
+    if (!KICKER_VOCAB.includes(m[1])) bad.push(`${b.kicker}  ("${m[1]}" 는 고정 어휘 밖)`);
+  }
+  if (!bad.length) return;
+  console.warn('\n⚠ kicker 분류 확인 필요:');
+  for (const s of bad) console.warn('   - ' + s);
+  console.warn('   허용: ' + KICKER_VOCAB.join(' / ') + '\n');
+}
+
 async function main() {
   const inputPath = process.argv[2];
   if (!inputPath) {
@@ -44,6 +65,8 @@ async function main() {
     console.error(`id 는 영문/숫자/-/_ 만 사용하세요 (파일명이 됨): "${post.id}"`);
     process.exit(1);
   }
+
+  warnKickers(post.body);
 
   const index = JSON.parse(await readFile(INDEX_PATH, 'utf8'));
   index.posts = index.posts || [];
