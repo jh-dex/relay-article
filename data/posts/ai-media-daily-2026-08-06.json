@@ -9,7 +9,11 @@
   "summary": "실시간 영상 편집이 오늘의 중심입니다. JD가 지시어로 프레임을 즉시 고치는 JoyAI-Video-Edit를 코드·가중치와 함께 오픈소스로 공개했고, ComfyUI 코어는 0.30에서 미니맥스 H3 네이티브 지원과 LTX 2.3 디코딩 가속을 더했습니다. 업계에서는 바이트댄스 시댄스 2.5의 광범위 공개와, 권리자 동의를 앞세운 스포티파이·멀린의 AI 커버·리믹스 확대를 다룹니다.",
   "body": [
     {
-      "type": "h2",
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
       "kicker": "오픈 웨이트 · 8월 5일",
       "text": "실시간으로 지시를 반영하는 영상 편집 — JD의 JoyAI-Video-Edit"
     },
@@ -46,7 +50,7 @@
       ]
     },
     {
-      "type": "h2",
+      "type": "h3",
       "kicker": "도구 · 노드 · 8월 3일",
       "text": "ComfyUI 0.30 — 미니맥스 H3 네이티브 지원과 LTX 2.3 디코딩 가속"
     },
@@ -72,7 +76,33 @@
       ]
     },
     {
-      "type": "h2",
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 5일",
+      "text": "ComfyUI-sol-attn — 블랙웰 GPU용 희소 어텐션 커널과 H3 전용 노드"
+    },
+    {
+      "type": "p",
+      "html": "소비자용 블랙웰 그래픽카드(RTX 50 시리즈)를 겨냥한 커스텀 노드 <strong>ComfyUI-sol-attn</strong>이 8월 5일 0.5 계열로 갱신되었습니다. 엔비디아 Sol-Attn 희소 어텐션 커널을 Triton으로 구현해, 미니맥스 H3의 융합 qkv를 복사 없이 참조하는 메모리 효율 어텐션, 샘플링 단계별로 희소도를 조절하는 스케줄드 어텐션, 피드포워드 정점 메모리를 낮추는 청크 노드를 제공합니다."
+    },
+    {
+      "type": "p",
+      "html": "저장소 설명에 따르면 8,192 토큰에서 SageAttention 대비 약 1.14배, 32,768 토큰에서 약 1.44배 빠르며, 청크 피드포워드로 H3의 MLP 정점 VRAM을 37% 낮춘다고 합니다. 실측은 SM120에서만 이뤄졌다고 명시했고, 라이선스는 Apache 2.0입니다. 로컬에서 H3를 돌릴 때 속도와 메모리 여유를 확보하려는 사용자에게 실용적인 선택지입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub Saganaki22/ComfyUI-sol-attn",
+          "u": "https://github.com/Saganaki22/ComfyUI-sol-attn"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
       "kicker": "연구 · 8월 3일",
       "text": "텐센트 Hunyuan3D-Buffalo — 3D 생성·이해·편집을 한 모델로"
     },
@@ -98,30 +128,8 @@
       ]
     },
     {
-      "type": "h2",
-      "kicker": "도구 · 노드 · 8월 5일",
-      "text": "ComfyUI-sol-attn — 블랙웰 GPU용 희소 어텐션 커널과 H3 전용 노드"
-    },
-    {
-      "type": "p",
-      "html": "소비자용 블랙웰 그래픽카드(RTX 50 시리즈)를 겨냥한 커스텀 노드 <strong>ComfyUI-sol-attn</strong>이 8월 5일 0.5 계열로 갱신되었습니다. 엔비디아 Sol-Attn 희소 어텐션 커널을 Triton으로 구현해, 미니맥스 H3의 융합 qkv를 복사 없이 참조하는 메모리 효율 어텐션, 샘플링 단계별로 희소도를 조절하는 스케줄드 어텐션, 피드포워드 정점 메모리를 낮추는 청크 노드를 제공합니다."
-    },
-    {
-      "type": "p",
-      "html": "저장소 설명에 따르면 8,192 토큰에서 SageAttention 대비 약 1.14배, 32,768 토큰에서 약 1.44배 빠르며, 청크 피드포워드로 H3의 MLP 정점 VRAM을 37% 낮춘다고 합니다. 실측은 SM120에서만 이뤄졌다고 명시했고, 라이선스는 Apache 2.0입니다. 로컬에서 H3를 돌릴 때 속도와 메모리 여유를 확보하려는 사용자에게 실용적인 선택지입니다."
-    },
-    {
-      "type": "src",
-      "links": [
-        {
-          "t": "GitHub Saganaki22/ComfyUI-sol-attn",
-          "u": "https://github.com/Saganaki22/ComfyUI-sol-attn"
-        }
-      ]
-    },
-    {
       "type": "group",
-      "text": "관련 업계 동향"
+      "text": "업계 · 시장"
     },
     {
       "type": "h3",
@@ -170,10 +178,6 @@
           "u": "https://techcrunch.com/2026/08/04/spotify-adds-merlin-to-its-ai-music-remix-and-covers-effort/"
         }
       ]
-    },
-    {
-      "type": "group",
-      "text": "배경 및 기존 동향"
     },
     {
       "type": "h3",

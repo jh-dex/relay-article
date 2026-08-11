@@ -28,18 +28,61 @@ const KICKER_VOCAB = [
   '투자 · M&A', '정책 · 저작권', '제작 사례', '하드웨어', '산업 동향', '커뮤니티',
 ];
 
-function warnKickers(body) {
+// 그룹은 kicker 분류에서 기계적으로 결정된다. 시점(신규/기존)으로 나누지 않는다.
+const GROUP_ORDER = ['로컬 모델 · 도구', '연구', '업계 · 시장'];
+const CAT_TO_GROUP = {
+  '오픈 웨이트': '로컬 모델 · 도구', '도구 · 노드': '로컬 모델 · 도구', '커뮤니티': '로컬 모델 · 도구',
+  '연구': '연구',
+  '상용 모델': '업계 · 시장', '서비스 · 플랫폼': '업계 · 시장', '투자 · M&A': '업계 · 시장',
+  '정책 · 저작권': '업계 · 시장', '제작 사례': '업계 · 시장', '하드웨어': '업계 · 시장',
+  '산업 동향': '업계 · 시장',
+};
+
+const catOf = kicker => {
+  const m = String(kicker).match(/^(.*) · (\d+월.*)$/);
+  return m ? m[1] : null;
+};
+
+function warnStructure(body) {
   const bad = [];
+
+  // 1) kicker 어휘·형식
   for (const b of body) {
     if (!b || !b.kicker) continue;
-    const m = String(b.kicker).match(/^(.*) · (\d+월.*)$/);
-    if (!m) { bad.push(`${b.kicker}  (형식은 "<분류> · M월 D일")`); continue; }
-    if (!KICKER_VOCAB.includes(m[1])) bad.push(`${b.kicker}  ("${m[1]}" 는 고정 어휘 밖)`);
+    const cat = catOf(b.kicker);
+    if (!cat) { bad.push(`kicker 형식: "${b.kicker}" — "<분류> · M월 D일" 이어야 함`); continue; }
+    if (!KICKER_VOCAB.includes(cat)) bad.push(`kicker 어휘: "${b.kicker}" — "${cat}" 는 고정 어휘 밖`);
   }
+
+  // 2) 항목은 전부 h3, 본문에 h2 직접 사용 금지
+  for (const b of body) {
+    if (b && b.type === 'h2') bad.push(`h2 블록 사용: "${b.text || ''}" — 항목은 전부 h3 (그룹만 상위 절)`);
+  }
+
+  // 3) 그룹 구조 — 첫 블록이 group, 순서 준수, 항목이 올바른 그룹에 소속
+  const firstHeading = body.find(b => b && (b.type === 'group' || b.kicker));
+  if (firstHeading && firstHeading.type !== 'group') bad.push('그룹 밖 항목: 본문 첫 블록이 group 라벨이 아님');
+
+  let seen = -1, curGroup = null;
+  for (const b of body) {
+    if (!b) continue;
+    if (b.type === 'group') {
+      const i = GROUP_ORDER.indexOf(b.text);
+      if (i < 0) { bad.push(`그룹 라벨: "${b.text}" — 허용: ${GROUP_ORDER.join(' / ')}`); curGroup = null; continue; }
+      if (i <= seen) bad.push(`그룹 순서: "${b.text}" 가 앞 그룹보다 먼저이거나 중복`);
+      seen = i; curGroup = b.text;
+      continue;
+    }
+    if (!b.kicker) continue;
+    const want = CAT_TO_GROUP[catOf(b.kicker)];
+    if (want && curGroup && want !== curGroup)
+      bad.push(`그룹 편성: "${b.kicker}" 는 "${want}" 소속인데 "${curGroup}" 아래 있음`);
+  }
+
   if (!bad.length) return;
-  console.warn('\n⚠ kicker 분류 확인 필요:');
+  console.warn('\n⚠ 구조 확인 필요:');
   for (const s of bad) console.warn('   - ' + s);
-  console.warn('   허용: ' + KICKER_VOCAB.join(' / ') + '\n');
+  console.warn('');
 }
 
 async function main() {
@@ -66,7 +109,7 @@ async function main() {
     process.exit(1);
   }
 
-  warnKickers(post.body);
+  warnStructure(post.body);
 
   const index = JSON.parse(await readFile(INDEX_PATH, 'utf8'));
   index.posts = index.posts || [];

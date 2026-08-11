@@ -70,7 +70,9 @@
   .body > .kick:first-child{margin-top:6px}
   .body .kick + h2,.body .kick + h3{margin-top:0}
   .body .group{margin:74px 0 6px;padding-top:26px;border-top:1px solid var(--line);
-    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+    font-size:12.5px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  /* 첫 그룹 위에는 나눌 대상이 없으므로 구분선과 큰 여백을 뺀다 */
+  .body > .group:first-child{margin-top:0;padding-top:0;border-top:0}
   .body .group + .kick{margin-top:24px}
   .body .src-line{font-size:13px;color:var(--ink-faint);margin:-12px 0 0;letter-spacing:.01em;line-height:1.65}
   .body .src-line b{color:var(--ink-soft);font-weight:600}
@@ -135,7 +137,8 @@
       case 'p':     return `<p>${b.html||b.text||''}</p>`;
       case 'h2':    return `${kick(b)}<h2>${b.text||''}</h2>`;
       case 'h3':    return `${kick(b)}<h3>${b.text||''}</h3>`;
-      case 'group': return `<div class="group">${b.text||''}</div>`;
+      // 그룹은 항목(h3)을 포함하는 상위 절이므로 의미상 h2다. 크기는 .group 클래스가 라벨로 유지.
+      case 'group': return `<h2 class="group">${b.text||''}</h2>`;
       case 'ul':    return `<ul>${(b.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul>`;
       case 'figure':{
         const media = b.video

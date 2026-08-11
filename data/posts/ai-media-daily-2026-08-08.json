@@ -9,7 +9,11 @@
   "summary": "오픈 웨이트 영상 생성이 오늘의 중심입니다. Sand.ai가 가중치와 코드, 학습 시스템을 모두 공개한 114B MoE 오디오·영상 모델 MAGI-2 프리뷰를 내놨고, 알리바바는 업무 문서를 그대로 영상으로 바꾸는 완 3.0을 퍼블릭 베타로 열었습니다. 연구 쪽에서는 클링 팀의 멀티샷 영상 생성과 흔적까지 함께 지우는 오브젝트 리무벌 기법이 나왔고, 업계에서는 AMD의 추론 칩 인수와 EU AI법 투명성 의무 발효를 다룹니다.",
   "body": [
     {
-      "type": "h2",
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
       "kicker": "오픈 웨이트 · 8월 5일",
       "text": "Sand.ai, 114B MoE 오디오·영상 모델 MAGI-2 프리뷰 공개 — 가중치·코드 전면 개방"
     },
@@ -54,33 +58,37 @@
       ]
     },
     {
-      "type": "h2",
-      "kicker": "상용 모델 · 8월 6일",
-      "text": "알리바바 완 3.0 퍼블릭 베타 — 문서를 그대로 30초 영상으로"
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 3일",
+      "text": "ComfyUI-Spectrum-MiniMax-H3 — 스텝 예측으로 H3 생성 약 30% 가속"
     },
     {
       "type": "p",
-      "html": "알리바바가 8월 6일(현지시간) 차세대 영상 생성 모델 <strong>완(Wan) 3.0</strong>을 퍼블릭 베타로 출시했습니다. 2~15초를 만들던 이전 세대 완 2.7과 달리, 단일 생성 과정에서 최대 30초 길이의 영상을 한 번에 제작해 여러 컷을 이어 붙일 때 생기던 인물 외형·조명·구도의 불일치를 줄인 것이 핵심입니다. 하나의 연속된 장면 안에서 이야기 전개와 카메라 이동까지 담도록 설계했다고 회사는 설명했습니다."
+      "html": "오픈 웨이트로 풀린 미니맥스 H3를 ComfyUI에서 더 빠르게 돌리는 커스텀 노드 <strong>ComfyUI-Spectrum-MiniMax-H3</strong>가 8월 3일 공개돼 v0.1.8까지 갱신됐습니다. 제작자 xmarre에 따르면 트랜스포머의 사후 은닉 특징을 체비쇼프 능형 회귀로 예측해 일부 스텝의 값비싼 트랜스포머 평가를 건너뛰는 방식으로, 네이티브 H3 생성이 약 30% 빨라집니다."
     },
     {
       "type": "p",
-      "html": "이번 버전의 특징은 <strong>옴니 레퍼런스(Omni-Reference)</strong>입니다. 텍스트·이미지·오디오·영상에 더해 워드와 엑셀, 파워포인트, PDF, 마크다운, 웹페이지까지 참조 자료로 받아, 제품 소개서나 프레젠테이션, 판매 데이터를 그대로 설명·홍보 영상으로 바꿉니다. 알리바바는 이를 생성과 편집, 캐릭터 일관성, 비주얼 복제를 아우르는 올인원 모델로 소개했습니다. 모델은 알리바바 클라우드 모델 스튜디오와 큐원 클라우드에서 제공되며, 2.5 이후 상용 API로 노선을 이어온 흐름대로 이번에도 오픈 웨이트가 아닌 비공개 베타·API 형태입니다."
+      "html": "현재 스텝의 출력 헤드와 영상·오디오 복원은 매 스텝 그대로 수행하고, 예측한 스텝에서만 트랜스포머 평가를 생략합니다. 제작자는 이를 무손실이 아닌 근사 가속으로 못 박았습니다. 예측 스텝이 디노이징 궤적을 바꾸므로 프롬프트와 시드, 샘플러가 같아도 결과가 달라질 수 있습니다. 커뮤니티에서도 RTX 3090에서 무가속·SageAttention·Spectrum을 비교한 벤치마크가 공유되는 등 반응이 이어지고 있습니다(커뮤니티 관찰 기준). 설치에는 ComfyUI 0.30.0 이상의 네이티브 H3 지원이 필요하며 별도 파이썬 의존성은 없습니다."
     },
     {
       "type": "src",
       "links": [
         {
-          "t": "AI타임스",
-          "u": "https://www.aitimes.com/news/articleView.html?idxno=213660"
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-03-comfyui-spectrum-minimax-h3"
         },
         {
-          "t": "모델 정보(Morphic)",
-          "u": "https://morphic.com/resources/models/wan-3-0"
+          "t": "GitHub xmarre/ComfyUI-Spectrum-MiniMax-H3",
+          "u": "https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3"
         }
       ]
     },
     {
-      "type": "h2",
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
       "kicker": "연구 · 8월 7일",
       "text": "클링 팀 ContextMaster — 일관성을 유지하는 대화형 멀티샷 영상 생성"
     },
@@ -113,7 +121,7 @@
       ]
     },
     {
-      "type": "h2",
+      "type": "h3",
       "kicker": "연구 · 8월 7일",
       "text": "EffectLearner — 물체와 함께 그림자·반사까지 지우는 오브젝트 리무벌"
     },
@@ -135,34 +143,34 @@
       ]
     },
     {
-      "type": "h2",
-      "kicker": "도구 · 노드 · 8월 3일",
-      "text": "ComfyUI-Spectrum-MiniMax-H3 — 스텝 예측으로 H3 생성 약 30% 가속"
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
+      "kicker": "상용 모델 · 8월 6일",
+      "text": "알리바바 완 3.0 퍼블릭 베타 — 문서를 그대로 30초 영상으로"
     },
     {
       "type": "p",
-      "html": "오픈 웨이트로 풀린 미니맥스 H3를 ComfyUI에서 더 빠르게 돌리는 커스텀 노드 <strong>ComfyUI-Spectrum-MiniMax-H3</strong>가 8월 3일 공개돼 v0.1.8까지 갱신됐습니다. 제작자 xmarre에 따르면 트랜스포머의 사후 은닉 특징을 체비쇼프 능형 회귀로 예측해 일부 스텝의 값비싼 트랜스포머 평가를 건너뛰는 방식으로, 네이티브 H3 생성이 약 30% 빨라집니다."
+      "html": "알리바바가 8월 6일(현지시간) 차세대 영상 생성 모델 <strong>완(Wan) 3.0</strong>을 퍼블릭 베타로 출시했습니다. 2~15초를 만들던 이전 세대 완 2.7과 달리, 단일 생성 과정에서 최대 30초 길이의 영상을 한 번에 제작해 여러 컷을 이어 붙일 때 생기던 인물 외형·조명·구도의 불일치를 줄인 것이 핵심입니다. 하나의 연속된 장면 안에서 이야기 전개와 카메라 이동까지 담도록 설계했다고 회사는 설명했습니다."
     },
     {
       "type": "p",
-      "html": "현재 스텝의 출력 헤드와 영상·오디오 복원은 매 스텝 그대로 수행하고, 예측한 스텝에서만 트랜스포머 평가를 생략합니다. 제작자는 이를 무손실이 아닌 근사 가속으로 못 박았습니다. 예측 스텝이 디노이징 궤적을 바꾸므로 프롬프트와 시드, 샘플러가 같아도 결과가 달라질 수 있습니다. 커뮤니티에서도 RTX 3090에서 무가속·SageAttention·Spectrum을 비교한 벤치마크가 공유되는 등 반응이 이어지고 있습니다(커뮤니티 관찰 기준). 설치에는 ComfyUI 0.30.0 이상의 네이티브 H3 지원이 필요하며 별도 파이썬 의존성은 없습니다."
+      "html": "이번 버전의 특징은 <strong>옴니 레퍼런스(Omni-Reference)</strong>입니다. 텍스트·이미지·오디오·영상에 더해 워드와 엑셀, 파워포인트, PDF, 마크다운, 웹페이지까지 참조 자료로 받아, 제품 소개서나 프레젠테이션, 판매 데이터를 그대로 설명·홍보 영상으로 바꿉니다. 알리바바는 이를 생성과 편집, 캐릭터 일관성, 비주얼 복제를 아우르는 올인원 모델로 소개했습니다. 모델은 알리바바 클라우드 모델 스튜디오와 큐원 클라우드에서 제공되며, 2.5 이후 상용 API로 노선을 이어온 흐름대로 이번에도 오픈 웨이트가 아닌 비공개 베타·API 형태입니다."
     },
     {
       "type": "src",
       "links": [
         {
-          "t": "ComfyUI Wiki",
-          "u": "https://comfyui-wiki.com/en/news/2026-08-03-comfyui-spectrum-minimax-h3"
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=213660"
         },
         {
-          "t": "GitHub xmarre/ComfyUI-Spectrum-MiniMax-H3",
-          "u": "https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3"
+          "t": "모델 정보(Morphic)",
+          "u": "https://morphic.com/resources/models/wan-3-0"
         }
       ]
-    },
-    {
-      "type": "group",
-      "text": "관련 업계 동향"
     },
     {
       "type": "h3",
@@ -215,10 +223,6 @@
           "u": "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act"
         }
       ]
-    },
-    {
-      "type": "group",
-      "text": "배경 및 기존 동향"
     },
     {
       "type": "h3",

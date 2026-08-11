@@ -9,7 +9,63 @@
   "summary": "형태가 다른 대상 사이에서 움직임을 옮기는 영상 모션 전이 연구가 오늘의 중심입니다. Kling 팀의 Motion Beyond Morphology가 논문과 함께 코드·데이터셋을 공개했고, 오픈 웨이트로 풀린 MiniMax H3를 둘러싼 로컬 학습·양자화 생태계가 빠르게 갖춰지고 있습니다. 업계에서는 xAI 그록 이매진의 대규모 업그레이드와 AI 미감 평가 데이터 사업의 시드 투자를 다룹니다.",
   "body": [
     {
-      "type": "h2",
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 3~4일",
+      "text": "MiniMax H3 로컬 생태계 확장 — LoRA 학습 도구와 커뮤니티 양자화판"
+    },
+    {
+      "type": "p",
+      "html": "8월 3일 오픈 웨이트로 공개된 <strong>MiniMax H3</strong>를 로컬에서 다루기 위한 도구가 빠르게 갖춰지고 있습니다. Ostris의 <code>AI Toolkit</code>이 H3용 LoRA 학습을 지원하기 시작했고, 학습 중 VRAM을 줄이는 NVFP4 양자화와 VAE 그래디언트 체크포인팅을 적용해 소비자 그래픽카드에서도 파인튜닝이 가능해졌습니다."
+    },
+    {
+      "type": "p",
+      "html": "양자화 쪽은 커뮤니티가 채우고 있습니다. Hugging Face의 GGUF 모음은 공개 하루 만에 4만 회 넘게 내려받혔고, r/comfyui에서는 가지치기한 BF16 변형도 확인됩니다. 폐쇄형 API에 기대지 않고 자체 소재로 모델을 파인튜닝하려는 프로덕션의 진입 문턱이 낮아지는 흐름입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-03-ai-toolkit-minimax-h3-training"
+        },
+        {
+          "t": "Hugging Face",
+          "u": "https://huggingface.co/realrebelai/MiniMax-H3_GGUFs"
+        },
+        {
+          "t": "r/comfyui",
+          "u": "https://www.reddit.com/r/comfyui/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 7월 30일",
+      "text": "OpenPose Studio 2.1 — ComfyUI 내장형 포즈 편집 도구"
+    },
+    {
+      "type": "p",
+      "html": "OpenPose Studio가 2.1 버전으로 갱신되었습니다. ComfyUI 워크플로 안에서 OpenPose 스켈레톤을 직접 편집하는 커스텀 노드로, 포즈 갤러리와 손 편집 기능이 개선되고 새 제스처 프리셋이 추가되었습니다. 키포인트 출력을 ControlNet이나 OpenPose 호환 노드에 연결해, 캐릭터의 포즈를 명시적으로 지정해 생성 결과를 통제하려는 작업에 대응합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub andreszs/ComfyUI-OpenPose-Studio",
+          "u": "https://github.com/andreszs/ComfyUI-OpenPose-Studio"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
       "kicker": "연구 · 8월 4일",
       "text": "형태를 넘어서는 모션 전이 — Kling 팀의 Motion Beyond Morphology"
     },
@@ -44,38 +100,8 @@
       ]
     },
     {
-      "type": "h2",
-      "kicker": "도구 · 노드 · 8월 3~4일",
-      "text": "MiniMax H3 로컬 생태계 확장 — LoRA 학습 도구와 커뮤니티 양자화판"
-    },
-    {
-      "type": "p",
-      "html": "8월 3일 오픈 웨이트로 공개된 <strong>MiniMax H3</strong>를 로컬에서 다루기 위한 도구가 빠르게 갖춰지고 있습니다. Ostris의 <code>AI Toolkit</code>이 H3용 LoRA 학습을 지원하기 시작했고, 학습 중 VRAM을 줄이는 NVFP4 양자화와 VAE 그래디언트 체크포인팅을 적용해 소비자 그래픽카드에서도 파인튜닝이 가능해졌습니다."
-    },
-    {
-      "type": "p",
-      "html": "양자화 쪽은 커뮤니티가 채우고 있습니다. Hugging Face의 GGUF 모음은 공개 하루 만에 4만 회 넘게 내려받혔고, r/comfyui에서는 가지치기한 BF16 변형도 확인됩니다. 폐쇄형 API에 기대지 않고 자체 소재로 모델을 파인튜닝하려는 프로덕션의 진입 문턱이 낮아지는 흐름입니다."
-    },
-    {
-      "type": "src",
-      "links": [
-        {
-          "t": "ComfyUI Wiki",
-          "u": "https://comfyui-wiki.com/en/news/2026-08-03-ai-toolkit-minimax-h3-training"
-        },
-        {
-          "t": "Hugging Face",
-          "u": "https://huggingface.co/realrebelai/MiniMax-H3_GGUFs"
-        },
-        {
-          "t": "r/comfyui",
-          "u": "https://www.reddit.com/r/comfyui/"
-        }
-      ]
-    },
-    {
       "type": "group",
-      "text": "관련 업계 동향"
+      "text": "업계 · 시장"
     },
     {
       "type": "h3",
@@ -128,28 +154,6 @@
         {
           "t": "TechCrunch",
           "u": "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "text": "배경 및 기존 동향"
-    },
-    {
-      "type": "h3",
-      "kicker": "도구 · 노드 · 7월 30일",
-      "text": "OpenPose Studio 2.1 — ComfyUI 내장형 포즈 편집 도구"
-    },
-    {
-      "type": "p",
-      "html": "OpenPose Studio가 2.1 버전으로 갱신되었습니다. ComfyUI 워크플로 안에서 OpenPose 스켈레톤을 직접 편집하는 커스텀 노드로, 포즈 갤러리와 손 편집 기능이 개선되고 새 제스처 프리셋이 추가되었습니다. 키포인트 출력을 ControlNet이나 OpenPose 호환 노드에 연결해, 캐릭터의 포즈를 명시적으로 지정해 생성 결과를 통제하려는 작업에 대응합니다."
-    },
-    {
-      "type": "src",
-      "links": [
-        {
-          "t": "GitHub andreszs/ComfyUI-OpenPose-Studio",
-          "u": "https://github.com/andreszs/ComfyUI-OpenPose-Studio"
         }
       ]
     }

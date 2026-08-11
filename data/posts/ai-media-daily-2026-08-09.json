@@ -9,7 +9,11 @@
   "summary": "오픈 웨이트 캐릭터 애니메이션이 오늘의 중심입니다. 알리바바 통이랩의 Wan Animate 2가 구동 영상을 그대로 받아 캐릭터를 움직이고 교체하는 엔드투엔드 모델로 공개돼 ComfyUI 네이티브 노드로 편입됐고, 코어 0.31.0은 PSD식 레이어 컴포지팅 노드와 바이트댄스 시댄스 2.5·시드림 5.0 프로 파트너 노드를 더했습니다. 로컬 쪽에서는 미니맥스 H3를 12.5GB 4비트 가중치로 낮춰 소비자용 GPU에서 돌리는 흐름이 퍼졌고, xAI는 편집을 앞세운 이미지 모델 이매진 이미지 2.0을 내놨습니다. 업계에서는 오픈AI의 넥스트슬라이드 인수와 미니맥스를 둘러싼 저작권 소송을 다룹니다.",
   "body": [
     {
-      "type": "h2",
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
       "kicker": "오픈 웨이트 · 8월 8일",
       "text": "알리바바 통이랩 Wan Animate 2 — 구동 영상 그대로 받는 엔드투엔드 캐릭터 애니메이션, ComfyUI 네이티브 지원"
     },
@@ -50,7 +54,7 @@
       ]
     },
     {
-      "type": "h2",
+      "type": "h3",
       "kicker": "도구 · 노드 · 8월 8일",
       "text": "ComfyUI 0.31.0 — PSD식 레이어 컴포지팅 노드와 파트너 모델 대거 편입"
     },
@@ -76,7 +80,96 @@
       ]
     },
     {
-      "type": "h2",
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 7일",
+      "text": "미니맥스 H3, 12.5GB 4비트 가중치로 소비자 GPU 진입 — Kijai 실험판"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-05-kijai-minimax-h3-w4a8/pr90-w4a8-demo-poster.jpg",
+      "alt": "Kijai의 MiniMax H3 4비트 양자화 데모",
+      "caption": "<b>MiniMax H3 w4a8.</b> 4비트 저장·int8 연산으로 FL2VA 체크포인트를 12.5GB로 낮췄다.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "오픈 웨이트로 풀린 <strong>미니맥스 H3</strong>의 로컬 실행 저변이 빠르게 넓어지고 있습니다. 그 중심에 Kijai가 공개한 비대칭 4비트(w4a8) 실험 가중치가 있습니다. 가중치를 원소당 약 0.56바이트로 저장하되 연산은 int8 GEMM으로 돌리는 방식으로, 프루닝한 FL2VA 체크포인트를 <strong>12.5GB</strong>까지 낮췄습니다. Ref2VA는 11.8GB, 함께 쓰는 int8 convrot VAE는 3.2GB이며, 별도 캘리브레이션이 필요 없고 int8 대비 약 1.09배 빠릅니다."
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI 지원은 코어 PR #15308(비대칭 w4a8_int)과 #15334(int8 convrot VAE)가 8월 6~7일 병합되며 0.31.0에 반영됐습니다. 게시자는 이를 테스트용 실험 릴리스로 못 박으며 품질·속도 수치를 초기 데이터로 봐 달라고 밝혔습니다. 커뮤니티에서는 16GB 소비자용 그래픽카드에서 H3를 완전히 로컬로 돌렸다는 사례가 공유됐고(커뮤니티 관찰 기준), 컴피 오그가 미니맥스 H3 팀을 초청해 진행한 스트림 요약도 함께 돌며 오픈 웨이트 영상 모델을 둘러싼 관심을 보여줬습니다. 무거운 80GB급 VRAM을 전제하던 H3를 소비자 GPU로 끌어내리는 흐름은 로컬 반복 생성의 회전 속도를 직접 끌어올립니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-05-kijai-minimax-h3-w4a8"
+        },
+        {
+          "t": "Hugging Face Kijai/MiniMax-H3-experimental",
+          "u": "https://huggingface.co/Kijai/MiniMax-H3-experimental"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 8일",
+      "text": "Kandinsky Lab KVAE — 이미지·영상·오디오 토크나이저 제품군, 코드·가중치 공개"
+    },
+    {
+      "type": "p",
+      "html": "잠재 디퓨전 모델의 바탕이 되는 토크나이저를 정면으로 다룬 연구 <strong>KVAE</strong>가 8월 8일 arXiv에 올라왔습니다. 이미지를 다루는 KVAE-2D, 두 가지 압축률의 영상용 KVAE-3D, 48kHz 연속 병목을 쓰는 KVAE-Audio로 구성된 토크나이저 제품군으로, 입력 신호를 디퓨전 모델이 다루기 좋은 잠재 표현으로 압축하는 것을 목표로 합니다."
+    },
+    {
+      "type": "p",
+      "html": "핵심 관찰은 재구성 품질이 좋다고 해서 생성 성능까지 좋아지지는 않는다는 점입니다. 저자진은 잠재 공간이 디퓨전 학습에 얼마나 적합한지를 가리키는 '디퓨저빌리티' 개념과, 토크나이저를 저비용으로 선별하는 지표 CDS(Correlation Decay Slope)를 제안했습니다. VAE·디코더의 품질은 최종 생성 결과를 좌우하는 저층 요소인 만큼, 생성 파이프라인의 근간을 다듬는 작업에 닿습니다. 코드와 가중치는 MIT 라이선스로 공개됐습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.05798",
+          "u": "https://arxiv.org/abs/2608.05798"
+        },
+        {
+          "t": "GitHub kandinskylab/kvae",
+          "u": "https://github.com/kandinskylab/kvae"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 8일",
+      "text": "바이트댄스 시댄스 2.5·시드림 5.0 프로, ComfyUI 파트너 노드로 편입"
+    },
+    {
+      "type": "p",
+      "html": "바이트댄스가 7월 말 볼케이노 엔진 2026에서 공개한 영상 모델 <strong>시댄스 2.5</strong>와 이미지 모델 <strong>시드림 5.0 프로</strong>가 8월 8일 ComfyUI 0.31.0의 파트너 노드로 들어왔습니다. 시댄스 2.5는 한 번의 생성으로 30초 길이를 만들고, R2V 참조를 최대 50장까지 받아 광고·소셜·커머스·스토리텔링을 겨냥합니다. 회사는 더 긴 서사에서도 캐릭터가 흔들리지 않는 롱폼 샷 일관성을 핵심 개선으로 내세웠고, 기존 시댄스 2.0은 4K 출력으로 상향됐습니다."
+    },
+    {
+      "type": "p",
+      "html": "시드림 5.0 프로는 대화형 편집과 함께 요소를 알파 PNG 레이어로 분리하는 기능을 담았습니다. 화살표를 긋거나 영역을 원으로 감싸 편집하고, 요소를 드래그·스케일이 가능한 개별 레이어로 떼어낼 수 있습니다. 알파 채널 단위의 레이어 분리는 매트·컴프 준비 공정에 곧바로 닿는 기능입니다. 두 모델 모두 로컬 가중치를 내려받는 방식이 아니라 API를 호출하는 파트너 노드로, 생성은 원격에서 이뤄집니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Changelog",
+          "u": "https://docs.comfy.org/changelog"
+        },
+        {
+          "t": "TestingCatalog",
+          "u": "https://www.testingcatalog.com/bytedance-debuts-seedream-5-0-pro-with-advanced-reasoning/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
       "kicker": "상용 모델 · 8월 7일",
       "text": "xAI 이매진 이미지 2.0 — 편집을 일급 기능으로 앞세운 이미지 모델, 아레나 2위"
     },
@@ -111,69 +204,6 @@
           "u": "https://www.testingcatalog.com/xai-launches-imagine-image-2-0-in-grok-quality-mode/"
         }
       ]
-    },
-    {
-      "type": "h2",
-      "kicker": "오픈 웨이트 · 8월 7일",
-      "text": "미니맥스 H3, 12.5GB 4비트 가중치로 소비자 GPU 진입 — Kijai 실험판"
-    },
-    {
-      "type": "figure",
-      "img": "https://s.comfyui-wiki.com/news/2026-08-05-kijai-minimax-h3-w4a8/pr90-w4a8-demo-poster.jpg",
-      "alt": "Kijai의 MiniMax H3 4비트 양자화 데모",
-      "caption": "<b>MiniMax H3 w4a8.</b> 4비트 저장·int8 연산으로 FL2VA 체크포인트를 12.5GB로 낮췄다.",
-      "credit": "이미지: ComfyUI Wiki"
-    },
-    {
-      "type": "p",
-      "html": "오픈 웨이트로 풀린 <strong>미니맥스 H3</strong>의 로컬 실행 저변이 빠르게 넓어지고 있습니다. 그 중심에 Kijai가 공개한 비대칭 4비트(w4a8) 실험 가중치가 있습니다. 가중치를 원소당 약 0.56바이트로 저장하되 연산은 int8 GEMM으로 돌리는 방식으로, 프루닝한 FL2VA 체크포인트를 <strong>12.5GB</strong>까지 낮췄습니다. Ref2VA는 11.8GB, 함께 쓰는 int8 convrot VAE는 3.2GB이며, 별도 캘리브레이션이 필요 없고 int8 대비 약 1.09배 빠릅니다."
-    },
-    {
-      "type": "p",
-      "html": "ComfyUI 지원은 코어 PR #15308(비대칭 w4a8_int)과 #15334(int8 convrot VAE)가 8월 6~7일 병합되며 0.31.0에 반영됐습니다. 게시자는 이를 테스트용 실험 릴리스로 못 박으며 품질·속도 수치를 초기 데이터로 봐 달라고 밝혔습니다. 커뮤니티에서는 16GB 소비자용 그래픽카드에서 H3를 완전히 로컬로 돌렸다는 사례가 공유됐고(커뮤니티 관찰 기준), 컴피 오그가 미니맥스 H3 팀을 초청해 진행한 스트림 요약도 함께 돌며 오픈 웨이트 영상 모델을 둘러싼 관심을 보여줬습니다. 무거운 80GB급 VRAM을 전제하던 H3를 소비자 GPU로 끌어내리는 흐름은 로컬 반복 생성의 회전 속도를 직접 끌어올립니다."
-    },
-    {
-      "type": "src",
-      "links": [
-        {
-          "t": "ComfyUI Wiki",
-          "u": "https://comfyui-wiki.com/en/news/2026-08-05-kijai-minimax-h3-w4a8"
-        },
-        {
-          "t": "Hugging Face Kijai/MiniMax-H3-experimental",
-          "u": "https://huggingface.co/Kijai/MiniMax-H3-experimental"
-        }
-      ]
-    },
-    {
-      "type": "h2",
-      "kicker": "오픈 웨이트 · 8월 8일",
-      "text": "Kandinsky Lab KVAE — 이미지·영상·오디오 토크나이저 제품군, 코드·가중치 공개"
-    },
-    {
-      "type": "p",
-      "html": "잠재 디퓨전 모델의 바탕이 되는 토크나이저를 정면으로 다룬 연구 <strong>KVAE</strong>가 8월 8일 arXiv에 올라왔습니다. 이미지를 다루는 KVAE-2D, 두 가지 압축률의 영상용 KVAE-3D, 48kHz 연속 병목을 쓰는 KVAE-Audio로 구성된 토크나이저 제품군으로, 입력 신호를 디퓨전 모델이 다루기 좋은 잠재 표현으로 압축하는 것을 목표로 합니다."
-    },
-    {
-      "type": "p",
-      "html": "핵심 관찰은 재구성 품질이 좋다고 해서 생성 성능까지 좋아지지는 않는다는 점입니다. 저자진은 잠재 공간이 디퓨전 학습에 얼마나 적합한지를 가리키는 '디퓨저빌리티' 개념과, 토크나이저를 저비용으로 선별하는 지표 CDS(Correlation Decay Slope)를 제안했습니다. VAE·디코더의 품질은 최종 생성 결과를 좌우하는 저층 요소인 만큼, 생성 파이프라인의 근간을 다듬는 작업에 닿습니다. 코드와 가중치는 MIT 라이선스로 공개됐습니다."
-    },
-    {
-      "type": "src",
-      "links": [
-        {
-          "t": "arXiv 2608.05798",
-          "u": "https://arxiv.org/abs/2608.05798"
-        },
-        {
-          "t": "GitHub kandinskylab/kvae",
-          "u": "https://github.com/kandinskylab/kvae"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "text": "관련 업계 동향"
     },
     {
       "type": "h3",
@@ -223,36 +253,6 @@
         {
           "t": "전자신문",
           "u": "https://www.etnews.com/20260807000086"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "text": "배경 및 기존 동향"
-    },
-    {
-      "type": "h3",
-      "kicker": "도구 · 노드 · 8월 8일",
-      "text": "바이트댄스 시댄스 2.5·시드림 5.0 프로, ComfyUI 파트너 노드로 편입"
-    },
-    {
-      "type": "p",
-      "html": "바이트댄스가 7월 말 볼케이노 엔진 2026에서 공개한 영상 모델 <strong>시댄스 2.5</strong>와 이미지 모델 <strong>시드림 5.0 프로</strong>가 8월 8일 ComfyUI 0.31.0의 파트너 노드로 들어왔습니다. 시댄스 2.5는 한 번의 생성으로 30초 길이를 만들고, R2V 참조를 최대 50장까지 받아 광고·소셜·커머스·스토리텔링을 겨냥합니다. 회사는 더 긴 서사에서도 캐릭터가 흔들리지 않는 롱폼 샷 일관성을 핵심 개선으로 내세웠고, 기존 시댄스 2.0은 4K 출력으로 상향됐습니다."
-    },
-    {
-      "type": "p",
-      "html": "시드림 5.0 프로는 대화형 편집과 함께 요소를 알파 PNG 레이어로 분리하는 기능을 담았습니다. 화살표를 긋거나 영역을 원으로 감싸 편집하고, 요소를 드래그·스케일이 가능한 개별 레이어로 떼어낼 수 있습니다. 알파 채널 단위의 레이어 분리는 매트·컴프 준비 공정에 곧바로 닿는 기능입니다. 두 모델 모두 로컬 가중치를 내려받는 방식이 아니라 API를 호출하는 파트너 노드로, 생성은 원격에서 이뤄집니다."
-    },
-    {
-      "type": "src",
-      "links": [
-        {
-          "t": "ComfyUI Changelog",
-          "u": "https://docs.comfy.org/changelog"
-        },
-        {
-          "t": "TestingCatalog",
-          "u": "https://www.testingcatalog.com/bytedance-debuts-seedream-5-0-pro-with-advanced-reasoning/"
         }
       ]
     },
