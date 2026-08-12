@@ -1,0 +1,432 @@
+{
+  "id": "ai-media-daily-2026-08-12",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 12일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.12",
+  "read": "약 8분",
+  "summary": "오늘의 축은 LTX-2.5입니다. 라이트릭스에서 분사한 LTX가 오픈 웨이트 월드모델 LTX-2.5를 공개하면서 ComfyUI 데이 제로 네이티브 지원을 함께 붙였고, 같은 날 올라온 ComfyUI v0.32.0이 LTX 2.5 노드와 새 어텐션 구현을 담았습니다. 미니맥스 H3 쪽에서는 2~3스텝 터보 LoRA v4와 인물 사실감 LoRA, 잠재 공간 업스케일러가 잇따라 나오며 도구 계층이 계속 두꺼워졌습니다. 업계에서는 스포티파이의 AI 페르소나 라벨, 앤트로픽의 비가시 워터마크, 애플의 촬영 시점 진위 증명 기능이 하루 사이에 겹치며 생성물 표시와 출처 증명이 동시에 움직였습니다.",
+  "body": [
+    {
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 11일",
+      "text": "LTX-2.5 공개 — 16GB에서 도는 오픈 웨이트 월드모델, ComfyUI 데이 제로 네이티브"
+    },
+    {
+      "type": "figure",
+      "video": "https://videos.ctfassets.net/jdtwqhzvc2n1/5adJeC4rAKJuVrvBnKC90K/2bee7cfaeaf1925f8a19ceaa1f314319/Model_Output_-_Cliffs.mp4",
+      "alt": "LTX-2.5로 생성한 절벽 장면 영상",
+      "caption": "<b>LTX-2.5.</b> 새 디퓨전 디코더와 멀티샷 생성을 적용한 모델 출력 예시.",
+      "credit": "이미지: LTX / VentureBeat"
+    },
+    {
+      "type": "p",
+      "html": "라이트릭스에서 분사한 <strong>LTX</strong>가 8월 11일 오픈 웨이트 영상·월드모델 <strong>LTX-2.5</strong>를 공개했습니다. 주목할 대목은 모델 자체만이 아닙니다. 두 회사가 맺은 출시 당일 파트너십에 따라 ComfyUI 네이티브 지원이 공개와 동시에 들어갔고, 같은 날 올라온 ComfyUI v0.32.0에 LTX 2.5 전용 노드가 포함됐습니다. 로컬에서 바로 워크플로를 짤 수 있는 상태로 나온 셈입니다."
+    },
+    {
+      "type": "p",
+      "html": "이번 판은 파이프라인 대부분을 다시 짰습니다. 고속 움직임에서 생기는 아티팩트를 줄이고 글자와 얼굴 같은 미세 디테일을 되살리는 새 디퓨전 영상 디코더가 들어갔고, 여러 컷을 한 번의 출력으로 렌더링하면서 캐릭터와 장면, 목소리를 유지하는 네이티브 멀티샷 생성이 추가됐습니다. 텍스트 백본은 Gemma 4 기반으로 바뀌었고, 로보틱스와 피지컬 AI용 사전학습 체크포인트가 별도로 딸려 나왔습니다. 증류판도 크게 손봐 엔비디아와 함께 진행한 최적화로 RTX GPU에서 메모리 요구량을 낮췄습니다. 배포는 통짜 파일이 아니라 Comfy 구조에 맞춘 분할 컴포넌트 형태로, 증류 DiT(bf16·int8·NVFP4)와 학습 가능한 풀 DiT(bf16·int8), Gemma 4 12B 텍스트 인코더, 영상 VAE, 오디오 VAE와 보코더가 따로 제공됩니다."
+    },
+    {
+      "type": "p",
+      "html": "실행 조건은 최소 16GB VRAM입니다. 라이선스는 LTX-2.x 커뮤니티 라이선스로, 연 매출 1,000만 달러 미만 조직은 상용·프로덕션 사용까지 무료이고 그 이상은 별도 계약을 맺어야 합니다. 다만 조건이 느슨하지는 않습니다. 파인튠과 LoRA는 물론 증류판, LTX-2.5의 출력이나 합성 데이터로 학습한 모델까지 파생물로 규정해 같은 라이선스를 물리며, 상용 사용자는 경쟁 AI 시스템 학습에 이 모델을 쓸 수 없습니다. 워터마크와 출처 표시 기능을 제거하거나 우회하는 행위도 금지되고, 이를 어기면 라이선스가 즉시 취소됩니다. 군사·무기 개발 용도는 전면 금지라 로보틱스 체크포인트도 방위 분야에는 열려 있지 않습니다."
+    },
+    {
+      "type": "p",
+      "html": "속도 수치는 배경을 함께 봐야 합니다. LTX는 10초 720p 이미지-대-영상 클립을 6.8초에 만든다고 밝혔지만, 이는 엔비디아 GB200 두 장에 자체 호스팅한 정상 상태 측정값이며 같은 작업을 LTX 관리형 API로 돌리면 1080p 기준 23.7초가 걸립니다. 블라인드 선호도 평가에서 67% 승률을 기록했다는 결과 역시 LTX가 직접 의뢰한 것으로, 회사 스스로 예비 수치라고 밝혔고 독립 검증은 아직 없습니다. 가격은 Fast 티어가 초당 0.09달러, Pro가 0.12달러입니다. ComfyUI API 노드로는 Pro가 2~10초·최대 1080p, Fast가 2~20초·최대 4K를 지원합니다. 로컬 자체 호스팅이 가능하다는 점, 그리고 프로토타이핑 단계에서 데이터와 IP가 사내를 벗어나지 않는다는 점이 이 모델의 실질적인 강점입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "VentureBeat",
+          "u": "https://venturebeat.com/technology/ltx-2-5-can-generate-a-10-second-ai-video-from-an-image-in-just-6-8-seconds-on-nvidia-superchips-and-its-open-weights"
+        },
+        {
+          "t": "Hugging Face Lightricks/LTX-2.5",
+          "u": "https://huggingface.co/Lightricks/LTX-2.5"
+        },
+        {
+          "t": "ComfyUI 문서 — LTX-2.5",
+          "u": "https://docs.comfy.org/tutorials/partner-nodes/lightricks/ltx-2-5"
+        },
+        {
+          "t": "MarkTechPost",
+          "u": "https://www.marktechpost.com/2026/08/11/the-video-production-stack-now-fits-on-one-desk-ltx-2-5-launches-as-nvidia-accelerated-open-weights-world-model/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 11일",
+      "text": "ComfyUI v0.32.0 — LTX 2.5 노드와 새 어텐션 구현, 파이토치 2.7로 하한 상향"
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI가 8월 11일 <strong>v0.32.0</strong>을 내놨습니다. 가장 눈에 띄는 것은 앞서 언급한 LTX 2.5 지원으로, 모델 구현과 2.5 전용 노드가 두 건의 PR로 함께 들어갔습니다. 여기에 <strong>Comfy Kitchen 어텐션</strong>이라는 새 어텐션 구현이 코어에 추가돼 추론 경로가 하나 더 늘었습니다."
+    },
+    {
+      "type": "p",
+      "html": "미니맥스 H3 관련 수정도 여러 건입니다. H3 VAE 성능을 최적화하고 피크 메모리 문제를 바로잡았으며, 저VRAM 환경에서 업스케일 모델이 깨지던 문제와 <code>VAEDecodeTiled</code>가 중첩 latent을 처리하다 죽던 문제를 함께 고쳤습니다. 타일드 오디오 디코드 오류와 CLIP vision 회귀도 정리됐고, Qwen-Image 3.0 Pro 연동과 ER-SDE 노이즈 스케일러 개선이 들어갔습니다. 다만 이번 릴리스부터 공식 지원 파이토치 하한이 <strong>2.7</strong>로 올라갔고 CUDA 13.0 관련 경고가 노출되도록 바뀐 만큼, 기존 환경을 그대로 쓰던 설치본은 업데이트 전에 런타임을 먼저 확인하는 편이 안전합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub Comfy-Org/ComfyUI v0.32.0",
+          "u": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.32.0"
+        },
+        {
+          "t": "ComfyUI 체인지로그",
+          "u": "https://docs.comfy.org/changelog"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "커뮤니티 · 8월 11~12일",
+      "text": "LTX 2.5 로컬 실행 후기와 새 어텐션 비교가 하루 만에 쏟아졌습니다"
+    },
+    {
+      "type": "p",
+      "html": "공개 당일부터 LTX 2.5를 자기 장비에서 돌려 본 기록이 빠르게 올라왔습니다(커뮤니티 관찰 기준). r/StableDiffusion에는 RTX 3060에 램 16GB 구성으로 0.5메가픽셀 10초 영상을 180초에 뽑았다는 실측 보고가 8월 11일 올라왔고, r/comfyui에는 RTX 5090에서의 생성 시간을 다룬 테스트 글이 이어졌습니다. 같은 시기 유튜브에도 ComfyUI 로컬 실행과 Fast 티어를 다룬 데모 영상이 8월 11~12일에 걸쳐 여러 채널에서 게시됐습니다."
+    },
+    {
+      "type": "p",
+      "html": "v0.32.0에 들어간 새 어텐션도 곧바로 검증 대상이 됐습니다. RTX 4070 12GB·램 64GB 환경에서 SageAttention과 Kitchen 어텐션을 나란히 비교한 글이 8월 12일 올라왔고, 코어의 네이티브 어텐션 변경 자체를 다룬 스레드도 함께 확인됩니다. 어느 쪽이든 개별 게시글에 근거한 관찰인 만큼 수치를 그대로 옮겨 쓰기보다는 자기 환경에서 다시 재 보는 편이 맞습니다. 다만 공개 하루 만에 소비자용 그래픽카드 실측과 어텐션 비교가 동시에 돌기 시작했다는 점은 이 모델의 로컬 진입 장벽이 실제로 낮다는 신호로 읽힙니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Reddit r/StableDiffusion",
+          "u": "https://www.reddit.com/r/StableDiffusion/new/"
+        },
+        {
+          "t": "Reddit r/comfyui",
+          "u": "https://www.reddit.com/r/comfyui/new/"
+        },
+        {
+          "t": "YouTube — LTX 2.5 Fast quick test demo",
+          "u": "https://www.youtube.com/watch?v=oFDtZ_sJE-w"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 10일",
+      "text": "fal의 H3 인물 사실감 LoRA — 클로즈업에서 버티는 얼굴을 겨냥한 125MB 어댑터"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-10-minimax-h3-realism-people-lora/hero-grid16.jpg",
+      "alt": "H3 Realism People LoRA로 생성한 인물 이미지 그리드",
+      "caption": "<b>H3 Realism People LoRA.</b> 피부 질감과 눈, 미세 표정을 겨냥한 인물 특화 어댑터의 출력 예시.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "fal이 8월 10일 미니맥스 H3용 인물 특화 <strong>Realism People LoRA</strong>를 오픈 웨이트로 공개했습니다. 겨냥한 지점이 분명합니다. 클로즈업에서도 무너지지 않는 얼굴, 매끈하게 뭉개지지 않는 피부 질감, 일관된 눈과 미세 표정, 그리고 필름에 가까운 조명입니다. 텍스트-대-영상과 이미지-대-영상, 참조 기반 생성에 모두 적용됩니다."
+    },
+    {
+      "type": "p",
+      "html": "파일은 세이프텐서 한 장에 125MB입니다. <code>ComfyUI/models/loras/</code>에 넣고 기존 H3 워크플로에 LoRA 로더를 하나 끼운 뒤, 프롬프트를 트리거 워드 <code>r34l1sm</code>으로 시작하면 됩니다. 권장 강도는 1.0이고 효과를 누그러뜨리려면 0.6~0.8로 내립니다. 허깅페이스에서 가중치를 받을 수 있고 fal API로도 쓸 수 있습니다. 인물이 화면을 채우는 샷에서 생성 결과의 신뢰도를 끌어올리는 용도라, 캐릭터 중심 컷 작업에 곧바로 닿습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-10-minimax-h3-realism-people-lora"
+        },
+        {
+          "t": "Hugging Face fal/MiniMax-H3-Realism-People-LoRA",
+          "u": "https://huggingface.co/fal/MiniMax-H3-Realism-People-LoRA"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 8일",
+      "text": "H3 터보 LoRA v4 — 스텝 수가 아니라 학습 레시피를 바꾼 증류 가중치"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-08-minimax-h3-turbo-v4/example-1.jpg",
+      "alt": "H3 터보 LoRA v4로 생성한 예시 프레임",
+      "caption": "<b>H3 터보 LoRA v4.</b> 새 학습 레시피로 미세 디테일을 다듬은 증류 가중치의 출력 예시.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "larryvrh가 8월 8일 미니맥스 H3용 <strong>터보 LoRA v4</strong>를 공개했습니다. 영상과 오디오를 2~3스텝까지 줄이는 증류 가중치인데, 제작자는 이번 판을 스텝 수를 한 단계 더 낮춘 버전이 아니라 학습 레시피를 새로 짠 결과로 설명합니다. 움직임이 거의 없는 화면에서 정지 프레임 품질을 보강했고, 얼굴과 손가락, 질감의 미세 디테일이 나아졌으며, v1 계열에서 거슬리던 과도한 샤프닝을 걷어냈습니다."
+    },
+    {
+      "type": "p",
+      "html": "실사용 설정은 4~8스텝이며 6~8스텝 구간에서 결과가 눈에 띄게 좋아집니다. 강도는 1.0을 기준으로 하되 커뮤니티 테스트에서는 0.6~0.8도 함께 쓰이고, 스케줄러는 simple이나 beta를 권합니다. 전용 커스텀 노드가 풀 체크포인트와 프루닝 변형을 모두 받아 bf16·int8 베이스에 LoRA 파일 하나로 대응하며, 프루닝 모델을 자동으로 감지하고 저VRAM 옵션도 제공합니다. 가중치는 허깅페이스에, 노드는 GitHub에 올라와 ComfyUI-Manager로 설치할 수 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-08-minimax-h3-turbo-v4"
+        },
+        {
+          "t": "Hugging Face larryvrh/MiniMax-H3-Turbo-Lora",
+          "u": "https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora"
+        },
+        {
+          "t": "GitHub Larryvrh/ComfyUI-MiniMax-H3-Turbo",
+          "u": "https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 8일",
+      "text": "H3 2배 잠재 업스케일러 — VAE 왕복 없이 latent 해상도만 키우는 56MB 네트워크"
+    },
+    {
+      "type": "p",
+      "html": "Mamad8이 8월 8일 공개한 <strong>H3 2x Latent Upscaler</strong>는 완전히 디노이징된 H3 영상 latent의 공간 해상도를 두 배로 키웁니다. 핵심은 VAE 인코드·디코드 왕복을 건너뛴다는 점입니다. 시간 길이는 그대로 두고, H3의 영상·오디오 결합 latent에서 오디오 스트림도 함께 보존합니다. 다만 노이즈가 남은 중간 latent에는 쓸 수 없고 깨끗한 latent만 받습니다."
+    },
+    {
+      "type": "p",
+      "html": "학습은 저해상도 latent을 픽셀로 디코드해 Lanczos로 2배 확대한 뒤 결정론적으로 다시 인코드하는 방식으로 쌍을 만들고, 경량 네트워크가 latent과 디코더를 함께 고려한 재구성 손실에 SSIM과 공간·시간 일관성 손실을 더해 보정을 학습했습니다. 노드는 두 개이고 모델 파일은 약 56MB이며, H3 샘플러와 VAE 디코드 사이에 업스케일 노드를 끼우는 배치입니다. 다만 제작자는 이것이 통상적인 샤프닝 업스케일러가 아니라고 못 박았습니다. 결과를 바로 디코드하면 원본보다 부드럽게 보일 수 있는 만큼, 딜리버리 해상도를 맞추는 중간 단계로 보고 마무리 업스케일은 따로 두는 편이 맞습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-08-minimax-h3-latent-upscaler"
+        },
+        {
+          "t": "Hugging Face Mamad8/H3-Latent-Upscaler-2x",
+          "u": "https://huggingface.co/Mamad8/H3-Latent-Upscaler-2x"
+        },
+        {
+          "t": "GitHub mamad8c/ComfyUI-H3-Latent-Upscaler-Mamad8",
+          "u": "https://github.com/mamad8c/ComfyUI-H3-Latent-Upscaler-Mamad8"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 7일",
+      "text": "MirrorWorld — 영상 디퓨전이 거울 반사를 장면과 어긋나지 않게 그리도록"
+    },
+    {
+      "type": "figure",
+      "img": "https://youjunzhao.github.io/MirrorWorld/static/images/framework.webp",
+      "alt": "MirrorWorld 프레임워크 구조도",
+      "caption": "<b>MirrorWorld.</b> 의미 관계 증류와 기하 변환 정렬을 결합한 프레임워크 구조.",
+      "credit": "이미지: MirrorWorld 프로젝트 페이지"
+    },
+    {
+      "type": "p",
+      "html": "홍콩시티대학 연구진이 8월 7일 arXiv에 올린 <strong>MirrorWorld</strong>는 영상 디퓨전 모델이 거울 반사를 제대로 그리지 못하는 문제를 다룹니다. 거울 안의 내용은 주변 장면과 반드시 맞아떨어져야 하는데, 기존 모델은 무엇을 비출지와 어디에 비출지를 모두 놓칩니다. 연구진은 이를 두 축으로 나눠 접근했습니다."
+    },
+    {
+      "type": "p",
+      "html": "무엇을 비출지는 의미 관계 증류(SRD)가 맡습니다. 프리즈된 시각 파운데이션 모델을 이용해 화면에 보이는 장면 내용과 거울 영역 사이의 의미적 대응을 정렬하는 방식입니다. 어디에 어떻게 놓일지는 기하 변환 정렬(GTA)이 아핀 변환을 학습해 결정합니다. 평가를 위해 기존 영상 거울 데이터셋 네 개를 반사 재구성이라는 하나의 과제로 묶은 통합 벤치마크도 함께 내놨습니다. 코드는 GitHub에, 프로젝트 페이지는 별도로 공개됐습니다. 거울과 유리, 수면 반사는 합성 샷에서 어색함이 가장 먼저 드러나는 지점이라, 컴프와 룩 개발 단계에서 눈여겨볼 만한 방향입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.07463",
+          "u": "https://arxiv.org/abs/2608.07463"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://youjunzhao.github.io/MirrorWorld/"
+        },
+        {
+          "t": "GitHub YoujunZhao/MirrorWorld",
+          "u": "https://github.com/YoujunZhao/MirrorWorld"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 7일",
+      "text": "어도비 Atelier — '화가 스타일로'가 상투적 모티프로 새는 것을 막는 제어 설계"
+    },
+    {
+      "type": "p",
+      "html": "어도비 연구진이 8월 7일 공개한 <strong>Atelier</strong>는 텍스트-대-이미지 모델이 특정 화가의 스타일을 요구받을 때 빠지는 함정을 겨냥합니다. 모델은 화풍의 본질을 잡는 대신 반복 등장하는 시각 모티프나 색 팔레트 같은 지름길에 기대는 경향이 있습니다. 고흐를 요청하면 별이 빛나는 밤의 소용돌이가 튀어나오는 식입니다."
+    },
+    {
+      "type": "p",
+      "html": "연구진은 창작 의도를 명시적인 제어 파라미터로 옮기는 방식을 택했습니다. 장면 앵커와 스타일 결정, 그리고 상투적 지름길을 피하도록 설계한 제약을 각각 세운 뒤, 반복 피드백으로 결과를 다듬습니다. 평가는 고흐와 치바이스의 작품을 대상으로 만든 ArtIntentBench에서 진행했고, 원작 재현과 그 화가가 그린 적 없는 소재를 그리는 상황을 함께 다뤘습니다. 통상적인 프롬프트 엔지니어링이나 검색 기반 접근보다 스타일 충실도가 높고 지름길 치환이 줄었다고 보고했습니다. 다만 논문 페이지에는 코드나 프로젝트 페이지가 함께 걸려 있지 않습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.06751",
+          "u": "https://arxiv.org/abs/2608.06751"
+        },
+        {
+          "t": "Hugging Face Papers",
+          "u": "https://huggingface.co/papers/2608.06751"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
+      "kicker": "서비스 · 플랫폼 · 8월 11일",
+      "text": "스포티파이, 'AI 페르소나' 라벨 도입하고 추천에서 기본 제외"
+    },
+    {
+      "type": "figure",
+      "img": "https://techcrunch.com/wp-content/uploads/2026/08/AI-Personas-Header.jpg?w=1024",
+      "alt": "스포티파이 AI 페르소나 라벨 소개 이미지",
+      "caption": "<b>AI 페르소나.</b> AI로 만든 아티스트 정체성에 배지를 붙이고 추천에서 기본 제외한다.",
+      "credit": "이미지: TechCrunch"
+    },
+    {
+      "type": "p",
+      "html": "스포티파이가 8월 11일 AI로 만들어진 아티스트 정체성에 <strong>'AI 페르소나'</strong> 배지를 붙이고, 해당 음악을 에디토리얼과 알고리즘, 개인화 추천에서 기본적으로 빼기로 했습니다. 이용자가 직접 그 아티스트를 팔로우한 경우에만 노출되므로, 의도적으로 찾아 듣는 경우가 아니면 추천에 섞이지 않습니다."
+    },
+    {
+      "type": "p",
+      "html": "식별은 두 갈래입니다. 아티스트가 스포티파이 포 아티스트에서 직접 밝히는 자진 신고를 8월 11일부터 받고, 여기에 사실적인 AI 생성 이미지를 내건 프로필을 스포티파이가 직접 검토하는 절차를 더합니다. 검토는 일정 청취 규모를 넘는 프로필부터 시작합니다. 배지는 프로필 배너와 소개란, 검색 결과, 플레이리스트의 트랙 줄에 표시되며 실제 노출은 9월 중순부터입니다. 판정에 이의를 제기하는 절차와 이용자가 잘못된 라벨을 신고하는 수단도 함께 마련됩니다. 기준은 업계 표준인 DDEX 프레임워크를 따릅니다. 생성물의 표시가 제작 단계를 넘어 유통과 추천 알고리즘의 문제로 옮겨 갔다는 점에서, 영상 플랫폼이 뒤따를 경로를 미리 보여 주는 사례입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/11/spotify-will-label-ai-persona-profiles-and-exclude-their-music-from-recommendations/"
+        },
+        {
+          "t": "The Verge",
+          "u": "https://www.theverge.com/entertainment/977815/spotify-ai-persona-label-recommendations"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "정책 · 저작권 · 8월 11일",
+      "text": "앤트로픽, 클로드 생성물 전체에 비가시 워터마크 — EU AI법 50조 대응"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.aitimes.com/news/photo/202608/213821_217386_2538.jpg",
+      "alt": "앤트로픽 클로드 워터마크 도입 소개 이미지",
+      "caption": "<b>클로드 워터마크.</b> 텍스트는 토큰 생성 단계에, 이미지·파일은 C2PA 서명으로 표시를 심는다.",
+      "credit": "이미지: AI타임스"
+    },
+    {
+      "type": "p",
+      "html": "앤트로픽이 8월 11일 클로드가 만든 결과물 전반에 기계가 읽을 수 있는 비가시 워터마크를 넣기 시작했다고 밝혔습니다. 텍스트는 토큰을 생성하는 단계에서 눈에 보이지 않는 패턴을 심어 복사하거나 일부를 고쳐도 탐지되도록 했고, 이미지와 파일에는 C2PA 디지털 서명을 붙여 변형 여부를 확인합니다. 적용 범위는 웹 인터페이스와 API는 물론 AWS, 구글 클라우드, 마이크로소프트 등 서드파티 클라우드까지입니다."
+    },
+    {
+      "type": "p",
+      "html": "배경은 8월 2일부터 적용된 EU AI법 50조 2항입니다. 생성형 AI의 투명성 의무를 어기면 연 매출의 3% 또는 1,500만 유로 가운데 큰 금액까지 과징금이 부과됩니다. 다만 앤트로픽은 한계를 함께 인정했습니다. 워터마크가 있다는 사실만으로 실제 작성 주체를 확정할 수는 없으며, 크게 편집된 콘텐츠나 아주 짧은 텍스트에서는 특히 그렇다는 것입니다. 회사는 서드파티가 워터마크를 검증할 수 있도록 탐지 표준과 지침을 곧 공개하겠다고 밝혔습니다. 텍스트 모델의 사례이지만, 생성물 표시 의무가 이미지·영상 모델에도 같은 조항으로 걸린다는 점에서 남의 일이 아닙니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=213821"
+        },
+        {
+          "t": "The Verge",
+          "u": "https://www.theverge.com/ai-artificial-intelligence/977823/anthropic-claude-ai-watermarks-c2pa-text-images"
+        },
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "서비스 · 플랫폼 · 8월 11일",
+      "text": "애플 '레퍼런스 이미지' — 촬영 시점에 출처를 심어 아이폰 사진을 증명"
+    },
+    {
+      "type": "figure",
+      "img": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/reference-mode.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
+      "alt": "iOS 27 베타의 애플 레퍼런스 이미지 기능 화면",
+      "caption": "<b>Apple Reference Image.</b> iOS 27 베타에서 발견된 촬영 시점 출처 증명 기능.",
+      "credit": "이미지: 9to5Mac / The Verge"
+    },
+    {
+      "type": "p",
+      "html": "애플이 아이폰 카메라로 찍은 사진임을 증명하는 기능을 준비 중인 정황이 iOS 27 베타 5에서 확인됐습니다. The Verge가 8월 11일 전한 내용으로, 9to5Mac이 베타 코드에서 <strong>'Apple Reference Image'</strong>라는 이름의 시스템을 찾아냈습니다. 촬영하는 그 순간에 출처 메타데이터를 사진에 심어, 어디서 나온 이미지인지와 AI로 만든 것이 아니라는 사실을 나중에 증명하도록 하는 구조입니다."
+    },
+    {
+      "type": "p",
+      "html": "아직 활성화되지는 않았고, 베타의 개인정보 고지에 따르면 기본값은 꺼짐입니다. 설정의 카메라 항목에서 레퍼런스 모드를 켠 뒤 카메라 앱의 새 '레퍼런스' 옵션으로 찍은 사진에만 인증에 필요한 출처 정보가 들어갑니다. MacRumors가 전한 인증 절차는 자동이 아니라 사진의 레퍼런스 배지를 눌러야 시작되며, 원본 이미지와 센서 서명·촬영 시간대·고유 하드웨어 식별자를 담은 출처 데이터가 애플의 프라이빗 클라우드 컴퓨트로 전송돼 검증을 거친 뒤 고유 ID가 부여된 인증본으로 돌아옵니다. 애플은 이 과정에서 원본 사진 자체에는 접근하지 않지만, 센서 데이터를 받아 손상된 센서와 연결된 이미지의 인증을 막거나 이미 부여한 인증을 소급 취소할 수 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "동작 방식은 C2PA 콘텐츠 크리덴셜과 닮았습니다. 캐논과 니콘, 소니, 후지필름, 라이카가 하드웨어에 이 표준을 순차적으로 넣어 왔고 구글 픽셀 10 카메라도 지원하지만, 애플은 그동안 채택을 피해 왔습니다. 표준을 따르는 대신 자체 방식을 택한 셈인데, 생성물에 표시를 붙이는 접근이 실효를 거두기 어렵다는 판단이 깔린 것으로 보입니다. 실사 소재의 진위 증명이 촬영 장비 단계로 내려간다면, 실사와 생성 이미지를 섞어 쓰는 제작에서 소재의 출처 관리 방식도 함께 달라집니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "The Verge",
+          "u": "https://www.theverge.com/tech/977921/apple-reference-image-iphone-metadata"
+        },
+        {
+          "t": "9to5Mac",
+          "u": "https://9to5mac.com/2026/08/10/apple-is-working-on-a-way-to-authenticate-that-a-photo-came-from-an-iphone-camera/"
+        },
+        {
+          "t": "MacRumors",
+          "u": "https://www.macrumors.com/2026/08/10/ios-27-apple-reference-image/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "정책 · 저작권 · 8월 10일",
+      "text": "국내 법원, 뉴스 영상 무단 편집한 쇼츠 채널에 벌금형"
+    },
+    {
+      "type": "figure",
+      "img": "https://img.etnews.com/news/article/2026/08/09/news-p.v1.20260809.3607b3c978214fc787875fe26bedd1de_P1.jpg",
+      "alt": "뉴스 영상 저작권 판결 관련 이미지",
+      "caption": "<b>뉴스도 저작물.</b> 방송 뉴스 영상을 무단 편집해 올린 쇼츠 채널 운영자에게 벌금형이 선고됐다.",
+      "credit": "이미지: 전자신문"
+    },
+    {
+      "type": "p",
+      "html": "국내 법원이 방송사 뉴스 영상을 허락 없이 편집해 올린 유튜브 쇼츠 채널 운영자에게 저작권법 위반으로 벌금형을 선고했습니다. 전자신문이 8월 10일 전한 내용으로, 뉴스 영상 역시 저작권법의 보호를 받는 저작물이며 자유롭게 가져다 쓸 수 있는 공공 자료가 아니라는 점을 확인한 판결입니다."
+    },
+    {
+      "type": "p",
+      "html": "매체는 이를 뉴스 영상은 마음대로 써도 된다는 잘못된 인식에 제동을 건 첫 사례로 평가했습니다. 생성형 AI가 직접 얽힌 사안은 아니지만, 짧은 영상 포맷에서 기존 방송 소재를 재편집해 쓰는 관행 전반에 선을 그은 판단이라는 점이 중요합니다. 클라이언트 작업에서 방송 클립을 참고 소재나 편집 요소로 끌어오는 경우, 그리고 그 클립이 학습이나 변환 파이프라인을 거치는 경우 모두 권리 처리 절차를 다시 살펴볼 필요가 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "전자신문",
+          "u": "https://www.etnews.com/20260810000049"
+        }
+      ]
+    }
+  ]
+}
