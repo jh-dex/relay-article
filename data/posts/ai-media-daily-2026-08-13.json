@@ -1,0 +1,424 @@
+{
+  "id": "ai-media-daily-2026-08-13",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 13일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.13",
+  "read": "약 8분",
+  "summary": "오늘의 축은 편집 도구입니다. 미니맥스 H3를 단일 ComfyUI 노드 안의 영상 편집기로 바꾼 H3 Studio가 첫 공개 릴리스를 냈고, 라이트릭스는 LTX-2.5용 2배 생성형 업스케일 IC-LoRA를 올리며 저해상도 초안 후 마감이라는 작업 순서를 명시적으로 제안했습니다. LTX-2.5는 공개 하루 만에 GGUF·MLX·NVFP4 양자화가 한꺼번에 쏟아졌고, 커뮤니티는 H3와 LTX 2.5를 같은 프롬프트로 맞붙이는 비교로 옮겨갔습니다. 업계에서는 마이크로소프트 MAI-Image-2.6이 아레나 2위에 올랐고, 트위치가 아마존 생성 AI 학습 옵트아웃을 열었으며, 3D 마켓플레이스에서 AI 생성 자산이 팔리지 않는다는 실측 수치가 나왔습니다.",
+  "cover": {
+    "img": "https://raw.githubusercontent.com/shootthesound/ComfyUI-H3Studio/master/docs/images/editor-overview.png",
+    "alt": "ComfyUI H3 Studio의 전체화면 편집기 화면",
+    "caption": "<b>단일 노드 안의 영상 편집기.</b> 키프레임과 타임라인, 클립 연결과 릴 편집을 ComfyUI 노드 하나에 담은 H3 Studio.",
+    "credit": "이미지: ComfyUI-H3Studio"
+  },
+  "body": [
+    {
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 12일",
+      "text": "ComfyUI H3 Studio — 미니맥스 H3용 영상 편집기를 노드 하나에 담았습니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://raw.githubusercontent.com/shootthesound/ComfyUI-H3Studio/master/docs/images/timeline-filmstrip.png",
+      "alt": "H3 Studio의 필름스트립 타임라인 편집 화면",
+      "caption": "<b>필름스트립 타임라인.</b> 키프레임 마커를 끌어 옮기고 특정 순간에 텍스트 비트를 붙일 수 있습니다.",
+      "credit": "이미지: ComfyUI-H3Studio"
+    },
+    {
+      "type": "p",
+      "html": "미니맥스 H3를 다루는 작업을 프롬프트 단위가 아니라 편집 단위로 옮기는 커스텀 노드가 나왔습니다. 피터 닐(Peter Neill, <code>shootthesound</code>)이 공개한 <strong>ComfyUI H3 Studio</strong>는 저장소 생성과 v1.0.0 릴리스가 모두 8월 12일에 이뤄졌고, 같은 날 v1.1.0까지 올라왔습니다. 라이선스는 MIT입니다."
+    },
+    {
+      "type": "p",
+      "html": "핵심은 노드 하나가 통째로 영상 편집기라는 점입니다. 첫 프레임과 끝 프레임, 그 사이 웨이포인트를 각각 독립된 강도 다이얼로 조절하고, 전체화면 타임라인에서 키프레임 마커를 끌어 옮기며 특정 순간에 텍스트 비트를 붙입니다. 클립과 클립을 이을 때는 모션뿐 아니라 실제 오디오 파형이 이음매를 넘어 이어지며, 클립을 손 대지 않고 연쇄 생성하는 자동 모드도 있습니다. 만들어진 클립들은 릴에서 트리밍·크로스페이드·클립별 볼륨 조정을 거쳐 하나의 영상으로 내보냅니다."
+    },
+    {
+      "type": "p",
+      "html": "제작 관점에서 눈에 띄는 기능은 편집·클린업 쪽에 몰려 있습니다. 기존 푸티지를 디노이즈 강도로 조절해 재스타일링하는 v2v, 프레임별 마스크로 특정 영역만 바꾸는 리저널 편집과 소프트 디노이즈 존, 리저널 프롬프팅, 그리고 이미지·오디오·영상 레퍼런스로 피사체를 고정하는 기능이 들어 있습니다. v1.1.0에서는 클립마다 자체 음악을 물려 클립 길이에 맞춰 잘라 쓰는 사운드트랙 레인이 추가됐습니다."
+    },
+    {
+      "type": "p",
+      "html": "v1.1.0은 노드를 다섯 개로 줄이는 정리도 함께 했습니다. H3 Video To Latent·H3 Frame Range·H3 Splice는 Guide 노드가 이미 초 단위로 구간을 잘라 인코딩하고 디노이즈를 넘겨주기 때문에 중복이라는 이유로 제거됐고, 터보 LoRA 심(shim)이 노드보다 늦게 설치되면서 발생하던 텐서 크기 불일치 크래시도 수정됐습니다. 실행 조건은 미니맥스 H3를 지원하는 ComfyUI v0.30.0(커밋 <code>57500fc</code>) 이상이며, 추가 파이썬 의존성 없이 프런트엔드 확장 때문에 브라우저 강제 새로고침이 필요합니다. 배치 크기는 1로 제한됩니다. 제작자는 Temporal LoRA Blend가 아직 실사용 검증이 더 필요하다고 릴리스 노트에 밝혔습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — ComfyUI-H3Studio",
+          "u": "https://github.com/shootthesound/ComfyUI-H3Studio"
+        },
+        {
+          "t": "릴리스 v1.1.0",
+          "u": "https://github.com/shootthesound/ComfyUI-H3Studio/releases"
+        },
+        {
+          "t": "r/comfyui 공개 스레드",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vmn91p/comfyuih3studio_for_single_node_long_video/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 11일",
+      "text": "라이트릭스 LTX-2.5 픽셀 업스케일 IC-LoRA — 저해상도 초안 뒤에 마감을 붙이는 방식"
+    },
+    {
+      "type": "p",
+      "html": "라이트릭스가 LTX-2.5용 <strong>Pixel Spatial Upscaler IC-LoRA</strong>를 허깅페이스에 올렸습니다. 이름 그대로 해상도를 2배로 올리는 어댑터인데, 픽셀을 보간해 늘리는 방식이 아니라 없던 디테일을 생성해 채우는 생성형 업스케일러입니다."
+    },
+    {
+      "type": "p",
+      "html": "동작 구조는 인컨텍스트 LoRA입니다. 디노이징 과정에서 노이즈 latent과 함께 저해상도 레퍼런스 영상을 입력으로 받고, 학습 때는 목표 영상을 다운스케일한 것을 레퍼런스로 써서 저해상도에서 고해상도로 가는 대응을 익혔습니다. 추론 시에는 구도·모션·피사체 정체성이 레퍼런스에서 그대로 넘어오고 고주파 디테일만 새로 생성됩니다. 모델 카드는 어댑터 랭크 32, BF16, LoRA 강도 1.0(사전 스케일 기본값)이라고 밝히고 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "모델 카드가 권장하는 작업 순서 자체가 파이프라인 제안입니다. 280p 수준에서 초안을 여러 장 뽑아 컷을 고른 뒤, 고른 것만 업스케일러로 마감하라는 것입니다. 다만 블라인드 디노이저나 압축 아티팩트 제거기가 아니라는 점은 카드에 명시돼 있습니다. 기존 실사 푸티지를 픽셀 정확하게 다듬는 용도로는 맞지 않는다는 뜻입니다. 실행은 ComfyUI-LTXVideo 저장소를 통하며, 라이선스는 LTX-2 커뮤니티 라이선스입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Hugging Face — LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler",
+          "u": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler"
+        },
+        {
+          "t": "GitHub — ComfyUI-LTXVideo",
+          "u": "https://github.com/Lightricks/ComfyUI-LTXVideo/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 12일",
+      "text": "LTX-2.5 양자화가 하루 만에 GGUF·MLX·NVFP4로 갈라졌습니다"
+    },
+    {
+      "type": "figure",
+      "video": "https://huggingface.co/Abiray/LTX-2.5-Distilled-GGUF/resolve/main/video/LTX_2.5_t2v.mp4",
+      "alt": "LTX-2.5 증류 GGUF로 생성한 텍스트-투-비디오 예시",
+      "caption": "<b>GGUF 변환판 생성 예시.</b> 배포자가 모델 카드에 함께 올린 텍스트-투-비디오 샘플입니다.",
+      "credit": "영상: Abiray / LTX-2.5-Distilled-GGUF"
+    },
+    {
+      "type": "p",
+      "html": "8월 11일 공개된 LTX-2.5의 커뮤니티 경량화가 하루 만에 여러 갈래로 벌어졌습니다. 가장 정리된 배포는 8월 12일 올라온 <strong>LTX-2.5-Distilled-GGUF</strong>로, 증류판을 Q3_K_S(12.6GB)부터 Q8_0(23.6GB)까지 7종으로 나눠 담았습니다. 모델 카드는 속도와 VRAM의 균형점으로 Q4_K_M(15.7GB)을 기본 권장으로 제시하고, 텍스트-투-비디오와 이미지-투-비디오 ComfyUI 워크플로 JSON을 함께 넣었습니다."
+    },
+    {
+      "type": "p",
+      "html": "같은 날 애플 실리콘 쪽도 함께 움직였습니다. <code>mlx-community/ltx-2.5-mlx</code>를 비롯해 MLX 변환판과 q8 변환판이 잇따라 올라왔고, ComfyUI용 양자화 묶음과 GGUF 재배포판도 여러 계정에서 나왔습니다. 8월 11일에는 증류판의 NVFP4 변환판이, 12일에는 w4a8·int4 convrot 계열 변환판이 등장했습니다. 공개 하루 만에 소비자 GPU와 맥 양쪽에서 돌릴 선택지가 동시에 생긴 셈입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Hugging Face — LTX-2.5-Distilled-GGUF",
+          "u": "https://huggingface.co/Abiray/LTX-2.5-Distilled-GGUF"
+        },
+        {
+          "t": "Hugging Face — mlx-community/ltx-2.5-mlx",
+          "u": "https://huggingface.co/mlx-community/ltx-2.5-mlx"
+        },
+        {
+          "t": "Hugging Face — Lightricks/LTX-2.5",
+          "u": "https://huggingface.co/Lightricks/LTX-2.5"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 11일",
+      "text": "미니맥스 H3 터보 LoRA v1.0 — 첫·끝 프레임 생성 전용 증류 가중치"
+    },
+    {
+      "type": "figure",
+      "img": "https://s.comfyui-wiki.com/news/2026-08-07-minimax-h3-turbo-lightx2v/example-t2v-frame.jpg",
+      "alt": "미니맥스 H3 터보 LoRA 생성 예시 프레임",
+      "caption": "<b>터보 LoRA 생성 예시.</b> lightx2v 계열 증류 가중치로 뽑은 프레임입니다.",
+      "credit": "이미지: ComfyUI Wiki"
+    },
+    {
+      "type": "p",
+      "html": "lightx2v와 ModelTC가 미니맥스 H3의 <strong>FL2V</strong>(첫 프레임과 끝 프레임을 주고 그 사이를 생성하는 모드) 전용 터보 LoRA를 정식 v1.0으로 올렸습니다. 8월 7일 v0.1 프리뷰에 이은 정식판입니다."
+    },
+    {
+      "type": "p",
+      "html": "배포는 두 갈래입니다. 8스텝판(<code>minimax_h3_fl2v_turbo_8step_v1.0_bf16.safetensors</code>)은 8 NFE로 증류돼 8스텝과 4스텝 양쪽에서 쓸 수 있고, 4스텝 768p판(<code>minimax_h3_fl2v_turbo_4step_v1.0_768p_bf16.safetensors</code>)은 1344x768 해상도에서 학습됐습니다. 두 체크포인트 모두 ComfyUI 포맷 트윈 파일이 함께 들어 있어 별도 변환이 필요 없고, 미니맥스 H3가 ComfyUI 네이티브 지원이라 커스텀 노드 없이 LoRA 로더만으로 붙습니다. 첫·끝 프레임을 고정한 채 사이를 채우는 작업은 컷 이어붙이기와 리타이밍에 바로 쓰이는 방식이라, 이 모드만 따로 증류한 가중치가 나온 것은 실무 쪽 수요를 반영합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki — MiniMax H3 Turbo LoRA v1.0",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-11-minimax-h3-turbo-lightx2v-v1"
+        },
+        {
+          "t": "Hugging Face — lightx2v/Minimax-h3-Turbo",
+          "u": "https://huggingface.co/lightx2v/Minimax-h3-Turbo"
+        },
+        {
+          "t": "GitHub — ModelTC/Minimax-H3-Turbo",
+          "u": "https://github.com/ModelTC/Minimax-H3-Turbo"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 12일",
+      "text": "FBnodes 1.4.0 — H3와 LTX의 생성 중 미리보기를 실제 색으로 되돌립니다"
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI의 latent 미리보기는 모델별 TAESD 디코더가 없으면 저품질 근사로 폴백합니다. 미니맥스 H3와 LTX가 여기 해당해, 생성 도중 화면에서 색이 어긋나 보이는 문제가 있었습니다. FranckyB의 <strong>ComfyUI-FBnodes</strong>가 8월 12일 1.4.0으로 올라가며 이 두 모델에 트루컬러 프리뷰를 주입하는 기능을 넣었습니다."
+    },
+    {
+      "type": "p",
+      "html": "사용법은 미니맥스 H3용 <code>taeh3.safetensors</code>와 LTX용 <code>taeltx2_3.safetensors</code>를 <code>ComfyUI/models/vae_approx/</code>에 넣고 설정에서 주입을 켜는 방식입니다. 같은 날 커밋에서 TAESD 디코더 로딩과 프리뷰 방식 존중 처리도 함께 손봤습니다. 이 노드 팩에는 Save Video+·Load Video+ 같은 영상 입출력 노드, Crop Image+ 같은 인터랙티브 이미지 노드, 필터링이 붙은 체크포인트·디퓨전 모델·LoRA 로더, 그리고 영상 전환을 만드는 VACE Stitcher가 함께 들어 있습니다. 긴 영상 생성에서 중간 결과를 보고 끊을지 말지 판단하는 작업에 직접 영향을 주는 변경입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — ComfyUI-FBnodes",
+          "u": "https://github.com/FranckyB/ComfyUI-FBnodes"
+        },
+        {
+          "t": "r/StableDiffusion 공지 스레드",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vmtzz6/fbnodes_now_adds_support_for_taesd_to_ltx_and/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "커뮤니티 · 8월 12~13일",
+      "text": "커뮤니티의 관심이 LTX 2.5 첫인상에서 H3와의 정면 비교로 옮겨갔습니다"
+    },
+    {
+      "type": "p",
+      "html": "LTX-2.5 공개 이튿날인 8월 12일, 커뮤니티 화제는 개별 후기에서 미니맥스 H3와의 직접 비교로 넘어갔습니다. r/comfyui에는 두 모델을 같은 0.4메가픽셀 조건으로 위아래 나란히 놓은 비교가 올라왔고, r/StableDiffusion에도 같은 날 비교 게시물이 잇따르면서 왜 두 모델을 계속 맞붙이는지를 묻는 메타 스레드까지 생겼습니다."
+    },
+    {
+      "type": "p",
+      "html": "유튜브 쪽 비교는 조건을 밝힌 것들이 나왔습니다. The AI Brief 채널은 8월 12일 올린 13분짜리 영상에서 두 모델을 같은 프롬프트·같은 설정으로 로컬 ComfyUI에서 돌렸다고 밝히며, 시드를 고정하고 LTX의 프롬프트 인핸서를 끈 상태로 물리(액체 붓기), 시네마틱 트래킹, 대사와 립싱크, 그리고 첫·끝 프레임 생성 3종까지 여섯 가지를 비교했다고 설명했습니다. Silent Snow 채널은 8월 13일 올린 영상에서 RTX 5090으로 LTX 2.5 생성 4건을 뽑아 손 모션, 신체 해부학과 격한 움직임, 아티팩트, 표정과 오디오를 점검했다고 밝혔습니다(모두 게시자 설명 기준)."
+    },
+    {
+      "type": "p",
+      "html": "실행 환경 쪽 잡음도 함께 보고됐습니다. ComfyUI 0.32의 새 어텐션 구현에서 RTX 4090이 VRAM 99% 점유로 멈춘다는 게시물이 8월 12일 r/comfyui에 올라왔습니다. 단일 게시물이므로 커뮤니티 관찰 기준으로만 적어 둡니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "r/comfyui — H3 대 LTX 2.5, 동일 0.4MP 비교",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vmmuq9/h3_top_vs_ltx_25_bottom_both_at_04_mp/"
+        },
+        {
+          "t": "r/StableDiffusion — MiniMax H3 vs LTX 2.5",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vmtcdl/minimax_h3_vs_ltx_25/"
+        },
+        {
+          "t": "YouTube — Same Prompt. Two Models.",
+          "u": "https://www.youtube.com/watch?v=9zfuEmMmb_0"
+        },
+        {
+          "t": "YouTube — LTX 2.5 First Look (Silent Snow)",
+          "u": "https://www.youtube.com/watch?v=mEb9Is9KgMU"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 11일",
+      "text": "Beyond Pixels — 영상 모델의 최종 latent을 그대로 4D 장면으로 넘깁니다"
+    },
+    {
+      "type": "p",
+      "html": "텍스트나 이미지 한 장에서 움직이는 3D 장면을 만드는 기존 방식은 영상을 먼저 뽑고 그 픽셀을 다시 기하로 되돌리는 2단계였습니다. 이 논문은 그 중간 단계에서 생기는 분포 불일치를 문제로 지목하고, 영상 모델이 내놓는 <strong>최종 디노이즈 latent</strong>을 그대로 인터페이스로 쓰는 Latent-to-4D를 제안합니다. 영상 모델과 4D 디코더가 VAE를 공유한다는 점을 전제로, 영상 latent을 사전학습된 4D 디코더의 토큰 그리드에 정렬한 뒤 시공간 어텐션으로 정제하는 구조입니다."
+    },
+    {
+      "type": "p",
+      "html": "저자들은 약 1,000개 재구성 클립만으로 학습했고, 벤치마크에서 같은 목적의 캐스케이드 방식보다 뚜렷한 차이로 앞섰으며 사람 평가에서도 우호적인 결과를 받았다고 밝혔습니다. 저자는 Zihao Liu, Xiaolong Shen, Zhenglin Zhou, Ruijie Quan, Yi Yang이며 8월 11일 arXiv에 제출됐습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.10744",
+          "u": "https://arxiv.org/abs/2608.10744"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 11일",
+      "text": "AdvFD — 지표는 오르는데 화질은 떨어지는 'Fréchet 해킹'을 겨냥한 손실 설계"
+    },
+    {
+      "type": "p",
+      "html": "생성기를 후학습할 때 Fréchet 거리를 목적함수로 쓰면 목표 지표는 좋아지지만 실제 화질은 나빠지는 현상이 생깁니다. 저자들은 이를 <strong>Fréchet 해킹</strong>이라 부르고, 원인을 고정된 사전학습 피처 공간에서 찾습니다. AdvFD는 고정 피처 대신 실제 분포와 생성 분포 사이의 Fréchet 불일치를 최대화하도록 적대적으로 학습되는 적응형 피처 표현을 씁니다."
+    },
+    {
+      "type": "p",
+      "html": "피처 크기만 키워 목적함수를 속이는 자명해를 막기 위해, 실제 피처의 스케일과 공분산 기하를 정규화하는 real-feature whitening을 넣어 min-max 최적화를 안정화했습니다. 저자들은 JiT와 pMF 두 백본, 여러 모델 규모에서 원스텝 생성기 후학습이 일관되게 개선됐다고 보고했습니다. 저자는 Mingju Gao, Jingkai Zhou, Kun Gai, Changqian Yu, Hao Tang이며 8월 11일 제출됐습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.11205",
+          "u": "https://arxiv.org/abs/2608.11205"
+        },
+        {
+          "t": "Hugging Face Papers",
+          "u": "https://huggingface.co/papers/2608.11205"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
+      "kicker": "상용 모델 · 8월 10일",
+      "text": "마이크로소프트 MAI-Image-2.6, 텍스트-이미지 아레나 2위 — 텍스트 렌더링에서 가장 크게 올랐습니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://microsoft.ai/wp-content/uploads/2026/08/No2_1_1.webp",
+      "alt": "MAI-Image-2.6의 아레나 2위 발표 이미지",
+      "caption": "<b>2위 발표.</b> 마이크로소프트 AI가 공개한 MAI-Image-2.6의 아레나 순위 발표 이미지입니다.",
+      "credit": "이미지: Microsoft AI"
+    },
+    {
+      "type": "p",
+      "html": "마이크로소프트 AI가 자체 이미지 생성 모델 <strong>MAI-Image-2.6</strong>을 공개하고 텍스트-투-이미지 아레나 2위에 올랐습니다. 아레나 공식 계정 발표 기준 1336점으로, 1위 GPT Image 2(Medium)와는 45점 차이이고 3위 그록 이매진 이미지 2.0(Low)보다 20점 앞섭니다."
+    },
+    {
+      "type": "p",
+      "html": "마이크로소프트는 직전 버전인 MAI-Image-2.5 대비 아레나 텍스트-투-이미지 부문에서 79 Elo가 올랐고, 그중 텍스트 렌더링 항목에서만 91 Elo가 올랐다고 밝혔습니다. 개선 영역으로는 이미지 위 텍스트 렌더링, 인물, 3D 이미지를 들었고, 제품·브랜딩·시네마틱 용도의 상업적 결과물을 겨냥했다고 설명했습니다. 다중 레퍼런스 이미지 지원과 추론·포맷·해상도 제어 강화도 함께 언급했습니다. 공개 시점에는 아레나에서만 써 볼 수 있었고, 같은 주 MAI Playground에, 이후 Microsoft Foundry와 다른 제품으로 확대한다는 일정을 밝혔습니다. 무스타파 술레이만 마이크로소프트 AI CEO도 같은 날 X에서 이 순위를 알렸습니다. 국내에서는 AI타임스가 8월 12일 보도했습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Microsoft AI 공식 발표",
+          "u": "https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai/"
+        },
+        {
+          "t": "Arena 공식 X 게시",
+          "u": "https://x.com/arena/status/2086943856289853931"
+        },
+        {
+          "t": "무스타파 술레이만 X 게시",
+          "u": "https://x.com/mustafasuleyman/status/2086944832258236781"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "정책 · 저작권 · 8월 12일",
+      "text": "트위치, 아마존 생성 AI 학습 옵트아웃을 열었습니다 — 기본값은 여전히 동의"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-2286491305-1024x648.jpg",
+      "alt": "노트북 위 스마트폰에 표시된 트위치 로고",
+      "caption": "<b>트위치.</b> 아마존이 2014년 인수한 스트리밍 플랫폼입니다.",
+      "credit": "이미지: Omar Marques/SOPA Images/LightRocket via Getty Images"
+    },
+    {
+      "type": "p",
+      "html": "트위치가 8월 12일, 자신의 채널 콘텐츠를 아마존의 생성 AI 콘텐츠 모델 학습에 쓰지 않도록 하는 옵트아웃 설정을 열었습니다. 갱신된 지원 문서는 옵트아웃하지 않으면 <strong>스트림, VOD, 클립, 스트림 채팅, 채널의 사진과 텍스트</strong>가 텍스트·오디오·이미지·영상을 생성하거나 합성하는 아마존 모델의 향후 학습에 쓰일 수 있다고 명시합니다. 설정 경로는 계정 보안 설정이며, 기본값은 학습 허용입니다."
+    },
+    {
+      "type": "p",
+      "html": "새 사실이 드러난 것은 아닙니다. 2024년 한 업계 행사에서 당시 트위치 최고수익책임자 마이크 민턴이 아마존이 트위치 콘텐츠로 AI를 학습시키느냐는 질문에 그렇다고 답한 바 있습니다. 그때로부터 2년여 만에 거부 수단이 생긴 것이고, 아스테크니카는 발표 며칠 전까지도 이용자들이 이 사실 자체를 잘 모르고 있었다는 정황을 함께 전했습니다. 영상·음성 창작물이 플랫폼 약관을 통해 학습 데이터로 흘러 들어가는 경로가 어디까지 열려 있는지 확인해야 하는 사례가 하나 더 늘었습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Ars Technica",
+          "u": "https://arstechnica.com/ai/2026/08/twitch-content-has-trained-amazon-ai-for-years-but-users-can-opt-out-now/"
+        },
+        {
+          "t": "The Verge",
+          "u": "https://www.theverge.com/tech/979112/twitch-streamers-can-now-opt-out-from-training-amazons-ai"
+        },
+        {
+          "t": "404 Media",
+          "u": "https://www.404media.co/twitch-training-amazon-ai-models-how-to-opt-out-setting/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "산업 동향 · 8월 12일",
+      "text": "3D 마켓플레이스에 AI 자산이 쏟아졌지만 매출은 90분의 1에 그쳤습니다"
+    },
+    {
+      "type": "p",
+      "html": "3D 에셋 마켓플레이스 CGTrader가 자체 데이터를 공개했습니다. 2025년 6월부터 2026년 5월까지 이 플랫폼에 올라온 모델 <strong>여섯 건 중 한 건</strong>이 AI 생성이었지만, 전체 매출 90달러 가운데 AI 생성 자산이 가져간 몫은 1달러에 그쳤습니다."
+    },
+    {
+      "type": "p",
+      "html": "구매자 조사 수치도 함께 나왔습니다. AI 생성 모델이 잘 작동한다고 답한 구매자는 5%였고, 20%는 품질이 부족하다고, 7%는 대대적인 수정이 필요했다고 답했습니다. 3D 프린팅 용도로 한정하면 잘 작동한다는 응답이 4%까지 떨어졌습니다. CGTrader는 구매자들이 지갑으로 투표하고 있으며 AI 생성 콘텐츠가 경쟁에서 고전하고 있다고 밝혔고, 달리아 라샤이테 CEO는 AI가 기계 부품 같은 작업은 가속할 수 있되 최종 결과에 대한 창작 통제는 디자이너가 쥐고 있어야 한다고 말했습니다. 생성 속도가 곧 상품성으로 이어지지 않는다는 것을 구매 데이터로 보여 준 드문 사례입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "404 Media",
+          "u": "https://www.404media.co/ai-generated-3d-models-flood-market-but-almost-no-one-is-buying-them/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "서비스 · 플랫폼 · 8월 10일",
+      "text": "유튜브, 파트너 프로그램 진입 기준을 두 배로 — 2027년 2월 시행"
+    },
+    {
+      "type": "figure",
+      "img": "https://tech42.shoplic.cloud/wp-content/uploads/2026/08/436882194-1024x684.png",
+      "alt": "유튜브 파트너 프로그램 기준 변경을 다룬 기사 이미지",
+      "caption": "<b>진입 기준 상향.</b> 신규 크리에이터의 광고 수익 진입 조건이 2027년 2월부터 두 배로 올라갑니다.",
+      "credit": "이미지: 테크42"
+    },
+    {
+      "type": "p",
+      "html": "유튜브가 8월 10일, 파트너 프로그램 진입 기준을 2027년 2월 1일부터 대폭 강화한다고 발표했습니다. 신규 크리에이터가 광고 수익을 받으려면 최근 365일 시청 시간 <strong>8000시간</strong> 또는 최근 90일 쇼츠 유효 조회수 <strong>2000만 회</strong>를 달성해야 합니다. 기존 기준인 4000시간과 1000만 회에서 정확히 두 배 오른 수치이며, 구독자 1000명 조건은 그대로입니다. 2018년 이후 첫 대규모 개편입니다."
+    },
+    {
+      "type": "p",
+      "html": "쇼츠 조건은 유지 기준까지 붙었습니다. 2027년 2월 1일부터 쇼츠로 광고·구독 수익을 받으려면 최근 90일 유효 조회수 1000만 회를 계속 유지해야 하고, 아래로 내려가면 쇼츠 수익 배분이 중단됩니다. 다만 파트너 자격 자체는 유지돼 롱폼으로는 계속 수익을 낼 수 있고, 기준을 다시 넘기면 쇼츠 수익도 재개됩니다. 기존 파트너에게는 소급 적용되지 않습니다. 유튜브는 같은 발표에서 저가형 프리미엄 라이트를 프리미엄 제공 국가 전체로 확대한다고 밝혔는데, 테크42는 프리미엄 순수익의 30%, 라이트의 60%가 크리에이터 풀로 들어간다는 배분 구조와 함께 전체 유료 구독자가 1억2500만 명인 반면 월간 이용자는 27억2000만 명이라는 점을 들어 이 확대가 실제 수익 증대로 이어질지는 아직 검증되지 않았다고 짚었습니다. AI 생성 영상이 대량으로 유입되는 국면에서 신규 진입자의 수익화 문턱만 높아지는 구조라는 점이 창작자 쪽 반발의 핵심입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "YouTube 공식 블로그",
+          "u": "https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/"
+        },
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/10/youtube-now-requires-creators-to-have-twice-as-many-watch-hours-to-start-earning-money/"
+        },
+        {
+          "t": "테크42",
+          "u": "https://www.tech42.co.kr/%ed%95%9c-%eb%95%8c%eb%8a%94-%ec%b4%88%eb%93%b1%ed%95%99%ec%83%9d-%ec%9e%a5%eb%9e%98%ed%9d%ac%eb%a7%9d-1%ec%88%9c%ec%9c%84-%ec%98%80%eb%8a%94%eb%8d%b0%ec%9c%a0%ed%8a%9c%eb%b8%8c-%ec%88%98/"
+        }
+      ]
+    }
+  ]
+}
