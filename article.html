@@ -36,20 +36,20 @@
   .article{max-width:920px;margin:0 auto;padding:76px 48px 140px;overflow-wrap:break-word}
   .article .cat{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;display:block;font-weight:600}
   .article h1{font-weight:700;font-size:clamp(32px,4.5vw,46px);line-height:1.12;letter-spacing:-.018em;margin-bottom:26px}
-  .lede{font-size:19.5px;line-height:1.7;color:var(--ink-soft);margin-bottom:32px}
+  .lede{font-size:18.5px;line-height:1.7;color:var(--ink-soft);margin-bottom:30px}
   .byline{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--ink-faint);padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:14px}
   .byline .src{color:var(--ink-soft);font-weight:600}
   .summary-box{background:var(--paper-2);border-left:2px solid var(--accent);padding:22px 26px;margin:36px 0 44px;border-radius:0 6px 6px 0}
   .summary-box .st{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:600}
   .summary-box p{font-size:15px;color:var(--ink-soft);line-height:1.7}
 
-  .body p{font-size:19px;line-height:1.8;color:var(--ink);margin-bottom:32px}
-  .body h2{font-weight:700;font-size:27px;letter-spacing:-.015em;margin:48px 0 20px;line-height:1.2}
-  .body h3{font-weight:700;font-size:26px;margin:16px 0 20px;letter-spacing:-.015em;line-height:1.3}
+  .body p{font-size:18px;line-height:1.85;color:var(--ink);margin-bottom:30px}
+  .body h2{font-weight:700;font-size:26px;letter-spacing:-.015em;margin:48px 0 20px;line-height:1.2}
+  .body h3{font-weight:700;font-size:25px;margin:16px 0 20px;letter-spacing:-.015em;line-height:1.3}
   .body strong{font-weight:700}
   .body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--paper-2);padding:2px 6px;border-radius:4px}
-  .body ul{list-style:none;margin:0 0 32px;padding:0}
-  .body li{position:relative;font-size:18.5px;line-height:1.75;color:var(--ink);padding-left:24px;margin-bottom:15px}
+  .body ul{list-style:none;margin:0 0 30px;padding:0}
+  .body li{position:relative;font-size:17.5px;line-height:1.78;color:var(--ink);padding-left:24px;margin-bottom:14px}
   .body li::before{content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;background:var(--accent);border-radius:1px}
   .body li strong{color:var(--ink)}
   .endmark{margin-top:100px;padding-top:32px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-mute);letter-spacing:.02em;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
@@ -71,11 +71,11 @@
   /* ── 데일리 리포트 확장 (라벨→제목 위계, 항목별 출처, 섹션 구분) ── */
   /* 항목 시작 표시: 짧은 틱 + 큰 상단 여백. 그룹의 전폭 구분선과 층이 갈린다. */
   .body .kick{position:relative;display:block;font-size:12px;letter-spacing:.1em;color:var(--accent);font-weight:600;
-    margin:80px 0 12px;padding-top:18px}
+    margin:112px 0 12px;padding-top:18px}
   .body .kick::before{content:"";position:absolute;left:0;top:0;width:24px;height:2px;background:var(--accent);opacity:.45}
   .body > .kick:first-child{margin-top:6px}
   .body .kick + h2,.body .kick + h3{margin-top:0}
-  .body .group{margin:132px 0 8px;padding-top:36px;border-top:1px solid var(--line);
+  .body .group{margin:124px 0 8px;padding-top:32px;border-top:1px solid var(--line);
     font-size:12.5px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
   /* 첫 그룹 위에는 나눌 대상이 없으므로 구분선과 큰 여백을 뺀다 */
   .body > .group:first-child{margin-top:0;padding-top:0;border-top:0}
@@ -83,7 +83,7 @@
   .body .group + .kick{margin-top:30px;padding-top:0}
   .body .group + .kick::before{display:none}
   /* 출처 줄은 본문보다 한 단계 낮은 명도로 눌러 두고, 마지막 문단에 바짝 붙여 항목을 닫는다 */
-  .body .src-line{font-size:12.5px;color:var(--ink-mute);margin:-20px 0 0;letter-spacing:.01em;line-height:1.6}
+  .body .src-line{font-size:12.5px;color:var(--ink-mute);margin:-18px 0 0;letter-spacing:.01em;line-height:1.6}
   .body .src-line b{color:var(--ink-mute);font-weight:600;font-size:11px;letter-spacing:.05em;margin-right:3px}
   .body .src-line a{color:var(--ink-faint);font-weight:500;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
   .body .src-line a:hover{color:var(--accent);border-bottom-color:var(--line)}
@@ -98,13 +98,13 @@
     .bar-inner,.article{padding-left:22px;padding-right:22px}
     .article{padding-top:48px}
     /* 좁은 화면에서는 데스크톱 간격이 과하므로 한 단계씩 줄인다 */
-    .body p{font-size:17.5px;line-height:1.78;margin-bottom:26px}
-    .body li{font-size:17px}
+    .body p{font-size:17px;line-height:1.8;margin-bottom:26px}
+    .body li{font-size:16.5px}
     .body h3{font-size:22px}
-    .lede{font-size:18px}
+    .lede{font-size:17.5px}
     figure{margin:32px 0}
-    .body .kick{margin-top:60px;padding-top:15px}
-    .body .group{margin-top:92px;padding-top:28px}
+    .body .kick{margin-top:80px;padding-top:15px}
+    .body .group{margin-top:96px;padding-top:28px}
     .body .group + .kick{margin-top:24px}
     .body .src-line{margin-top:-16px}
     .endmark{margin-top:72px}
