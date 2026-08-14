@@ -1,0 +1,367 @@
+{
+  "id": "ai-media-daily-2026-08-14",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 14일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.14",
+  "read": "약 7분",
+  "summary": "오늘의 축은 미니맥스입니다. H3에 이어 음악 모델 뮤직 3까지 가중치가 공개되면서 영상과 사운드를 같은 로컬 파이프라인 안에서 처리할 수 있는 조건이 갖춰졌고, ComfyUI v0.33.1은 같은 날 미니맥스 파트너 노드와 브리아 클린업 노드 네 종을 함께 실었습니다. 편집 도구 쪽에서는 에이전트가 타임라인을 직접 조작하는 오픈소스 macOS 편집기 팔미에 프로와, 이미지·영상 디퓨전을 로컬에서 돌리고 학습까지 묶은 언슬로스 데스크톱이 나란히 올라왔습니다. 연구에서는 유리 반사 제거를 영상으로 확장한 S2R과 프리비주얼라이제이션을 편집 가능한 3D 상태로 다루는 StateFlow가 눈에 띄었고, 업계에서는 스포티파이가 AI 커버·리믹스 라이선스를 퍼블리셔로 넓혔습니다.",
+  "cover": {
+    "img": "https://huggingface.co/MiniMaxAI/MiniMax-Music3/resolve/main/figures/Music3.png",
+    "alt": "미니맥스 뮤직 3 모델 소개 이미지",
+    "caption": "<b>미니맥스 뮤직 3.</b> H3에 이어 음악 모델도 가중치가 공개되며 ComfyUI에서 당일 실행이 가능해졌습니다.",
+    "credit": "이미지: MiniMaxAI/MiniMax-Music3 모델 카드"
+  },
+  "body": [
+    {
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 13일",
+      "text": "미니맥스 뮤직 3 가중치 공개 — 영상에 이어 사운드까지 로컬로 내려왔습니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://huggingface.co/MiniMaxAI/MiniMax-Music3/resolve/main/figures/music3.0-Architecture-Diagram.png",
+      "alt": "미니맥스 뮤직 3 아키텍처 다이어그램",
+      "caption": "<b>뮤직 3 구조.</b> 8B 글로벌 LLM과 0.6B 로컬 LLM, 2.4B 플로우 매칭 단계, 123M Flow-VAE 디코더를 잇는 하이브리드 구성입니다.",
+      "credit": "이미지: MiniMaxAI/MiniMax-Music3 모델 카드"
+    },
+    {
+      "type": "p",
+      "html": "미니맥스가 음악 생성 모델 <strong>뮤직 3</strong>의 가중치를 공개하고, 같은 날 ComfyUI에서 로컬 실행을 지원했습니다. 이 모델의 API 판인 뮤직 3.0은 7월 16일에 먼저 공개돼 있었고, 이번에 달라진 것은 가중치가 열렸다는 점입니다. 8월 3일 영상 모델 H3를 오픈 웨이트로 낸 데 이어 두 번째로, 미니맥스는 공지에서 \"AGI가 올 때까지 계속 열겠다\"고 밝혔습니다."
+    },
+    {
+      "type": "p",
+      "html": "가사와 사운드 설명을 넣으면 최대 5분 길이의 완성된 곡을 32kHz 16비트 스테레오 WAV로 한 번에 만들어 냅니다. 가사에는 <code>[Intro]</code>, <code>[Verse]</code>, <code>[Chorus]</code>, <code>[Bridge]</code>, <code>[Instrumental]</code>, <code>[Solo]</code>, <code>[Outro]</code> 같은 구조 태그를 쓸 수 있고, 장르·BPM·조성·보컬 음색과 구간별 편곡 전개를 캡션으로 지정하는 구조화 제어를 제공합니다. 구성은 8B 글로벌 LLM과 0.6B 로컬 LLM, 2.4B 플로우 매칭 단계, 123M Flow-VAE 디코더를 잇는 하이브리드 구조입니다."
+    },
+    {
+      "type": "p",
+      "html": "모델 카드 기준으로 24GB 이상 VRAM을 권장하고, CPU 오프로딩을 쓰면 약 22GB, 레이어 단위 스트리밍 오프로딩까지 동원하면 속도를 희생하는 조건으로 8GB에서도 돌릴 수 있다고 명시돼 있습니다. 라이선스는 모델 카드에 크리에이티브 커먼즈 배지로 표기돼 있습니다. ComfyUI에서는 <code>audio_minimax_music_3</code> 템플릿으로 바로 열리며 v0.33.0 이상이 필요하고, 공식 음악 캡션 리라이터 스킬이 함께 제공됩니다. 영상은 H3, 사운드는 뮤직 3으로 같은 로컬 환경 안에서 처리할 수 있게 됐다는 점이 이 조합의 실질적인 의미입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Comfy Org 블로그 — MiniMax Music 3",
+          "u": "https://blog.comfy.org/p/minimax-music-3-state-of-the-art"
+        },
+        {
+          "t": "MiniMax 공식 블로그",
+          "u": "https://www.minimax.io/blog/minimax-music-3-0-next-generation-open-weights-production-ready-versatile-music-model"
+        },
+        {
+          "t": "Hugging Face — MiniMaxAI/MiniMax-Music3",
+          "u": "https://huggingface.co/MiniMaxAI/MiniMax-Music3"
+        },
+        {
+          "t": "ComfyUI 공식 데모 영상",
+          "u": "https://www.youtube.com/watch?v=KXQOffw2Tmw"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 13일",
+      "text": "ComfyUI v0.33.1 — 브리아 클린업 노드 네 종과 미니맥스 파트너 노드가 붙었습니다"
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI가 <strong>v0.33.1</strong>을 냈습니다. 이번 릴리스에서 정리·보정 계열 파트너 노드가 한 번에 늘어난 점이 눈에 띕니다. 브리아 쪽에서 <code>GenFill</code>, <code>Eraser</code>, <code>Expand</code>, <code>Increase Resolution</code> 네 종이 추가돼 지우기·채우기·확장·해상도 증가가 노드 단위로 들어왔고, 미니맥스 쪽에서는 <code>ContextIR</code>와 <code>Regenerate To 2K</code>가 붙었습니다. 브리아 모델군은 라이선스가 확보된 데이터로만 학습했다는 점을 내세워 왔기 때문에, 클라이언트 납품물의 권리 관계를 따져야 하는 작업에서 선택지가 하나 늘어난 셈입니다."
+    },
+    {
+      "type": "p",
+      "html": "함께 공개된 뮤직 3에는 CUDA 그래프 경로가 적용됐고, 동적 VRAM이 아닌 환경에서 뮤직 3이 동작하지 않던 문제도 잡혔습니다. 수정 사항으로는 중첩 latent에서 <code>add_noise</code>를 끈 KSamplerAdvanced의 동작, LTX 디퓨전 디코더의 float64 디바이스 처리, 추가 블록이 있는 애니메이션 모델 지원이 포함됐습니다. WSL에서는 동적 VRAM 우회가 비활성화됐고, 워크플로 템플릿은 v0.11.41까지 올라갔습니다. 문서에서 \"api nodes\"라는 표현을 \"partner nodes\"로 바꾼 용어 정리도 함께 들어갔습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — ComfyUI v0.33.1 릴리스",
+          "u": "https://github.com/comfyanonymous/ComfyUI/releases/tag/v0.33.1"
+        },
+        {
+          "t": "Comfy Org 블로그 — 브리아 라이선스 데이터 학습",
+          "u": "https://blog.comfy.org/p/introducing-bria-fibo-edit-precision-image"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 12일",
+      "text": "팔미에 프로 v0.7.4 — 에이전트가 타임라인을 직접 만지는 오픈소스 macOS 편집기"
+    },
+    {
+      "type": "p",
+      "html": "<strong>팔미에 프로</strong>가 v0.7.4를 냈습니다. Swift로 처음부터 만든 macOS 전용 영상 편집기이며, 편집 엔진과 MCP 서버, 에이전트 채팅이 GPLv3로 공개돼 있고 생성 AI 처리 부분만 비공개입니다. 구조에서 특징적인 것은 실행 중 <code>http://127.0.0.1:19789/mcp</code>에 MCP 서버를 띄운다는 점입니다. 클로드 코드나 코덱스, 커서 같은 외부 에이전트가 여기에 붙어 클립을 추가하고 타임라인을 재배열하고 트랜스크립트를 뽑는 작업을 직접 수행합니다. 편집기 안에 AI 기능을 넣는 방식이 아니라, 편집기를 에이전트가 조작할 수 있는 대상으로 열어 둔 접근입니다."
+    },
+    {
+      "type": "p",
+      "html": "타임라인 위에서 시댄스, 클링, 나노 바나나 프로로 클립을 생성하는 경로도 함께 제공합니다. v0.7.4에서는 에이전트 스킬 관리 기능이 추가됐고, 편집용 시스템 프롬프트가 갱신됐으며, 스텐실 매트가 텍스트 색상을 따르도록 바뀌었습니다. 텍스트 클립 가우시안 블러, 비파괴 캔버스 가이드, 반전 텍스트 필도 들어갔습니다. 실행 조건은 애플 실리콘과 macOS 26(타호) 이상이며, 편집기 자체는 로그인 없이 무료이고 생성 기능만 인증과 구독을 요구합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — palmier-io/palmier-pro 릴리스",
+          "u": "https://github.com/palmier-io/palmier-pro/releases"
+        },
+        {
+          "t": "GitHub — README",
+          "u": "https://github.com/palmier-io/palmier-pro/blob/main/README.md"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 11일",
+      "text": "언슬로스 데스크톱 — 이미지·영상 디퓨전을 로컬에서 돌리고 학습까지 한 앱에 묶었습니다"
+    },
+    {
+      "type": "p",
+      "html": "학습 최적화 라이브러리로 알려진 언슬로스가 <strong>언슬로스 데스크톱</strong>을 공개했습니다. 윈도우·macOS·리눅스에서 별도 설정 없이 모델을 실행하고 학습시키는 오픈소스 앱이며, 텍스트 모델뿐 아니라 디퓨전 이미지·영상, MLX, GGUF, 오디오 모델을 함께 다룹니다. 이 리포트의 관심사에서 중요한 지점은 이미지와 영상을 로컬에서 생성하는 것에 더해, 코드를 쓰지 않고 디퓨전 모델을 학습시키는 경로를 같은 앱 안에 넣었다는 점입니다."
+    },
+    {
+      "type": "p",
+      "html": "지원 모델로 미니맥스 H3, Qwen 3.8, 뮤즈 글리머 30B, 키미 K3, 딥시크-V4 플래시, 젬마 4가 명시돼 있고, 저장소 설명에는 FLUX도 포함돼 있습니다. 발표에 제시된 수치로는 미니맥스 H3의 960×544 124프레임 생성이 엔비디아 B200에서 70초대에서 약 13초로 줄었습니다. 엔비디아·AMD·인텔·애플 실리콘·CPU와 멀티 GPU 구성을 지원하며, 원격 접속을 켜면 클라우드플레어 HTTPS 링크로 다른 기기에서 앱과 로컬 API에 붙을 수 있습니다. 작업실 장비에 모델을 올려 두고 외부에서 호출하는 구성을 만들 때 참고할 만합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Unsloth 블로그 — Introducing Unsloth Desktop",
+          "u": "https://unslothai.substack.com/p/introducing-unsloth-desktop"
+        },
+        {
+          "t": "GitHub — unslothai/unsloth",
+          "u": "https://github.com/unslothai/unsloth"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 13일",
+      "text": "섀도 네거티브 — 네거티브 프롬프트가 없는 H3에 우회로를 낸 실험적 노드"
+    },
+    {
+      "type": "p",
+      "html": "미니맥스 H3는 CFG 증류 모델이라 네거티브 프롬프트를 원래 받지 않습니다. <strong>섀도 네거티브</strong>는 이 제약을 우회하려는 커스텀 노드로, 공개자에 따르면 NAG의 기본 발상을 가져와 정상 생성이 진행되는 동안 네거티브 텍스트로 가벼운 \"섀도\" 어텐션 패스를 따로 돌리고, 영상과 오디오의 어텐션을 원치 않는 방향에서 밀어내는 방식입니다. 두 번째 디노이즈 패스를 통째로 돌리지 않는다는 점이 설계의 핵심입니다. 공용 네거티브 하나를 쓰거나 시각용과 오디오용을 분리해 지정할 수 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "공개자 본인이 실험적이라고 명시한 도구입니다. 강도를 올린다고 항상 좋아지지 않고, REF2VA에서는 동작이 더 복잡해지며, H3의 트랜스포머 블록을 교체하는 블록 캐시나 성능 패치와 충돌할 수 있다고 밝혔습니다. 고정 시드에 캐시를 끈 상태로 먼저 확인해 볼 것을 권하고 있습니다. 커뮤니티 단일 게시물에 근거한 도구이므로 실사용 전에는 직접 검증이 필요합니다. 가중치와 노드는 허깅페이스 저장소에 올라와 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Reddit r/StableDiffusion — 공개 스레드",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vnq010/shadow_negative_nag_like_nodes_that_allow/"
+        },
+        {
+          "t": "Hugging Face — CCP6/H3-Shadow-Negative-Nodes",
+          "u": "https://huggingface.co/CCP6/H3-Shadow-Negative-Nodes/tree/main"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "커뮤니티 · 8월 13일",
+      "text": "LTX 2.3용 IC-LoRA가 2.5에서 그대로 돌고, H3 체이닝으로 30초 서사가 나왔습니다"
+    },
+    {
+      "type": "p",
+      "html": "8월 11일 공개된 LTX-2.5를 두고 커뮤니티 관찰 기준으로 실용적인 확인이 하나 나왔습니다. 한 사용자가 LTX 2.3용 컨트롤 유니온 LoRA와 인페인팅 LoRA를 2.5에서 테스트한 결과 그대로 동작했다고 보고하고, 2.5용으로 갱신한 워크플로를 함께 공개했습니다. 2.3 시절에 쌓아 둔 제어 자산을 버리지 않아도 된다는 뜻이어서, 버전 전환 비용을 따지던 작업자에게는 의미가 있는 관찰입니다. 다만 게시자 한 명의 테스트 결과입니다."
+    },
+    {
+      "type": "p",
+      "html": "미니맥스 H3 쪽에서는 클립을 이어 붙여 서사를 만드는 시도가 올라왔습니다. 게시자에 따르면 약 15초짜리 두 장면을 연결해 29.25초 분량을 만들었고, 1344×768로 네이티브 생성한 뒤 엔비디아 RTX 업스케일링으로 1080p로 마감했습니다. 장면 사이의 일관성은 약 2K 해상도의 참조 이미지 여섯 장과 모션 컨텍스트로 잡았으며, 인물의 후드와 소품이 유지되는지, 인물이 의도한 동선대로 움직이는지를 맞추는 데 작업 시간의 대부분이 들어갔다고 밝혔습니다. 단발 클립에서 연결된 장면으로 넘어갈 때 실제로 어디에 품이 드는지를 보여 주는 사례입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Reddit — LTX 2.3 IC-LoRA가 2.5에서 동작",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vnn2in/good_news_for_ltx_fans_23_ic_loras_work_with_25/"
+        },
+        {
+          "t": "Reddit — H3 체이닝 30초 제작기",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vnq6cp/my_first_30second_minimax_h3_story_using_two/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 12일",
+      "text": "S2R — 유리 반사 제거를 이미지에서 영상으로 끌어올렸습니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://codingwzp.github.io/VideoDereflection_S2R/static/images/fig1_overview.jpg",
+      "alt": "S2R 반사 합성 및 제거 파이프라인 개요도",
+      "caption": "<b>S2R 파이프라인.</b> 물리 기반으로 반사를 합성해 학습 데이터를 만들고, 그 데이터로 영상 반사 제거 모델을 학습시키는 닫힌 구조입니다.",
+      "credit": "이미지: S2R 프로젝트 페이지"
+    },
+    {
+      "type": "p",
+      "html": "유리 너머로 촬영한 화면에서 반사를 걷어 내는 작업은 단일 이미지에서는 오래 연구돼 왔지만, 영상에서는 짝지어진 학습 데이터도, 시간축에서 흔들리지 않는 모델도, 평가 기준도 없었습니다. <strong>S2R</strong>은 이 세 가지를 한꺼번에 만드는 닫힌 구조를 제안합니다."
+    },
+    {
+      "type": "p",
+      "html": "S2R-Synthesis는 유리의 물리적 성질을 반영해 학습쌍을 합성합니다. 표면 거칠기에서 오는 번짐, 유리 두께에서 오는 고스팅, 반사율 변화를 시뮬레이션해 실제와 가까운 반사를 만들어 냅니다. 이렇게 만든 데이터로 학습하는 S2R-Removal은 논문이 밝힌 기준으로 최초의 디퓨전 기반 영상 반사 제거 모델이며, 반사를 인식하는 latent 적응과 단일 스텝 디노이징을 씁니다. 평가용으로는 전참조 평가와 사람의 지각 평가를 함께 지원하는 S2R-Bench를 내놓았고, 디퓨전이 아닌 기존 방식보다 오히려 추론이 빠르다고 보고했습니다. 촬영 현장에서 편광 필터로 잡지 못한 반사를 후반에서 걷어 내야 하는 컴프·클린업 공정에 직접 닿는 주제입니다. 코드는 공개 예정으로 표기돼 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.11562",
+          "u": "https://arxiv.org/abs/2608.11562"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://codingwzp.github.io/VideoDereflection_S2R"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 12일",
+      "text": "StateFlow — 프리비주얼라이제이션을 영상이 아니라 편집 가능한 3D 상태로 다룹니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://yuyangyin.github.io/StateFlow/assets/img/teaser.jpg",
+      "alt": "StateFlow 프리비주얼라이제이션 결과 개요 이미지",
+      "caption": "<b>StateFlow.</b> 한 번에 영상을 뽑는 대신 편집 가능한 3D 월드를 지속 상태로 유지하며 장면과 카메라를 고쳐 나갑니다.",
+      "credit": "이미지: StateFlow 프로젝트 페이지"
+    },
+    {
+      "type": "p",
+      "html": "생성 모델로 프리비즈를 만들 때 가장 불편한 지점은 수정입니다. 한 번에 영상을 뽑는 방식에서는 카메라를 조금 바꾸려 해도 장면 전체가 새로 만들어지고, 앞서 맞춰 둔 것들이 흐트러집니다. <strong>StateFlow</strong>는 결과물을 영상이 아니라 <strong>명시적이고 지속되는 작업 상태</strong>로 두고, 그 상태를 편집 가능한 3D 월드로 유지하는 방식을 제안합니다. 영화·게임·건축·도시 설계의 프리비주얼라이제이션을 대상으로 삼았습니다."
+    },
+    {
+      "type": "p",
+      "html": "동작은 세 단계입니다. 상태 구축 단계에서 2D 생성 결과를 사전 정보를 활용한 충돌 인식 듀얼뷰 초기화로 일관된 3D 월드로 올립니다. 상태 진화 단계에서는 사용자의 수정을 구조화된 상태 전이로 옮겨, 장면 전체를 다시 만들지 않고 월드의 일관성을 지키면서 반영합니다. 상태 접근 단계에서는 렌더 결과를 되먹여 카메라 계획을 실제로 촬영 가능한 궤적으로 다듬습니다. 장면과 액션, 카메라, 시공간 변화를 반복해서 고쳐 나가는 작업이 기존 일회성 생성에서는 어려웠던 부분이라는 것이 논문의 문제의식입니다. 베이징교통대와 Mootion AI, 베이징사범대, 베이징대, BAAI가 함께 참여했고, 코드는 아직 공개되지 않았습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.12314",
+          "u": "https://arxiv.org/abs/2608.12314"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://yuyangyin.github.io/StateFlow"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 10일",
+      "text": "어도비 잠재 동역학 추론 — 파라미터를 26분의 1로 줄이고도 물리 외삽에서 앞섰습니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://lat-dyn-reason.github.io/media/efficiency.png",
+      "alt": "잠재 동역학 추론의 효율 비교 그래프",
+      "caption": "<b>잠재 동역학 추론.</b> 저차 동역학은 수치 적분에 맡기고 신경망은 고차 잔차만 학습해 파라미터와 연산을 크게 줄였습니다.",
+      "credit": "이미지: Lat-Dyn-Reason 프로젝트 페이지"
+    },
+    {
+      "type": "p",
+      "html": "어도비 연구진이 영상 월드모델의 외삽 능력을 다룬 논문을 냈습니다. 핵심 발상인 <strong>잠재 동역학 추론</strong>은 latent 전이를 명시적인 운동학 적분으로 취급합니다. 저차 동역학은 수치적으로 적분해 버리고, 신경망은 롤아웃을 이끄는 3차 이상의 잔차만 회귀하도록 남겨 두는 구조입니다. 그럴듯한 픽셀을 만드는 대신 운동 법칙을 따르게 하는 데 목적을 두었습니다."
+    },
+    {
+      "type": "p",
+      "html": "일반화 성능을 보여 주는 예로, 빨간 공이 왼쪽에서 오른쪽으로 움직이는 데이터만 학습한 모델이 파란 사각형이 오른쪽에서 왼쪽으로 움직이는 상황을 올바르게 예측했다고 보고했습니다. 수치로는 학습 분포 안과 밖의 오차 격차가 영상 디퓨전 기준선 대비 20배 이상 작았고, 파라미터는 26배 적으며 실행은 143배 빨랐습니다. 논문과 함께 코드, 데이터셋, 사전학습 가중치가 모두 공개돼 있어 직접 확인해 볼 수 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.09926",
+          "u": "https://arxiv.org/abs/2608.09926"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://lat-dyn-reason.github.io/"
+        },
+        {
+          "t": "GitHub — Lat-Dyn-Reason",
+          "u": "https://github.com/Lat-Dyn-Reason/Lat-Dyn-Reason"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
+      "kicker": "서비스 · 플랫폼 · 8월 13일",
+      "text": "스포티파이, AI 커버·리믹스 라이선스를 퍼블리셔로 넓혔습니다"
+    },
+    {
+      "type": "p",
+      "html": "스포티파이가 독립 음악 퍼블리셔 <strong>코발트</strong>와 라이선스 계약을 맺었습니다. 팬이 좋아하는 곡의 커버와 리믹스를 생성 AI로 만들 수 있게 하는 도구를 준비 중인데, 유니버설 뮤직 그룹과 멀린에 이어 이번이 세 번째이며 UMG 밖의 퍼블리셔와 맺은 첫 계약입니다. 원반권 중심이던 협상이 작곡·작사 권리를 다루는 퍼블리싱 쪽으로 넘어왔다는 점에서 단계가 하나 올라간 계약입니다."
+    },
+    {
+      "type": "p",
+      "html": "스포티파이는 이 계약이 참여하는 작곡가의 동의와 크레딧, 보상을 전제로 한다고 밝혔고, 창작된 결과물이 청취자를 원곡으로 되돌려 보내는 구조라고 설명했습니다. 도구는 스포티파이 프리미엄의 유료 애드온으로 출시될 예정입니다. 권리자와 플랫폼이 생성물의 수익 배분을 사전에 합의하고 시작하는 형태여서, 이미지·영상 쪽에서 같은 구조가 성립할 수 있을지를 가늠하는 참고 사례가 됩니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Music Business Worldwide",
+          "u": "https://www.musicbusinessworldwide.com/after-universal-and-merlin-deals-spotify-inks-agreement-with-kobalt-for-ai-powered-fan-made-covers-and-remixes/"
+        },
+        {
+          "t": "Engadget",
+          "u": "https://www.engadget.com/2236313/spotify-has-roped-the-indie-pubisher-kobalt-into-its-ai-platform-for-covers-and-remixes/"
+        },
+        {
+          "t": "Digital Music News",
+          "u": "https://www.digitalmusicnews.com/2026/08/13/spotify-kobalt-deal-ai/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "산업 동향 · 8월 10일",
+      "text": "모픽, 생성 영상의 70% 이상이 상업 콘텐츠로 넘어갔습니다"
+    },
+    {
+      "type": "figure",
+      "img": "https://www.venturesquare.net/wp-content/uploads/2026/08/MO-789x444.png",
+      "alt": "모픽 AI 영상 제작 플랫폼 소개 이미지",
+      "caption": "<b>모픽.</b> 플랫폼에서 만들어지는 영상 가운데 상업 목적 제작물이 70%를 넘었다고 밝혔습니다.",
+      "credit": "이미지: 벤처스퀘어"
+    },
+    {
+      "type": "p",
+      "html": "국내 AI 영상 제작 플랫폼 <strong>모픽</strong>이 내부 데이터를 공개하며, 플랫폼에서 생성되는 영상 가운데 상업 콘텐츠 비중이 70%를 넘었다고 밝혔습니다. 외주 제작물과 광고, 애니메이션, 영화, 마이크로 드라마가 여기에 포함됩니다. 사용자층도 개인 SNS 운영자 중심에서 1인 제작사와 브랜드 인하우스팀, 전문 마케팅 대행사로 넓어졌습니다."
+    },
+    {
+      "type": "p",
+      "html": "이에 맞춰 추가된 기능이 제작 현장의 요구를 그대로 보여 줍니다. 모델 접근 제어로 팀원별로 쓸 수 있는 AI 모델과 해상도, 오디오 옵션을 구분하고, 멤버 크레딧 한도로 팀원마다 일간·월간 생성 예산을 지정합니다. 생성 품질이 아니라 권한과 비용 통제가 기능 요구사항으로 올라온 것입니다. JD 카나니 대표는 기업이 직접 권한과 예산 관리를 요구한다는 것은 AI 영상이 실제 업무 운영에 들어왔다는 뜻이라고 말했습니다. 자체 워크플로로 제작한 애니메이션 시리즈 'DQN'은 트레일러 조회수 200만 회를 넘겼고 WAIFF와 WAIFF 재팬에서 수상했습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "벤처스퀘어",
+          "u": "https://www.venturesquare.net/1105143"
+        }
+      ]
+    }
+  ]
+}
