@@ -1,0 +1,434 @@
+{
+  "id": "ai-media-daily-2026-08-19",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 19일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.19",
+  "read": "약 7분",
+  "summary": "컴피 오알지가 컴피 MCP의 로컬 실행판을 오픈소스로 공개하면서, 에이전트가 사용자의 실제 설치본에 있는 커스텀 노드와 모델, VRAM 실측값을 근거로 워크플로를 구성하고 실행하는 경로가 열렸습니다. 미니맥스 H3 주변에서는 타임라인 스토리보드 편집기 H3 디렉터 v0.2.2, 장편 생성을 블록으로 나누는 플로디렉터, 모델 캐시를 수동 고정하는 캐시 모니터가 잇따라 공개됐고, 커뮤니티에서는 키친 어텐션이 화질 손실 없이 스텝당 시간을 30% 줄인다는 비교 검증이 나왔습니다. 업계에서는 미국영화협회와 바이트댄스가 시댄스·시드림에 얼굴 차단과 C2PA 자격증명을 적용하는 양해각서를 맺었고, 추론 칩 기업 에치드는 한 달 만에 기업가치가 두 배가 된 210억 달러로 7억 달러를 유치했습니다.",
+  "body": [
+    {
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 18일",
+      "text": "컴피 MCP 로컬판 오픈소스 공개 — 에이전트가 내 설치본을 직접 조작"
+    },
+    {
+      "type": "figure",
+      "video": "https://video.twimg.com/amplify_video/2089757457241550848/vid/avc1/1280x720/MMeV2vStWxRVW8do.mp4?tag=14",
+      "alt": "컴피 MCP 로컬 모드 시연 영상",
+      "caption": "<b>컴피 MCP 로컬 모드.</b> 에이전트가 로컬 ComfyUI 설치본의 노드와 모델을 파악한 뒤 워크플로를 구성하고 실행합니다.",
+      "credit": "영상: ComfyUI 공식 X 계정"
+    },
+    {
+      "type": "p",
+      "html": "컴피 오알지(Comfy Org)가 <strong>컴피 MCP</strong>의 로컬 실행판을 8월 18일 오픈소스로 공개했습니다. 6월에 먼저 나온 컴피 클라우드 MCP가 원격 서버 위에서만 동작했던 것과 달리, 이번 버전은 사용자의 장비에 설치된 ComfyUI를 대상으로 삼습니다. 공식 X 계정은 클라우드 MCP 출시 이후 가장 많이 요청받은 기능이라고 밝혔습니다."
+    },
+    {
+      "type": "p",
+      "html": "동작 구조는 comfy-cli 위에 얹힌 stdio MCP 서버입니다. 클로드 데스크톱, 커서, 클로드 코드 같은 클라이언트를 등록해 두면 에이전트가 실제 설치본을 조회합니다. 커스텀 노드를 포함한 설치된 노드 목록, 디스크에 있는 모델 파일, <code>system_stats()</code>로 읽는 VRAM·RAM 실측값을 근거로 삼아 워크플로 JSON을 실행하거나 텍스트 프롬프트에서 이미지를 생성하며, 작업 제출과 진행 감시, 취소까지 39개 도구로 나뉘어 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "하드웨어 조건에 따른 처리 경로도 문서에 명시돼 있습니다. 24GB 이상 외장 GPU는 로컬 생성을 권장하고, 8~24GB 구간은 이미지는 가능하지만 영상은 느리며, 8GB 미만이거나 GPU가 없는 환경과 32GB 미만 애플 실리콘에서는 로컬 영상 생성 대신 파트너 API나 컴피 클라우드 MCP로 넘기도록 안내합니다. 파트너 API 노드가 포함된 워크플로는 크레딧을 소모하므로 <code>confirm_spend=True</code>가 필요하며, <code>comfy generate consent always</code>로 사전 승인을 걸어 둘 수 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "라이선스는 AGPL-3.0-or-later 또는 상용 라이선스의 이중 구조이고, 파이썬 3.10 이상과 comfy-cli 1.14.0 이상을 요구합니다. <code>COMFYUI_URL</code> 환경변수로 다른 장비의 ComfyUI를 지정할 수 있어, 작업용 워크스테이션에서 GPU 서버를 원격으로 구동하는 구성도 가능합니다. 현재 단계는 베타로 표기돼 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Comfy Org 블로그",
+          "u": "https://blog.comfy.org/p/open-sourcing-comfy-mcp-on-local"
+        },
+        {
+          "t": "GitHub Comfy-Org/comfy-mcp",
+          "u": "https://github.com/Comfy-Org/Comfy-mcp"
+        },
+        {
+          "t": "ComfyUI 공식 X",
+          "u": "https://x.com/ComfyUI/status/2089757488153592056"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 16일",
+      "text": "ComfyUI-MiniMaxH3-Director v0.2.2 — H3 워크플로를 타임라인 스토리보드로 전환"
+    },
+    {
+      "type": "figure",
+      "img": "https://raw.githubusercontent.com/seesee75-commits/ComfyUI-MiniMaxH3-Director/main/docs/images/workflow-overview.png",
+      "alt": "MiniMax H3 Director 워크플로 전경",
+      "caption": "<b>H3 디렉터 워크플로.</b> 트랙에 이미지·영상·음악을 배치하고 샷마다 프롬프트를 적는 타임라인 구조입니다.",
+      "credit": "이미지: seesee75-commits/ComfyUI-MiniMaxH3-Director"
+    },
+    {
+      "type": "p",
+      "html": "<strong>ComfyUI-MiniMaxH3-Director</strong>가 v0.2.2를 공개했습니다. 미니맥스 H3용 타임라인 편집기를 ComfyUI 안에 넣은 커스텀 노드로, WhatDreamsCost의 LTX 디렉터를 H3에 맞게 이식한 결과물입니다. 클립 하나에 프롬프트 상자 하나를 붙이는 대신, 이미지와 영상과 음악을 트랙에 올리고 눈금자 위에서 길이를 자른 뒤 샷별로 프롬프트를 작성하는 방식으로 조건부를 구성합니다."
+    },
+    {
+      "type": "p",
+      "html": "구성 노드는 다섯 개입니다."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Director</strong> — 영상·오디오 트랙을 담는 타임라인 본체이며, 편집하는 동안 모델에 실제로 전달될 프롬프트를 그대로 보여줍니다",
+        "<strong>Preview Override</strong> — 단일 프레임 대신 샷 전체가 디노이즈되는 과정을 확인합니다",
+        "<strong>Retake Stitch</strong> — 다시 생성한 구간을 원본 영상에 되붙입니다",
+        "<strong>Enhance Prompt</strong> — 올라마나 LM 스튜디오의 로컬 비전 모델로 레퍼런스 이미지에서 프롬프트를 만듭니다",
+        "<strong>Save Last Frame</strong> — 배치 연속성을 유지한 채 마지막 프레임을 저장합니다"
+      ]
+    },
+    {
+      "type": "p",
+      "html": "레퍼런스는 최대 9개 주체 슬롯까지 지정할 수 있고, 조건부는 FL2VA 또는 REF2VA 체크포인트 어느 쪽으로도 받습니다. 요구 사양은 ComfyUI 0.30.0 이상과 파이썬 3.10 이상이며, 저장소 문서는 오프로딩을 사용하는 480p~768p 기준 최소 16GB VRAM과 전체 모델 기준 약 60GB 디스크를 제시합니다. 별도 pip 패키지는 필요하지 않고 라이선스는 LTX 디렉터에서 이어받은 GPL-3.0입니다. v0.2.2는 대사가 샷 끝으로 밀리지 않고 작성한 위치에 남도록 배치 방식을 수정했습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Wiki",
+          "u": "https://comfyui-wiki.com/en/news/2026-08-18-minimax-h3-director"
+        },
+        {
+          "t": "GitHub 저장소",
+          "u": "https://github.com/seesee75-commits/ComfyUI-MiniMaxH3-Director"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 18일",
+      "text": "MiniMax H3 FlowDirector — 장편 생성을 블록 단위로 분할"
+    },
+    {
+      "type": "p",
+      "html": "개발자 AlonAshken이 <strong>ComfyUI-MiniMaxH3-FlowDirector</strong>를 공개했습니다. 긴 타임라인을 순차 블록으로 나눠 생성하고, 각 블록의 마지막 프레임을 다음 블록의 시작 키프레임으로 넘기는 구조입니다. 블록마다 VRAM 사용량이 일정하게 유지되므로 길이를 늘려도 메모리 부족으로 중단되지 않습니다."
+    },
+    {
+      "type": "p",
+      "html": "블록 경계에서 중복되는 프레임을 제거해 이어 붙이는 심 스티칭, 특정 이미지를 도착 프레임으로 지정해 블록 간 전환을 유도하는 기능, 오디오 파형의 트리밍과 스테레오 믹싱이 함께 들어 있습니다. 저장소는 블록당 5~10초를 권장 길이로 제시하며, FL2VA·REF2VA·텍스트 CLIP·비디오 VAE·오디오 VAE를 하나의 노드에서 연결합니다. 라이선스는 MIT이고 드래그 앤 드롭으로 불러올 예제 워크플로 JSON이 포함돼 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub 저장소",
+          "u": "https://github.com/AlonAshken/ComfyUI-MiniMaxH3-FlowDirector"
+        },
+        {
+          "t": "r/comfyui 공개 스레드",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vs54ca/custom_node_minimax_h3_flowdirector_better_motion/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 18일",
+      "text": "comfyui-cache-monitor — 모델 캐시 수동 고정과 외부 VRAM 대기"
+    },
+    {
+      "type": "p",
+      "html": "메모리 모니터 확장인 <strong>comfyui-cache-monitor</strong>가 캐시 제어 기능을 추가했습니다. VRAM과 시스템 RAM의 모델 캐시를 사이드바에서 그래프로 보여 주던 도구인데, 이제 개별 모델을 고정해 ComfyUI의 활성 레지스트리에서 빠진 뒤에도 유지 상태로 남기거나, X 버튼으로 실행 캐시와 모델 캐시에서 함께 제거할 수 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "실무에서 의미가 큰 것은 외부 VRAM 대기 옵션입니다. 다른 프로그램이 VRAM을 점유하고 있으면 프롬프트 실행을 멈췄다가 메모리가 확보되면 자동으로 재개합니다. 시스템 RAM 캐시는 남기고 VRAM만 비우는 버튼과 <code>/comfyui-cache-monitor/release_vram</code> 엔드포인트도 함께 제공되므로, DCC 애플리케이션과 ComfyUI를 같은 장비에서 번갈아 사용할 때 모델을 다시 읽어 들이는 시간을 줄일 수 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub 저장소",
+          "u": "https://github.com/envy-ai/comfyui-cache-monitor"
+        },
+        {
+          "t": "r/comfyui 스레드",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vryql8/comfyuicachemonitor_now_supports_manually_pinning/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "커뮤니티 · 8월 18일",
+      "text": "H3 가속 비교 — 터보 LoRA의 화질 손실과 키친 어텐션의 30% 단축"
+    },
+    {
+      "type": "figure",
+      "img": "https://i.ytimg.com/vi/B1rx4AAhrT0/maxresdefault.jpg",
+      "alt": "MiniMax H3 가속 방식 비교 영상 썸네일",
+      "caption": "<b>H3 가속 비교.</b> 동일한 프롬프트·시드·해상도로 터보 LoRA와 키친 어텐션을 나란히 놓고 측정한 결과입니다.",
+      "credit": "이미지: PixelEasel 유튜브 채널"
+    },
+    {
+      "type": "p",
+      "html": "미니맥스 H3의 연산 부담을 줄이는 두 경로를 같은 조건에서 비교한 검증이 커뮤니티에 올라왔습니다. 유튜브 채널 PixelEasel이 8월 18일 게시한 영상으로, 스텝 수를 줄이는 larryvrh의 터보 LoRA와 스텝당 어텐션 연산을 빠르게 하는 컴피 키친 어텐션을 동일한 프롬프트·시드·해상도에서 측정했습니다."
+    },
+    {
+      "type": "p",
+      "html": "게시자에 따르면 터보 LoRA는 20스텝을 8·6·4스텝으로 낮추면서 총 렌더 시간을 줄이지만 8스텝에서 이미 화면이 물러지고 캐릭터 일관성이 흔들리며, 4스텝에서는 형태가 무너집니다. 반면 키친 어텐션은 화질 저하나 드리프트 없이 스텝당 시간을 약 30% 줄였고, 적용에는 ComfyUI 업데이트와 어텐션 백엔드 노드 설정만 필요했다고 정리했습니다. 오디오 싱크는 낮은 스텝 수에서도 안정적으로 유지돼 화질이 먼저 무너진 뒤에도 소리는 남았다는 관찰을 덧붙였습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "PixelEasel 유튜브",
+          "u": "https://youtu.be/B1rx4AAhrT0"
+        },
+        {
+          "t": "r/comfyui 스레드",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vrxppw/minimax_h3_speedup_test_turbo_lora_vs_kitchen/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 17일",
+      "text": "GRNEdit — 영상 편집을 이진 증거 관점으로 재구성"
+    },
+    {
+      "type": "figure",
+      "img": "https://arxiv.org/html/2608.16328v1/first_img.png",
+      "alt": "GRNEdit 편집 결과 예시",
+      "caption": "<b>GRNEdit 편집 결과.</b> 지시문 기반 영상 편집을 두 단계 경량 프레임워크로 처리합니다.",
+      "credit": "이미지: GRNEdit 논문(arXiv:2608.16328)"
+    },
+    {
+      "type": "p",
+      "html": "연구진이 지시문 기반 영상 편집 프레임워크 <strong>GRNEdit</strong>을 8월 17일 아카이브에 등록했습니다. 편집 의미를 이진 비트 표현으로 모델링하고, 관측된 이진 상태를 뒷받침하는 좌표별 증거를 다루는 방식으로 편집 신호를 정의했습니다. 구조는 소형 인코더를 둔 2단계 경량 프레임워크입니다."
+    },
+    {
+      "type": "p",
+      "html": "논문이 제시한 수치는 파라미터 효율에 무게가 실려 있습니다. 2B 모델이 14B급 경쟁 모델을 앞섰고 8B 모델은 선도 편집 모델과 대등한 성능을 보였는데, 학습에 사용한 것은 60만 쌍의 이미지 데이터입니다. 영상 편집 학습 데이터를 따로 모으지 않고 이미지 쌍만으로 영상 편집기를 구성한 셈입니다. 저장소 공개나 가중치 배포는 논문 페이지에 명시돼 있지 않습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 논문",
+          "u": "https://arxiv.org/abs/2608.16328"
+        },
+        {
+          "t": "Hugging Face Papers",
+          "u": "https://huggingface.co/papers/2608.16328"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 17일",
+      "text": "AnyTalk — 애니메이션 데이터 없이 임의 캐릭터의 3D 립싱크"
+    },
+    {
+      "type": "figure",
+      "img": "https://serin-yoon.github.io/projects/anytalk/static/images/overview.png",
+      "alt": "AnyTalk 파이프라인 개요도",
+      "caption": "<b>AnyTalk 파이프라인.</b> 캐릭터별 파인튜닝과 블렌드셰이프 최적화를 거쳐 2D 영상을 3D 애니메이션 파라미터로 변환합니다.",
+      "credit": "이미지: AnyTalk 프로젝트 페이지"
+    },
+    {
+      "type": "p",
+      "html": "카이스트 비주얼 미디어 랩과 토론토대 연구진이 <strong>AnyTalk</strong>을 공개했습니다. 애니메이션 데이터셋 없이 임의의 캐릭터에 대해 3D 스피치 애니메이션을 생성하는 방법으로, 대규모 영상으로 학습된 비디오 디퓨전 모델을 활용합니다. IEEE TVCG 2026 게재가 확정됐고 아카이브 등록일은 8월 17일입니다."
+    },
+    {
+      "type": "p",
+      "html": "절차는 두 단계입니다. 먼저 캐릭터별 파인튜닝으로 대상 캐릭터의 렌더 이미지와 값이 0인 오디오 임베딩을 짝지어 사전학습 비디오 모델을 적응시키고, 이어 가중 어텐션 모듈을 적용한 추론으로 얻은 영상에서 블렌드셰이프 파라미터를 최적화해 3D 애니메이션으로 옮깁니다. 네트워크 증류로 만든 실시간 변형 AnyTalkRT도 함께 제시했으며, 코드는 공개돼 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "스타일라이즈된 캐릭터나 크리처처럼 립싱크 학습 데이터를 구하기 어려운 대상에 적용할 수 있는 접근입니다. 최종 산출물이 영상 프레임이 아니라 블렌드셰이프 값이므로 기존 리깅 위에 얹어 후속 수정이 가능합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 논문",
+          "u": "https://arxiv.org/abs/2608.16143"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://serin-yoon.github.io/projects/anytalk/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 14일",
+      "text": "MegaParts — 300개 파트 단위 3D 오브젝트 생성"
+    },
+    {
+      "type": "figure",
+      "img": "https://expmaster.github.io/megaparts_webpage/assets/web/articulation.webp",
+      "alt": "MegaParts 관절 구조 생성 결과",
+      "caption": "<b>파트 단위 생성.</b> 경첩이나 내부 구조처럼 기존 방식이 뭉개던 요소를 개별 파트로 남깁니다.",
+      "credit": "이미지: MegaParts 프로젝트 페이지"
+    },
+    {
+      "type": "p",
+      "html": "<strong>MegaParts</strong>는 3D 오브젝트를 하나의 덩어리가 아니라 의미 단위 파트의 집합으로 생성하는 프레임워크입니다. 파트 지오메트리를 이산 표현으로 압축하는 토큰 효율적 벡터 양자화 토크나이저를 두어, 최대 300개 파트와 25만 6천 토큰 길이의 시퀀스를 처리합니다. 아카이브 등록일은 8월 14일입니다."
+    },
+    {
+      "type": "p",
+      "html": "토크나이저는 기하학적으로 복잡한 파트에 용량을 더 배분하고 단순한 파트에는 최소한만 할당합니다. 연구진은 기존 자기회귀·디퓨전 방식보다 메시 품질이 우수하다고 밝혔으며, 텍스트 기반 생성과 바운딩 박스를 통한 공간 제어, 경첩 같은 가동부와 내부 구조의 보존을 결과로 제시했습니다. 파트가 분리된 상태로 출력되므로 편집과 관절 설정, 인터랙션 설정을 생성 이후에 적용할 수 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 논문",
+          "u": "https://arxiv.org/abs/2608.14783"
+        },
+        {
+          "t": "프로젝트 페이지",
+          "u": "https://expmaster.github.io/megaparts_webpage"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
+      "kicker": "상용 모델 · 8월 18일",
+      "text": "시댄스 2.5 1080p, ComfyUI 파트너 노드에 반영"
+    },
+    {
+      "type": "figure",
+      "video": "https://video.twimg.com/amplify_video/2089521290776653824/vid/avc1/1280x720/dqIqQeR_4SseaGMx.mp4?tag=14",
+      "alt": "ComfyUI에서 실행한 시댄스 2.5 1080p 결과 영상",
+      "caption": "<b>시댄스 2.5 1080p.</b> ComfyUI 파트너 노드에서 곧바로 호출할 수 있게 됐습니다.",
+      "credit": "영상: ComfyUI 공식 X 계정"
+    },
+    {
+      "type": "p",
+      "html": "바이트댄스의 영상 모델 <strong>시댄스 2.5</strong>의 1080p 출력이 ComfyUI에서 사용 가능해졌다고 ComfyUI 공식 X 계정이 8월 18일 알렸습니다. 시댄스 2.5는 8월 8일 파트너 노드로 처음 연결됐고 30초 단일 샷 생성과 최대 50개 레퍼런스 자산, 프롬프트 기반 영상 편집을 특징으로 내세운 모델인데, 이번에 해상도 상한이 올라갔습니다."
+    },
+    {
+      "type": "p",
+      "html": "가중치가 공개되지 않은 API형 모델이므로 실행은 바이트댄스 서버에서 이뤄지며 크레딧을 소모합니다. 로컬 모델과 같은 워크플로 안에서 파트너 노드로 호출하는 구성이 가능해, 로컬에서 만든 레퍼런스나 블록아웃을 그대로 전달하는 방식으로 활용됩니다. ComfyUI 측은 8월 17일 텍스처와 조명이 없는 블렌더 블록아웃을 레퍼런스 이미지와 함께 시댄스 2.5로 렌더링한 워크플로 사례도 공개했습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI 공식 X",
+          "u": "https://x.com/ComfyUI/status/2089521322716172311"
+        },
+        {
+          "t": "Comfy Org 블로그",
+          "u": "https://blog.comfy.org"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "정책 · 저작권 · 8월 17일",
+      "text": "바이트댄스·미국영화협회 양해각서 — 시댄스·시드림에 IP 보호 장치"
+    },
+    {
+      "type": "p",
+      "html": "미국영화협회(MPA)와 바이트댄스가 8월 17일 양해각서를 체결했습니다. 바이트댄스의 생성 AI가 영화·TV 지식재산을 다루는 방식에 전 세계 공통의 안전장치를 두는 내용으로, 영상 모델 시댄스와 이미지 모델 시드림, 그리고 틱톡·캡컷·드리미나에서 나오는 결과물과 틱톡 USDS 합작법인이 적용 범위입니다."
+    },
+    {
+      "type": "p",
+      "html": "합의에 담긴 장치는 실존 얼굴로부터의 생성을 차단하는 필터, 결과물에 삽입되는 워터마크와 C2PA 콘텐츠 자격증명, 변형된 콘텐츠를 추적하기 위한 비가시 워터마크, 무단 저작 캐릭터 생성을 막는 필터입니다. 다만 집행 절차와 기술적 판정 기준은 공개되지 않았습니다."
+    },
+    {
+      "type": "p",
+      "html": "배경에는 2월 미국영화협회와 주요 스튜디오가 시댄스 등에 보낸 내용증명이 있습니다. 톰 크루즈와 브래드 피트가 싸우는 전면 AI 생성 영상이 확산된 것이 발단이었고, 바이트댄스는 이후 시드림 5.0 프로와 시댄스 2.5 업데이트에 안전장치를 추가해 왔습니다. 이번 각서는 라이선스 계약이 아니어서 스튜디오가 카탈로그 사용 대가를 받지는 않으며, 실존 인물을 재현하지는 않되 연상시키는 결과물에 대한 처리는 과제로 남았습니다."
+    },
+    {
+      "type": "p",
+      "html": "광고나 브랜드 작업에서 시댄스·시드림을 사용하는 경우, 결과물에 워터마크와 C2PA 자격증명이 기본으로 삽입된다는 전제 아래 딜리버리 규격을 점검할 필요가 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Deadline",
+          "u": "https://deadline.com/2026/08/mpa-tiktok-bytedance-deepfakes-1237042847/"
+        },
+        {
+          "t": "NBC News",
+          "u": "https://www.nbcnews.com/business/media/bytedance-signs-ai-copyright-pact-hollywood-motion-picture-association-rcna592977"
+        },
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "투자 · M&A · 8월 18일",
+      "text": "에치드, 7억 달러 유치하며 기업가치 210억 달러"
+    },
+    {
+      "type": "p",
+      "html": "추론 전용 칩을 만드는 <strong>에치드</strong>가 시리즈 D로 7억 달러를 유치하며 기업가치 210억 달러를 인정받았다고 8월 18일 발표했습니다. 7월 엔비디아가 참여한 3억 달러 라운드에서 매긴 103억 달러에서 한 달 만에 두 배가 된 수치입니다. 이번 라운드는 제인 스트리트가 주도했고 클라이너 퍼킨스, 세쿼이아, 앤드리슨 호로위츠, 타이거 글로벌, 베인 캐피털 벤처스, 블랙스톤 등이 참여했습니다."
+    },
+    {
+      "type": "p",
+      "html": "제인 스트리트는 투자자인 동시에 첫 고객입니다. 에치드는 7월 이 퀀트 트레이딩 회사의 데이터센터에 첫 랙을 납품해 설치를 마쳤습니다. 제품은 두 갈래로, 낮은 전압에서 동작해 트랜지스터 밀도를 높이고 토큰 처리를 빠르게 하는 프리필 칩과 여러 칩이 낮은 지연으로 메모리 풀을 공유하는 클러스터 규모 메모리입니다."
+    },
+    {
+      "type": "p",
+      "html": "에치드는 2021년 특정 모델에 최적화한 칩을 목표로 출발했다가 여러 모델 구조를 지원하는 추론 가속기로 방향을 바꿨습니다. 영상 생성처럼 추론 비용이 곧 단가인 작업에서는 전용 가속기 경쟁이 렌더 요금과 직결됩니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "TechCrunch",
+          "u": "https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month/"
+        },
+        {
+          "t": "GlobeNewswire 보도자료",
+          "u": "https://www.globenewswire.com/news-release/2026/08/18/3347095/0/en/etched-raises-700m-at-a-21b-valuation-and-completes-first-customer-delivery-to-jane-street.html"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "산업 동향 · 8월 18일",
+      "text": "경북 국제 AI·메타버스 영상제 — 출품 3403편, 해외작 20배 증가"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.kyongbuk.co.kr/news/photo/202608/4081400_817084_1011.jpg",
+      "alt": "2026 경북 국제 AI·메타버스 영상제 발표 현장",
+      "caption": "<b>경북 AI 영상제 발표.</b> 시상 중심 행사에서 투자·수출 연결 플랫폼으로 방향을 전환합니다.",
+      "credit": "이미지: 경북일보"
+    },
+    {
+      "type": "p",
+      "html": "경상북도가 8월 18일 도청에서 <strong>2026 경북 국제 AI·메타버스 영상제(GAMFF 2026)</strong>의 주요 프로그램과 발전 전략을 발표했습니다. 3회째인 올해 행사는 9월 3일부터 5일까지 구미와 포항, 경산에서 열립니다."
+    },
+    {
+      "type": "p",
+      "html": "출품 규모의 변화가 두드러집니다. 97개국에서 3403편이 접수돼 전년 1075편의 세 배를 넘었고, 해외 출품작은 72편에서 1587편으로 20배 이상 늘었습니다. 도는 상금 1억원 규모의 시상에 더해 1500억원 규모 펀드 투자상담과 해외 바이어 20개사 수출상담, 34개사가 참여하는 AI 첨단기업 전시관을 함께 운영해 작품 공모 행사를 산업 플랫폼으로 확장한다는 구상을 제시했습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "경북일보",
+          "u": "https://www.kyongbuk.co.kr/news/articleView.html?idxno=4081400"
+        }
+      ]
+    }
+  ]
+}
