@@ -175,15 +175,12 @@ body::before{
   font-weight:400;
 }
 
-/* ── meta — 날짜·시간·출처·캡션처럼 본문을 거드는 줄 ── */
+/* ── meta — 날짜·시간·개수처럼 짧게 끊어지는 보조 줄과 작은 조작 요소 ── */
 .t-meta,
 .mast-meta,
 .back,
 .byline,
 .endmark,
-.cap,
-figcaption,
-.body .src-line,
 .toc .t,
 .toc .more,
 .chip,
@@ -197,6 +194,22 @@ figcaption,
   font-variant-numeric:tabular-nums;
 }
 
+/* ── caption — 이미지 아래 설명과 출처, 항목 끝의 출처 줄 ──
+   meta 와 크기는 같고 굵기만 한 단계 낮다. 짧은 메타가 아니라 문장이기 때문이다.
+   설명과 출처는 같은 덩어리이므로 크기를 나누지 않는다 —
+   위계는 명도로만 준다: 리드인(ink-soft) → 설명(ink-faint) → 출처(ink-mute). */
+.t-caption,
+.cap,
+figcaption,
+.credit,
+.body .src-line{
+  font-size:var(--fs-meta);
+  line-height:var(--lh-normal);
+  letter-spacing:-.002em;
+  font-weight:400;
+  font-variant-numeric:tabular-nums;
+}
+
 /* ── label — 한글 라벨. 자간을 거의 주지 않는다 ── */
 .t-label,
 .today-head .k,
@@ -207,8 +220,7 @@ figcaption,
 .date .wd,
 .date .badge,
 .summary-box .st,
-.body .kick,
-.credit{
+.body .kick{
   font-size:var(--fs-caps);
   line-height:var(--lh-label);
   letter-spacing:var(--ls-label);
