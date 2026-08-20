@@ -20,6 +20,15 @@
     --accent:#3a4a66;
     --accent-soft:#e8ebf1;
     --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,sans-serif;
+
+    /* 타입 스케일 — 한 화면에서 서로 15% 이내로 붙는 크기는 두지 않는다.
+       "조금 다른 크기"는 위계로 읽히지 않고 어긋난 것으로 보인다.
+       위계가 필요하면 크기 대신 색·굵기·자간으로 가른다. */
+    --fs-label:11px;   /* 라벨·배지·eyebrow (대문자/자간) */
+    --fs-meta:13px;    /* 메타·칩·캡션·보조 문구 */
+    --fs-dense:15px;   /* 목록 항목 제목·조밀한 본문 */
+    --fs-deck:17px;    /* 리드 문단(요약) */
+    --fs-h3:22px;      /* 로고·날짜 등 소제목급 */
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -50,23 +59,23 @@
     backdrop-filter:blur(12px);
   }
   .mast-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:74px}
-  .brand{font-size:23px;font-weight:700;letter-spacing:-.015em;line-height:1}
-  .mast-meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .brand{font-size:var(--fs-h3);font-weight:700;letter-spacing:-.015em;line-height:1}
+  .mast-meta{font-size:var(--fs-label);line-height:1.4;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
   .mast-meta time{font-variant-numeric:tabular-nums}
 
   /* ── 오늘의 브리핑 ── */
   .today{border-bottom:1px solid var(--line);padding:52px 0 46px}
   .today-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;flex-wrap:wrap}
-  .today-head .k{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .today-head .k{font-size:var(--fs-label);line-height:1.4;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
   .today-head .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
-  .today-head .d{font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .today-head .d{font-size:var(--fs-label);line-height:1.4;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.02em}
   .today-grid{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:56px;align-items:start}
   .today h1{font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.14;letter-spacing:-.02em;margin-bottom:18px;text-wrap:balance}
   .today h1 a{transition:color .2s}
   .today h1 a:hover{color:var(--accent)}
-  .today .sum{font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:26px;max-width:60ch}
+  .today .sum{font-size:var(--fs-deck);color:var(--ink-soft);line-height:1.72;margin-bottom:26px;max-width:60ch}
   .today .go{
-    display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--accent);
+    display:inline-flex;align-items:center;gap:9px;font-size:var(--fs-dense);font-weight:600;color:var(--accent);
     border-bottom:1px solid var(--accent);padding-bottom:3px;transition:gap .18s ease;
   }
   .today .go:hover{gap:14px}
@@ -75,25 +84,25 @@
   .toc-h{
     display:flex;justify-content:space-between;align-items:baseline;gap:12px;
     padding:14px 18px;border-bottom:1px solid var(--line-soft);
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;
+    font-size:var(--fs-label);line-height:1.4;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;
   }
   .toc-h .n{font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--ink-soft)}
   .toc ol{list-style:none}
   .toc li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:11px 18px;border-bottom:1px solid var(--line-soft);align-items:baseline}
   .toc li:last-child{border-bottom:0}
-  .toc .g{font-size:10.5px;letter-spacing:.02em;color:var(--accent);font-weight:600}
-  .toc .t{font-size:13.5px;line-height:1.45;color:var(--ink);letter-spacing:-.008em}
-  .toc .more{display:block;padding:11px 18px;font-size:12.5px;color:var(--ink-faint);background:var(--paper-2)}
+  .toc .g{font-size:var(--fs-label);line-height:1.5;letter-spacing:.02em;color:var(--accent);font-weight:600}
+  .toc .t{font-size:var(--fs-meta);line-height:1.5;color:var(--ink);letter-spacing:-.008em}
+  .toc .more{display:block;padding:11px 18px;font-size:var(--fs-meta);color:var(--ink-faint);background:var(--paper-2)}
   .toc .more:hover{color:var(--accent)}
 
   /* ── 필터 ── */
   .filters{display:flex;gap:7px;flex-wrap:wrap;padding:30px 0 0}
   .chip{
-    font-size:13px;padding:7px 14px;border-radius:7px;border:1px solid var(--line);background:transparent;
+    font-size:var(--fs-meta);padding:7px 14px;border-radius:7px;border:1px solid var(--line);background:transparent;
     color:var(--ink-soft);cursor:pointer;font-family:var(--sans);font-weight:500;letter-spacing:-.005em;
     display:inline-flex;align-items:baseline;gap:7px;transition:border-color .16s,color .16s,background .16s;
   }
-  .chip .c{font-size:11px;color:var(--ink-mute);font-variant-numeric:tabular-nums}
+  .chip .c{color:var(--ink-mute);font-variant-numeric:tabular-nums}
   .chip:hover{border-color:var(--ink-faint);color:var(--ink)}
   .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .chip.on .c{color:#9ea1aa}
@@ -104,8 +113,8 @@
     display:flex;align-items:baseline;justify-content:space-between;gap:16px;
     margin:44px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);
   }
-  .monthhead h2{font-size:15px;font-weight:700;letter-spacing:-.01em}
-  .monthhead span{font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .monthhead h2{font-size:var(--fs-dense);font-weight:700;letter-spacing:-.01em}
+  .monthhead span{font-size:var(--fs-meta);color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.02em}
 
   .issue{
     display:grid;grid-template-columns:112px minmax(0,1fr) 92px;gap:32px;
@@ -113,28 +122,28 @@
   }
   .issue:hover{background:linear-gradient(90deg,rgba(58,74,102,.045),rgba(58,74,102,0) 62%)}
   .issue.is-latest .dd{color:var(--accent)}
-  .date .dd{font-size:22px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
-  .date .wd{font-size:11.5px;color:var(--ink-faint);margin-top:5px;letter-spacing:.04em}
+  .date .dd{font-size:var(--fs-h3);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+  .date .wd{font-size:var(--fs-label);line-height:1.4;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
   .date .badge{
-    display:inline-block;margin-top:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    display:inline-block;margin-top:9px;font-size:var(--fs-label);line-height:1.4;letter-spacing:.1em;text-transform:uppercase;
     color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 7px;font-weight:700;
   }
   .topics{display:flex;flex-direction:column;gap:7px;min-width:0}
   .topics .t{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:baseline}
-  .topics .g{font-size:10.5px;color:var(--ink-mute);font-weight:600;letter-spacing:.01em}
+  .topics .g{font-size:var(--fs-label);line-height:1.5;color:var(--ink-mute);font-weight:600;letter-spacing:.01em}
   .topics .t.hit .g{color:var(--accent)}
   .topics .tt{
-    font-size:14.5px;line-height:1.5;letter-spacing:-.008em;color:var(--ink-soft);
+    font-size:var(--fs-dense);line-height:1.5;letter-spacing:-.008em;color:var(--ink-soft);
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   }
   .issue:hover .topics .tt{color:var(--ink)}
   .topics .t.hit .tt{color:var(--ink);font-weight:600}
-  .topics .rest{font-size:12.5px;color:var(--ink-mute);margin-top:2px;padding-left:56px}
-  .topics .sum{font-size:14px;color:var(--ink-soft);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .meta{text-align:right;font-size:12.5px;color:var(--ink-mute);line-height:1.7;font-variant-numeric:tabular-nums}
+  .topics .rest{font-size:var(--fs-meta);color:var(--ink-mute);margin-top:2px;padding-left:56px}
+  .topics .sum{font-size:var(--fs-dense);color:var(--ink-soft);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .meta{text-align:right;font-size:var(--fs-meta);color:var(--ink-mute);line-height:1.7;font-variant-numeric:tabular-nums}
   .meta .r{color:var(--ink-faint);font-weight:600;display:block}
 
-  .state{padding:90px 0;text-align:center;color:var(--ink-faint);font-size:15px;line-height:1.7}
+  .state{padding:90px 0;text-align:center;color:var(--ink-faint);font-size:var(--fs-dense);line-height:1.7}
   .skeleton{padding:40px 0}
   .skeleton div{height:14px;border-radius:3px;background:var(--paper-2);margin-bottom:14px}
   .skeleton div:nth-child(1){width:38%}
@@ -145,10 +154,10 @@
     .today-grid{grid-template-columns:1fr;gap:32px}
   }
   @media(max-width:720px){
+    :root{--fs-dense:14px;--fs-deck:16px;--fs-h3:19px}
     .wrap{padding:0 20px}
     .today{padding:40px 0 36px}
     .issue{grid-template-columns:70px minmax(0,1fr);gap:16px;padding:20px 0}
-    .date .dd{font-size:18px}
     .meta{grid-column:2;text-align:left;margin-top:4px}
     .topics .t{grid-template-columns:1fr;gap:1px}
     .topics .rest{padding-left:0}
