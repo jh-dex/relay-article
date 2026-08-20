@@ -161,12 +161,20 @@ body::before{
   font-weight:400;
 }
 
-/* ── dense — 짧게 끊어 읽는 문단과 줄 ── */
+/* ── dense — 짧게 끊어 읽는 문단과 줄 ──
+   목록의 이슈 행은 날짜(title)를 빼면 태그·제목·나머지 건수·읽기 시간이
+   전부 이 한 크기다. 행 안에서 크기를 더 나누지 않고 명도로만 층을 준다. */
 .t-dense,
 .summary-box p,
 .today .go,
+.topics .g,
 .topics .tt,
+.topics .rest,
 .topics .sum,
+.date .wd,
+.date .badge,
+.monthhead span,
+.meta,
 .state,
 .notfound{
   font-size:var(--fs-dense);
@@ -175,18 +183,20 @@ body::before{
   font-weight:400;
 }
 
-/* ── meta — 날짜·시간·개수처럼 짧게 끊어지는 보조 줄과 작은 조작 요소 ── */
+/* ── meta — 짧게 끊어지는 보조 줄과 작은 조작 요소 ──
+   목차 패널은 머리·태그·제목이 모두 이 크기다. 패널 안에서 크기를 나누지 않는다. */
 .t-meta,
 .mast-meta,
 .back,
 .byline,
 .endmark,
+.today-head .k,
+.today-head .d,
+.toc-h,
+.toc .g,
 .toc .t,
 .toc .more,
-.chip,
-.monthhead span,
-.topics .rest,
-.meta{
+.chip{
   font-size:var(--fs-meta);
   line-height:var(--lh-normal);
   letter-spacing:-.002em;
@@ -208,15 +218,9 @@ figcaption,
   font-variant-numeric:tabular-nums;
 }
 
-/* ── label — 한글 라벨. 자간을 거의 주지 않는다 ── */
+/* ── label — 한글 라벨. 자간을 거의 주지 않는다 ──
+   본문 페이지의 항목 라벨 전용이다. 목록 페이지는 meta·dense 두 크기로만 쓴다. */
 .t-label,
-.today-head .k,
-.today-head .d,
-.toc-h,
-.toc .g,
-.topics .g,
-.date .wd,
-.date .badge,
 .summary-box .st,
 .body .kick{
   font-size:var(--fs-caps);
