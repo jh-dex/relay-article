@@ -69,7 +69,14 @@
   .chip.on .c{color:#9ea1aa}
 
   /* ── 이슈 목록 ── */
-  .feed{padding:0 0 100px}
+  .feed{padding:0}
+
+  /* ── 푸터 ── 목록 마지막 행의 밑줄이 경계를 이미 그으므로 선을 겹치지 않는다 */
+  .foot{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+    padding:30px 0 72px;color:var(--ink-mute);
+  }
+  .foot b{color:var(--ink-faint)}
   .monthhead{
     display:flex;align-items:baseline;justify-content:space-between;gap:16px;
     margin:44px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);
@@ -156,6 +163,11 @@
   <div class="feed" id="feed">
     <div class="skeleton" aria-hidden="true"><div></div><div></div><div></div></div>
   </div>
+
+  <footer class="foot">
+    <span><b>RELAY</b> — AI 이미지·영상 생성 동향 아카이브</span>
+    <span id="f-year"></span>
+  </footer>
 </main>
 
 <script>
@@ -202,6 +214,8 @@
   function build(){
     const latest = ALL[0];
     document.getElementById('m-date').textContent = latest.date || '';
+    const year = String(latest.date || '').slice(0, 4);
+    if(year) document.getElementById('f-year').textContent = '© ' + year;
 
     renderToday(latest);
     renderFilters();

@@ -196,7 +196,8 @@ body::before{
 .toc .g,
 .toc .t,
 .toc .more,
-.chip{
+.chip,
+.foot{
   font-size:var(--fs-meta);
   line-height:var(--lh-normal);
   letter-spacing:-.002em;
