@@ -9,14 +9,16 @@ AI가 매일 글 한 편을 써서 쌓아 올리는 에디토리얼 리딩 아�
 
 ```
 RELAY/
-├─ index.html              피드/아카이브 메인 (히어로 + 카테고리 필터 + 목록)
+├─ index.html              아카이브 메인 (오늘의 브리핑 + 갈래 필터 + 발행일 목록)
 ├─ article.html            리딩 뷰 — article.html?id=<글ID> 로 열림
 ├─ data/
-│  ├─ index.json           글 "메타데이터만" (제목·요약·날짜·카테고리). 피드는 이것만 읽음.
+│  ├─ index.json           글 "메타데이터만" (제목·요약·날짜 + 그날의 항목 목록). 목록은 이것만 읽음.
 │  └─ posts/
 │     └─ <글ID>.json        글 1편당 파일 1개 (본문 전체). 리딩 뷰는 열람한 글 하나만 읽음.
 ├─ scripts/
 │  ├─ add-article.mjs      새 글 추가 (posts 파일 생성 + index.json 갱신)
+│  ├─ rebuild-index.mjs    index.json 전체 재생성 (스키마 변경·데이터 어긋남 복구용)
+│  ├─ topics.mjs           본문 h3 → 목록용 "그날의 항목" 추출 + 갈래 분류
 │  └─ _new-article.example.json   새 글 작성용 템플릿
 └─ README.md
 ```
@@ -63,7 +65,8 @@ python -m http.server 8000
    node scripts/add-article.mjs scripts/내가만든글.json
    ```
 3. `posts/<id>.json` 이 생기고 `index.json` 맨 앞에 등록되어,
-   피드 최상단 + 히어로(Today's Lead)에 노출된다.
+   목록 최상단 + 오늘의 브리핑에 노출된다.
+   이때 본문의 h3 항목이 `topics` 로 같이 올라간다 — 손으로 쓸 필요 없다.
 
 ### body 블록 타입
 | type | 용도 | 필드 |
@@ -89,6 +92,38 @@ python -m http.server 8000
 ### 저작권 메모 (handoff 문서 기준)
 - 남의 기사 **전문 재게시 금지.** AI 요약 + 짧은 발췌 + **원문 링크**(`sourceUrl`)만.
 - 이미지는 라이선스 확인 후 `credit` 표기, 또는 AI 생성 커버 사용.
+
+---
+
+## 목록이 하루를 구별하는 방법
+
+글 제목은 매일 "AI 이미지·영상 생성 동향 · N월 N일" 로 같다. 목록에서 제목은 날짜 말고 아무것도 알려주지 않는다.
+그래서 `index.json` 의 각 글에는 본문 h3 항목이 `topics` 로 함께 올라간다.
+
+```json
+"topics": [
+  { "g": "도구", "t": "ComfyUI-Raon-OpenTTS — 크래프톤 개방형 TTS의 INT8 로컬 실행" },
+  { "g": "연구", "t": "MIT CSAIL — 학습 데이터가 커질수록 개별 이미지 귀속의 소멸" }
+]
+```
+
+`g` 는 목록 필터용 갈래다. 본문 kicker 의 세부 분류 11개를 **모델 · 도구 · 연구 · 업계** 네 갈래로 묶은 것으로,
+기준은 "그 항목으로 독자가 무엇을 하느냐" 하나다 — 받아서 돌릴 가중치인가(모델), 돌리는 방법인가(도구),
+아직 코드가 아닌가(연구), 읽고 알아둘 소식인가(업계). 대응표는 `scripts/topics.mjs` 에 있다.
+
+> 본문 안의 group(`로컬 모델 · 도구 / 연구 / 업계 · 시장`)과는 축이 다르다.
+> 그쪽은 "본문에서 절을 어떻게 묶을까", 이쪽은 "아카이브에서 어떻게 걸러 볼까"다.
+
+갈래를 다시 나눴거나 옛 글에 `topics` 가 없다면:
+
+```
+node scripts/rebuild-index.mjs
+```
+
+`data/posts/*.json` 을 전부 다시 읽어 `index.json` 을 새로 만든다. 몇 번을 돌려도 결과가 같다.
+
+> 참고 — `index.json` 은 글이 쌓일수록 커진다(현재 13편 기준 약 31KB).
+> 100편을 넘어서면 달 단위로 쪼개거나 목록을 페이지네이션할 시점이다.
 
 ---
 

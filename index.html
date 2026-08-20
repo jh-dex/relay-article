@@ -16,7 +16,9 @@
     --ink-faint:#8b8e98;
     --ink-mute:#a7aab2;
     --line:#dcdde2;
+    --line-soft:#e6e7eb;
     --accent:#3a4a66;
+    --accent-soft:#e8ebf1;
     --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -30,6 +32,7 @@
     overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
   ::selection{background:var(--ink);color:var(--paper)}
 
   body::before{
@@ -46,215 +49,316 @@
     background:rgba(245,245,247,.82);
     backdrop-filter:blur(12px);
   }
-  .mast-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
-  .brand{font-size:23px;font-weight:700;letter-spacing:-.015em;line-height:1;cursor:pointer}
-  .mast-meta{display:flex;gap:30px;align-items:center;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .mast-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:74px}
+  .brand{font-size:23px;font-weight:700;letter-spacing:-.015em;line-height:1}
+  .mast-meta{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
   .mast-meta time{font-variant-numeric:tabular-nums}
-  .mast-meta .ai{color:var(--accent);font-weight:600}
 
-  /* ── hero ── */
-  .hero{padding:66px 0 56px;border-bottom:1px solid var(--line)}
-  .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;font-weight:600}
-  .hero-grid{display:grid;grid-template-columns:1.45fr .9fr;gap:60px;align-items:start}
-  .hero h1{
-    font-weight:700;font-size:clamp(34px,5vw,56px);
-    line-height:1.08;letter-spacing:-.018em;margin-bottom:24px;cursor:pointer;transition:color .2s;
+  /* ── 오늘의 브리핑 ── */
+  .today{border-bottom:1px solid var(--line);padding:52px 0 46px}
+  .today-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;flex-wrap:wrap}
+  .today-head .k{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .today-head .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .today-head .d{font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .today-grid{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:56px;align-items:start}
+  .today h1{font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.14;letter-spacing:-.02em;margin-bottom:18px;text-wrap:balance}
+  .today h1 a{transition:color .2s}
+  .today h1 a:hover{color:var(--accent)}
+  .today .sum{font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:26px;max-width:60ch}
+  .today .go{
+    display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--accent);
+    border-bottom:1px solid var(--accent);padding-bottom:3px;transition:gap .18s ease;
   }
-  .hero h1:hover{color:var(--accent)}
-  .hero-sum{font-size:16.5px;color:var(--ink-soft);max-width:90%;margin-bottom:28px;line-height:1.65}
-  .ai-chip{
-    display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);
-    border-radius:6px;padding:7px 13px;font-weight:500;
-  }
-  .ai-chip b{color:var(--accent);font-weight:700}
-  .hero-side{border-left:1px solid var(--line);padding-left:36px}
-  .hero-side .label{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:20px;font-weight:600}
-  .mini{display:block;padding:18px 0;border-bottom:1px solid var(--line);cursor:pointer}
-  .mini:first-of-type{padding-top:0}
-  .mini:last-child{border-bottom:0}
-  .mini .mt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:7px;font-weight:600}
-  .mini .mh{font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.005em;transition:color .2s}
-  .mini:hover .mh{color:var(--accent)}
+  .today .go:hover{gap:14px}
 
-  /* ── filters ── */
-  .filters{display:flex;gap:8px;flex-wrap:wrap;padding:34px 0 8px}
+  .toc{border:1px solid var(--line);border-radius:8px;background:#fafafb;overflow:hidden}
+  .toc-h{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    padding:14px 18px;border-bottom:1px solid var(--line-soft);
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;
+  }
+  .toc-h .n{font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--ink-soft)}
+  .toc ol{list-style:none}
+  .toc li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:11px 18px;border-bottom:1px solid var(--line-soft);align-items:baseline}
+  .toc li:last-child{border-bottom:0}
+  .toc .g{font-size:10.5px;letter-spacing:.02em;color:var(--accent);font-weight:600}
+  .toc .t{font-size:13.5px;line-height:1.45;color:var(--ink);letter-spacing:-.008em}
+  .toc .more{display:block;padding:11px 18px;font-size:12.5px;color:var(--ink-faint);background:var(--paper-2)}
+  .toc .more:hover{color:var(--accent)}
+
+  /* ── 필터 ── */
+  .filters{display:flex;gap:7px;flex-wrap:wrap;padding:30px 0 0}
   .chip{
-    font-size:13px;letter-spacing:-.005em;padding:8px 16px;border-radius:7px;
-    border:1px solid var(--line);background:transparent;color:var(--ink-soft);
-    cursor:pointer;transition:all .18s;font-family:var(--sans);font-weight:500;
+    font-size:13px;padding:7px 14px;border-radius:7px;border:1px solid var(--line);background:transparent;
+    color:var(--ink-soft);cursor:pointer;font-family:var(--sans);font-weight:500;letter-spacing:-.005em;
+    display:inline-flex;align-items:baseline;gap:7px;transition:border-color .16s,color .16s,background .16s;
   }
+  .chip .c{font-size:11px;color:var(--ink-mute);font-variant-numeric:tabular-nums}
   .chip:hover{border-color:var(--ink-faint);color:var(--ink)}
   .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip.on .c{color:#9ea1aa}
 
-  /* ── feed ── */
-  .feed{padding:8px 0 100px}
-  .row{
-    display:grid;grid-template-columns:60px 1fr 200px;gap:36px;align-items:baseline;
-    padding:30px 0;border-bottom:1px solid var(--line);cursor:pointer;
-    transition:padding-left .25s ease;
+  /* ── 이슈 목록 ── */
+  .feed{padding:0 0 100px}
+  .monthhead{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    margin:44px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);
   }
-  .row:hover{padding-left:14px}
-  .idx{font-size:18px;font-weight:600;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:-.005em}
-  .row:hover .idx{color:var(--accent)}
-  .row-main .cat{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block;font-weight:600}
-  .row-main h2{font-weight:700;font-size:23px;line-height:1.25;letter-spacing:-.015em;margin-bottom:10px;transition:color .2s}
-  .row:hover h2{color:var(--accent)}
-  .row-main p{font-size:14.5px;color:var(--ink-soft);max-width:92%;line-height:1.6}
-  .row-meta{text-align:right;font-size:12.5px;color:var(--ink-mute);letter-spacing:-.005em;line-height:1.8}
-  .row-meta .src{color:var(--ink-faint);font-weight:600}
-  .row-meta time{font-variant-numeric:tabular-nums;display:block}
+  .monthhead h2{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .monthhead span{font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:.02em}
 
-  .empty{padding:80px 0;text-align:center;color:var(--ink-faint);font-size:15px}
-
-  @media(max-width:820px){
-    .wrap{padding:0 22px}
-    .hero-grid{grid-template-columns:1fr;gap:40px}
-    .hero-side{border-left:0;border-top:1px solid var(--line);padding:30px 0 0}
-    .row{grid-template-columns:36px 1fr;gap:16px}
-    .row-meta{grid-column:1/-1;text-align:left;margin-top:6px}
-    .row-meta time{display:inline;margin-left:14px}
-    .mast-meta .hide-sm{display:none}
+  .issue{
+    display:grid;grid-template-columns:112px minmax(0,1fr) 92px;gap:32px;
+    padding:22px 0;border-bottom:1px solid var(--line);align-items:start;
   }
+  .issue:hover{background:linear-gradient(90deg,rgba(58,74,102,.045),rgba(58,74,102,0) 62%)}
+  .issue.is-latest .dd{color:var(--accent)}
+  .date .dd{font-size:22px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+  .date .wd{font-size:11.5px;color:var(--ink-faint);margin-top:5px;letter-spacing:.04em}
+  .date .badge{
+    display:inline-block;margin-top:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 7px;font-weight:700;
+  }
+  .topics{display:flex;flex-direction:column;gap:7px;min-width:0}
+  .topics .t{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:baseline}
+  .topics .g{font-size:10.5px;color:var(--ink-mute);font-weight:600;letter-spacing:.01em}
+  .topics .t.hit .g{color:var(--accent)}
+  .topics .tt{
+    font-size:14.5px;line-height:1.5;letter-spacing:-.008em;color:var(--ink-soft);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .issue:hover .topics .tt{color:var(--ink)}
+  .topics .t.hit .tt{color:var(--ink);font-weight:600}
+  .topics .rest{font-size:12.5px;color:var(--ink-mute);margin-top:2px;padding-left:56px}
+  .topics .sum{font-size:14px;color:var(--ink-soft);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .meta{text-align:right;font-size:12.5px;color:var(--ink-mute);line-height:1.7;font-variant-numeric:tabular-nums}
+  .meta .r{color:var(--ink-faint);font-weight:600;display:block}
+
+  .state{padding:90px 0;text-align:center;color:var(--ink-faint);font-size:15px;line-height:1.7}
+  .skeleton{padding:40px 0}
+  .skeleton div{height:14px;border-radius:3px;background:var(--paper-2);margin-bottom:14px}
+  .skeleton div:nth-child(1){width:38%}
+  .skeleton div:nth-child(2){width:76%}
+  .skeleton div:nth-child(3){width:62%}
+
+  @media(max-width:900px){
+    .today-grid{grid-template-columns:1fr;gap:32px}
+  }
+  @media(max-width:720px){
+    .wrap{padding:0 20px}
+    .today{padding:40px 0 36px}
+    .issue{grid-template-columns:70px minmax(0,1fr);gap:16px;padding:20px 0}
+    .date .dd{font-size:18px}
+    .meta{grid-column:2;text-align:left;margin-top:4px}
+    .topics .t{grid-template-columns:1fr;gap:1px}
+    .topics .rest{padding-left:0}
+    .today .sum{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 
 <header class="mast">
-  <div class="wrap mast-inner">
-    <div class="brand" onclick="location.href='/'">RELAY</div>
-    <div class="mast-meta">
-      <span class="ai">AI CURATING</span>
-      <span class="hide-sm" id="count">0 ARCHIVED</span>
-      <time id="today"></time>
-    </div>
+  <div class="wrap mast-in">
+    <a class="brand" href="/">RELAY</a>
+    <div class="mast-meta">최신 발행 <time id="m-date"></time></div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
+<section class="today" id="today" hidden>
   <div class="wrap">
-    <div class="kicker">Today's Lead — AI Selected</div>
-    <div class="hero-grid">
+    <div class="today-head">
+      <span class="k">오늘의 브리핑</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="d" id="t-date"></span>
+    </div>
+    <div class="today-grid">
       <div>
-        <h1 id="lead-title"></h1>
-        <p class="hero-sum" id="lead-sum"></p>
-        <span class="ai-chip" id="lead-chip"></span>
+        <h1><a id="t-title" href="#"></a></h1>
+        <p class="sum" id="t-sum"></p>
+        <a class="go" id="t-go" href="#"></a>
       </div>
-      <aside class="hero-side">
-        <div class="label">More on the desk</div>
-        <div id="mini-list"></div>
-      </aside>
+      <nav class="toc" id="t-toc-box" aria-label="오늘 다룬 항목">
+        <div class="toc-h"><span>오늘 다룬 항목</span><span class="n" id="t-n"></span></div>
+        <ol id="t-toc"></ol>
+        <a class="more" id="t-more" href="#"></a>
+      </nav>
     </div>
   </div>
 </section>
 
-<!-- FILTERS -->
-<div class="wrap">
-  <div class="filters" id="filters"></div>
-</div>
-
-<!-- FEED -->
 <main class="wrap">
-  <div class="feed" id="feed"></div>
+  <div class="filters" id="filters" role="group" aria-label="주제 필터" hidden></div>
+  <div class="feed" id="feed">
+    <div class="skeleton" aria-hidden="true"><div></div><div></div><div></div></div>
+  </div>
 </main>
 
 <script>
-  const esc = s => String(s==null?'':s);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const href = id => 'article.html?id=' + encodeURIComponent(id);
 
-  // 날짜 (데이터 로드와 무관하게 먼저)
-  const d = new Date();
-  document.getElementById('today').textContent =
-    d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');
+  // 목록 필터의 갈래. scripts/topics.mjs 가 index.json 에 g 로 심어두므로 여기서는 순서만 정한다.
+  const GROUPS = ['모델', '도구', '연구', '업계'];
+  const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
 
-  let ALL = [], CATS = [];
+  // date 는 "YYYY.MM.DD" 문자열이다. 요일은 목록에서 발행 리듬을 읽는 단서라 매번 계산한다.
+  // 항목 제목은 "이름 — 설명" 꼴이다. 좁은 목차 패널에서는 이름만 남겨 한 줄에 맞춘다.
+  const nameOf = t => String(t).split(' — ')[0];
+
+  const weekdayOf = date => {
+    const [y, m, d] = String(date).split('.').map(Number);
+    if (!y || !m || !d) return '';
+    return WEEKDAY[new Date(y, m - 1, d).getDay()];
+  };
+
+  let ALL = [];
 
   init();
   async function init(){
+    let DB;
     try{
       const res = await fetch('data/index.json', {cache:'no-cache'});
-      if(!res.ok) throw new Error('HTTP '+res.status);
-      const DB = await res.json();
-      ALL = DB.posts || [];
-      CATS = (DB.site && DB.site.categories) || [];
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      DB = await res.json();
     }catch(err){
-      document.getElementById('feed').innerHTML =
-        '<div class="empty">데이터를 불러오지 못했습니다.<br>로컬에서 볼 때는 폴더에서 서버를 띄워야 합니다 (README 참고).</div>';
       console.error(err);
+      document.getElementById('feed').innerHTML =
+        '<div class="state">아카이브를 불러오지 못했습니다.<br>잠시 후 새로고침해 주세요.</div>';
+      return;
+    }
+    ALL = (DB.posts || []).filter(p => p && p.id);
+    if(!ALL.length){
+      document.getElementById('feed').innerHTML = '<div class="state">아직 발행된 글이 없습니다.</div>';
       return;
     }
     build();
   }
 
   function build(){
-  // masthead
-  document.getElementById('count').textContent = ALL.length + ' ARCHIVED';
+    const latest = ALL[0];
+    document.getElementById('m-date').textContent = latest.date || '';
 
-  // hero lead = first article
-  if (ALL.length) {
-    const lead = ALL[0];
-    const lt = document.getElementById('lead-title');
-    lt.innerHTML = esc(lead.title);
-    lt.onclick = () => location.href = href(lead.id);
-    document.getElementById('lead-sum').textContent = esc(lead.summary);
-    document.getElementById('lead-chip').innerHTML =
-      '<b>AI</b> · ' + esc(lead.source || '자동 요약') + ' · 읽기 ' + esc(lead.read || '');
+    renderToday(latest);
+    renderFilters();
+    render('all');
   }
 
-  // hero mini = next up to 3
-  const mini = document.getElementById('mini-list');
-  ALL.slice(1,4).forEach(a => {
-    const el = document.createElement('a');
-    el.className = 'mini';
-    el.href = href(a.id);
-    el.innerHTML = '<div class="mt">'+esc(a.category)+'</div><div class="mh">'+esc(a.title)+'</div>';
-    mini.appendChild(el);
-  });
+  /* ── 오늘의 브리핑 ── */
+  function renderToday(a){
+    const topics = a.topics || [];
+    const today = document.getElementById('today');
+    today.hidden = false;
 
-  // filters
-  const filters = document.getElementById('filters');
-  ['all', ...CATS].forEach((c,i) => {
-    const b = document.createElement('button');
-    b.className = 'chip' + (i===0?' on':'');
-    b.dataset.c = c;
-    b.textContent = c==='all' ? '전체' : c;
-    filters.appendChild(b);
-  });
+    document.getElementById('t-date').textContent =
+      [a.date, weekdayOf(a.date) && '(' + weekdayOf(a.date) + ')'].filter(Boolean).join(' ')
+      + (a.read ? ' · 읽기 ' + a.read.replace('약 ', '') : '');
 
-  const feed = document.getElementById('feed');
-  function render(filter='all'){
-    feed.innerHTML='';
-    const list = ALL.filter(a => filter==='all' || a.category===filter);
-    if (!list.length){ feed.innerHTML='<div class="empty">해당 카테고리의 글이 아직 없습니다.</div>'; return; }
-    list.forEach((a,i)=>{
-      const row=document.createElement('a');
-      row.className='row';
-      row.href=href(a.id);
-      row.innerHTML=`
-        <div class="idx">${String(i+1).padStart(2,'0')}</div>
-        <div class="row-main">
-          <span class="cat">${esc(a.category)}</span>
-          <h2>${esc(a.title)}</h2>
-          <p>${esc(a.summary)}</p>
-        </div>
-        <div class="row-meta">
-          <span class="src">${esc(a.source)}</span>
-          <time>${esc(a.date)}</time>
-          <span>읽기 ${esc(a.read)}</span>
-        </div>`;
-      feed.appendChild(row);
+    // 제목은 매일 같으므로(날짜만 다름) 그날의 첫 항목을 헤드라인으로 세운다.
+    const title = document.getElementById('t-title');
+    title.textContent = topics.length ? topics[0].t : (a.title || '');
+    title.href = href(a.id);
+
+    document.getElementById('t-sum').textContent = a.summary || '';
+
+    const go = document.getElementById('t-go');
+    go.href = href(a.id);
+    go.innerHTML = (topics.length ? topics.length + '건 전체 읽기' : '브리핑 읽기') + ' <span aria-hidden="true">→</span>';
+
+    const box = document.getElementById('t-toc-box');
+    if(!topics.length){ box.hidden = true; return; }
+
+    document.getElementById('t-n').textContent = topics.length + '건';
+    document.getElementById('t-toc').innerHTML = topics.slice(0, 5)
+      .map(t => `<li><span class="g">${esc(t.g)}</span><span class="t">${esc(nameOf(t.t))}</span></li>`).join('');
+
+    const more = document.getElementById('t-more');
+    const restCount = topics.length - 5;
+    if(restCount > 0){
+      more.href = href(a.id);
+      more.textContent = '이 밖에 ' + restCount + '건 — 본문에서 이어 읽기';
+    }else{
+      more.hidden = true;
+    }
+  }
+
+  /* ── 필터: 갈래별 항목 수 ── */
+  function renderFilters(){
+    const counts = {};
+    let total = 0;
+    ALL.forEach(p => (p.topics || []).forEach(t => { counts[t.g] = (counts[t.g] || 0) + 1; total++; }));
+    if(!total) return;
+
+    const box = document.getElementById('filters');
+    box.hidden = false;
+    box.innerHTML = [['all', total]].concat(GROUPS.filter(g => counts[g]).map(g => [g, counts[g]]))
+      .map(([g, n], i) =>
+        `<button class="chip${i === 0 ? ' on' : ''}" data-g="${esc(g)}" aria-pressed="${i === 0}">`
+        + `${g === 'all' ? '전체' : esc(g)}<span class="c">${n}</span></button>`).join('');
+
+    box.addEventListener('click', e => {
+      const b = e.target.closest('.chip');
+      if(!b) return;
+      box.querySelectorAll('.chip').forEach(c => { c.classList.remove('on'); c.setAttribute('aria-pressed', 'false'); });
+      b.classList.add('on');
+      b.setAttribute('aria-pressed', 'true');
+      render(b.dataset.g);
     });
   }
-  render();
 
-  filters.addEventListener('click',e=>{
-    if(!e.target.classList.contains('chip'))return;
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
-    e.target.classList.add('on');
-    render(e.target.dataset.c);
-  });
-  } // end build()
+  /* ── 이슈 목록: 발행일이 축, 그날의 항목이 본문 ── */
+  function render(filter){
+    const feed = document.getElementById('feed');
+    const rows = ALL.filter(p => filter === 'all' || (p.topics || []).some(t => t.g === filter));
+
+    if(!rows.length){
+      feed.innerHTML = '<div class="state">이 갈래의 항목이 아직 없습니다.</div>';
+      return;
+    }
+
+    // 달 단위로 묶는다. 일간 시리즈라 달이 바뀌는 지점이 유일하게 의미 있는 경계다.
+    const months = [];
+    rows.forEach(p => {
+      const key = String(p.date).slice(0, 7);
+      const last = months[months.length - 1];
+      if(last && last.key === key) last.rows.push(p);
+      else months.push({key, rows: [p]});
+    });
+
+    feed.innerHTML = months.map(({key, rows}) => {
+      const [y, m] = key.split('.');
+      return `<div class="monthhead"><h2>${esc(y)}년 ${Number(m)}월</h2><span>${rows.length}호</span></div>`
+        + rows.map(p => issueRow(p, filter)).join('');
+    }).join('');
+  }
+
+  function issueRow(p, filter){
+    const topics = p.topics || [];
+    const hits = filter === 'all' ? topics : topics.filter(t => t.g === filter);
+    const shown = hits.slice(0, 3);
+    const rest = filter === 'all' ? topics.length - shown.length : topics.length - hits.length;
+    const isLatest = p === ALL[0];
+
+    const body = shown.length
+      ? shown.map(t => `<div class="t${filter === 'all' ? '' : ' hit'}">`
+          + `<span class="g">${esc(t.g)}</span><span class="tt">${esc(t.t)}</span></div>`).join('')
+        + (rest > 0 ? `<div class="rest">그 밖에 ${rest}건</div>` : '')
+      // 항목이 없는 글(구버전 데이터)은 요약으로 대신한다.
+      : `<p class="sum">${esc(p.summary)}</p>`;
+
+    return `<a class="issue${isLatest ? ' is-latest' : ''}" href="${href(p.id)}">
+      <div class="date">
+        <div class="dd">${esc(String(p.date).slice(5))}</div>
+        <div class="wd">${esc(weekdayOf(p.date))}요일</div>
+        ${isLatest ? '<span class="badge">최신</span>' : ''}
+      </div>
+      <div class="topics">${body}</div>
+      <div class="meta">
+        <span class="r">${esc(p.read || '')}</span>${topics.length ? topics.length + '건' : ''}
+      </div>
+    </a>`;
+  }
 </script>
 </body>
 </html>

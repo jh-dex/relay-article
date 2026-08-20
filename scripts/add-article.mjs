@@ -12,6 +12,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { topicsOf } from './topics.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -130,6 +131,8 @@ async function main() {
 
   const meta = {};
   for (const k of META) meta[k] = post[k];
+  // 목록은 제목만으로 하루를 구별할 수 없다(매일 같은 제목). 본문 항목을 같이 올린다.
+  meta.topics = topicsOf(post.body);
   index.posts.unshift(meta);
 
   await writeFile(INDEX_PATH, JSON.stringify(index, null, 2) + '\n', 'utf8');
