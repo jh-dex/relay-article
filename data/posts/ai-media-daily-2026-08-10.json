@@ -21,8 +21,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-07-minimax-h3-turbo-lightx2v/example-t2v-frame.jpg",
       "alt": "미니맥스 H3 터보 LoRA로 4스텝 생성한 예시 프레임",
-      "caption": "<b>H3 터보 LoRA.</b> FL2V 생성을 4스텝으로 낮춘 증류 가중치의 예시 출력 프레임.",
-      "credit": "이미지: ComfyUI Wiki"
+      "caption": "<b>H3 터보 LoRA.</b> FL2V 생성을 4스텝으로 줄인 증류 가중치의 출력 프레임."
     },
     {
       "type": "p",
@@ -62,8 +61,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/minimax-h3-community-quants/gguf-demo-frame.jpg",
       "alt": "미니맥스 H3 GGUF 저장소의 샘플 영상 프레임",
-      "caption": "<b>H3 커뮤니티 양자화.</b> GGUF·INT4·NVFP4 파일로 소비자 GPU에 맞춘 H3 실행.",
-      "credit": "이미지: ComfyUI Wiki"
+      "caption": "<b>H3 커뮤니티 양자화.</b> GGUF·INT4·NVFP4로 갈린 소비자 GPU용 실행 파일."
     },
     {
       "type": "p",
@@ -95,8 +93,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-04-kijai-minimax-h3-tae/tae-demo-poster.jpg",
       "alt": "미니맥스 H3 TAE 프리뷰 데모 프레임",
-      "caption": "<b>H3 TAE.</b> 전체 디코드 전에 영상 latent을 빠르게 확인하는 소형 오토인코더.",
-      "credit": "이미지: ComfyUI Wiki"
+      "caption": "<b>H3 TAE.</b> 전체 디코드 전에 영상 latent을 훑는 소형 오토인코더."
     },
     {
       "type": "p",
@@ -228,8 +225,7 @@
       "type": "figure",
       "img": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/Screenshot-2026-08-07-at-2.40.34-PM.png",
       "alt": "Roku의 AI 생성 콘텐츠 채널 화면",
-      "caption": "<b>Roku AI 채널.</b> 생성형 AI 콘텐츠만 24시간 편성하는 무료 광고 기반 채널.",
-      "credit": "이미지: The Verge"
+      "caption": "<b>Roku AI 채널.</b> 생성형 AI 콘텐츠만 24시간 편성하는 무료 광고 기반 채널."
     },
     {
       "type": "p",

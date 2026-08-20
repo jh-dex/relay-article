@@ -194,14 +194,12 @@ body::before{
   font-variant-numeric:tabular-nums;
 }
 
-/* ── caption — 이미지 아래 설명과 출처, 항목 끝의 출처 줄 ──
+/* ── caption — 이미지 아래 설명과 항목 끝의 출처 줄 ──
    meta 와 크기는 같고 굵기만 한 단계 낮다. 짧은 메타가 아니라 문장이기 때문이다.
-   설명과 출처는 같은 덩어리이므로 크기를 나누지 않는다 —
-   위계는 명도로만 준다: 리드인(ink-soft) → 설명(ink-faint) → 출처(ink-mute). */
+   위계는 크기가 아니라 명도로 준다: 이름(ink-soft) → 설명(ink-faint). */
 .t-caption,
 .cap,
 figcaption,
-.credit,
 .body .src-line{
   font-size:var(--fs-meta);
   line-height:var(--lh-normal);

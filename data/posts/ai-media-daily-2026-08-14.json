@@ -10,8 +10,7 @@
   "cover": {
     "img": "https://huggingface.co/MiniMaxAI/MiniMax-Music3/resolve/main/figures/Music3.png",
     "alt": "미니맥스 뮤직 3 모델 소개 이미지",
-    "caption": "<b>미니맥스 뮤직 3.</b> H3에 이어 음악 모델도 가중치가 공개되며 ComfyUI에서 당일 실행이 가능해졌습니다.",
-    "credit": "이미지: MiniMaxAI/MiniMax-Music3 모델 카드"
+    "caption": "<b>미니맥스 뮤직 3.</b> 영상에 이어 가중치가 공개된 음악 모델."
   },
   "body": [
     {
@@ -27,8 +26,7 @@
       "type": "figure",
       "img": "https://huggingface.co/MiniMaxAI/MiniMax-Music3/resolve/main/figures/music3.0-Architecture-Diagram.png",
       "alt": "미니맥스 뮤직 3 아키텍처 다이어그램",
-      "caption": "<b>뮤직 3 구조.</b> 8B 글로벌 LLM과 0.6B 로컬 LLM, 2.4B 플로우 매칭 단계, 123M Flow-VAE 디코더를 잇는 하이브리드 구성입니다.",
-      "credit": "이미지: MiniMaxAI/MiniMax-Music3 모델 카드"
+      "caption": "<b>뮤직 3 구조.</b> 8B 글로벌 LLM과 0.6B 로컬 LLM, 2.4B 플로우 매칭, 123M Flow-VAE 디코더의 하이브리드 구성."
     },
     {
       "type": "p",
@@ -206,8 +204,7 @@
       "type": "figure",
       "img": "https://codingwzp.github.io/VideoDereflection_S2R/static/images/fig1_overview.jpg",
       "alt": "S2R 반사 합성 및 제거 파이프라인 개요도",
-      "caption": "<b>S2R 파이프라인.</b> 물리 기반으로 반사를 합성해 학습 데이터를 만들고, 그 데이터로 영상 반사 제거 모델을 학습시키는 닫힌 구조입니다.",
-      "credit": "이미지: S2R 프로젝트 페이지"
+      "caption": "<b>S2R 파이프라인.</b> 물리 기반 반사 합성으로 데이터를 만들고 영상 반사 제거를 학습하는 닫힌 구조."
     },
     {
       "type": "p",
@@ -239,8 +236,7 @@
       "type": "figure",
       "img": "https://yuyangyin.github.io/StateFlow/assets/img/teaser.jpg",
       "alt": "StateFlow 프리비주얼라이제이션 결과 개요 이미지",
-      "caption": "<b>StateFlow.</b> 한 번에 영상을 뽑는 대신 편집 가능한 3D 월드를 지속 상태로 유지하며 장면과 카메라를 고쳐 나갑니다.",
-      "credit": "이미지: StateFlow 프로젝트 페이지"
+      "caption": "<b>StateFlow.</b> 편집 가능한 3D 월드를 지속 상태로 유지하며 장면과 카메라를 고쳐 나가는 방식."
     },
     {
       "type": "p",
@@ -272,8 +268,7 @@
       "type": "figure",
       "img": "https://lat-dyn-reason.github.io/media/efficiency.png",
       "alt": "잠재 동역학 추론의 효율 비교 그래프",
-      "caption": "<b>잠재 동역학 추론.</b> 저차 동역학은 수치 적분에 맡기고 신경망은 고차 잔차만 학습해 파라미터와 연산을 크게 줄였습니다.",
-      "credit": "이미지: Lat-Dyn-Reason 프로젝트 페이지"
+      "caption": "<b>잠재 동역학 추론.</b> 저차 동역학은 수치 적분에, 고차 잔차만 신경망에 맡긴 구조."
     },
     {
       "type": "p",
@@ -343,8 +338,7 @@
       "type": "figure",
       "img": "https://www.venturesquare.net/wp-content/uploads/2026/08/MO-789x444.png",
       "alt": "모픽 AI 영상 제작 플랫폼 소개 이미지",
-      "caption": "<b>모픽.</b> 플랫폼에서 만들어지는 영상 가운데 상업 목적 제작물이 70%를 넘었다고 밝혔습니다.",
-      "credit": "이미지: 벤처스퀘어"
+      "caption": "<b>모픽.</b> 생성 영상 가운데 상업 목적 제작물 70% 돌파."
     },
     {
       "type": "p",

@@ -21,8 +21,7 @@
       "type": "figure",
       "video": "https://evoke-world.github.io/Evoke/videos/hero/hero-loop.mp4",
       "alt": "EVOKE가 생성한 연속 장면. 카메라가 이동하는 동안 공간 구조가 유지된다.",
-      "caption": "<b>EVOKE 히어로 데모.</b> 카메라를 움직이는 동안 장면의 공간 상태가 유지됩니다.",
-      "credit": "영상: Alaya Lab EVOKE 프로젝트 페이지"
+      "caption": "<b>EVOKE 히어로 데모.</b> 카메라를 움직이는 동안 유지되는 장면의 공간 상태."
     },
     {
       "type": "p",
@@ -70,8 +69,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/vizart-vj/ComfyUI-MiniMax-H3-LongMedia/main/ex.png",
       "alt": "ComfyUI-MiniMax-H3-LongMedia 노드 그래프 화면",
-      "caption": "<b>LongMedia 노드 구성.</b> 분할 생성과 멀티클립을 같은 실행기로 처리합니다.",
-      "credit": "이미지: vizart-vj/ComfyUI-MiniMax-H3-LongMedia"
+      "caption": "<b>LongMedia 노드 구성.</b> 분할 생성과 멀티클립을 같은 실행기로 처리하는 구조."
     },
     {
       "type": "p",
@@ -145,8 +143,7 @@
       "type": "figure",
       "video": "https://huggingface.co/LBH-123-AI/Minimax_h3_latent_Upscaler/resolve/main/examples/Minimax_h3_latent_Upscaler_001.mp4",
       "alt": "잠재 업스케일러 적용 전후를 비교한 영상",
-      "caption": "<b>잠재 업스케일 비교.</b> 저해상도로 생성한 뒤 잠재를 키운 결과입니다.",
-      "credit": "영상: LBH-123-AI/Minimax_h3_latent_Upscaler"
+      "caption": "<b>잠재 업스케일 비교.</b> 저해상도로 생성한 뒤 잠재를 키운 결과."
     },
     {
       "type": "p",
@@ -250,8 +247,7 @@
       "type": "figure",
       "video": "https://alayalab.github.io/Marionette/static/videos/hero_loop.mp4",
       "alt": "마리오네트가 예측한 3D 상태와 이를 렌더링한 결과 비교",
-      "caption": "<b>마리오네트 데모.</b> 예측한 3D 상태를 기하 렌더링으로 옮긴 뒤 외형만 확산 모델이 채웁니다.",
-      "credit": "영상: Alaya Lab Marionette 프로젝트 페이지"
+      "caption": "<b>마리오네트 데모.</b> 예측한 3D 상태를 기하 렌더링으로 옮기고 외형만 확산 모델이 채운 결과."
     },
     {
       "type": "p",
@@ -339,8 +335,7 @@
       "type": "figure",
       "img": "https://images.siliconangle.com/blogs.dir/1/files/2026/08/hf_20260807_000120_42b99b6a-a110-4fb2-9205-e22ab0276712-1.png",
       "alt": "힉스필드 플랫폼에서 생성한 이미지",
-      "caption": "<b>힉스필드.</b> 자체 모델과 외부 모델을 한 계정에서 묶어 제공합니다.",
-      "credit": "이미지: SiliconANGLE"
+      "caption": "<b>힉스필드.</b> 자체 모델과 외부 모델을 한 계정에서 묶어 제공하는 플랫폼."
     },
     {
       "type": "p",

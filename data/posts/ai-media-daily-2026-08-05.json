@@ -72,7 +72,7 @@
     {
       "type": "figure",
       "video": "https://miniz233.github.io/MotionBeyondMorphology/motion_videos/1.mp4",
-      "caption": "<b>교차 카테고리 모션 전이 데모.</b> 참조 영상의 동작을 형태가 다른 대상에 이식한 결과."
+      "caption": "<b>교차 카테고리 모션 전이.</b> 참조 영상의 동작을 형태가 다른 대상에 이식한 결과."
     },
     {
       "type": "p",
@@ -112,8 +112,7 @@
       "type": "figure",
       "img": "https://cdn.aitimes.com/news/photo/202608/213444_216918_1150.jpg",
       "alt": "그록 이매진 업그레이드",
-      "caption": "<b>그록 이매진.</b> 네이티브 1080p와 참조 이미지 기반 캐릭터 일관성을 더한 업데이트.",
-      "credit": "이미지: AI타임스"
+      "caption": "<b>그록 이매진.</b> 네이티브 1080p와 참조 이미지 기반 캐릭터 일관성."
     },
     {
       "type": "p",
@@ -137,8 +136,7 @@
       "type": "figure",
       "img": "https://techcrunch.com/wp-content/uploads/2026/08/Screenshot-2026-08-03-at-12.31.35-PM.jpg?w=1024",
       "alt": "DesignArena",
-      "caption": "<b>DesignArena.</b> 두 결과물을 비교해 선호를 고르는 방식으로 미감 데이터를 수집한다.",
-      "credit": "이미지: TechCrunch"
+      "caption": "<b>DesignArena.</b> 두 결과를 비교해 선호를 고르는 미감 데이터 수집 방식."
     },
     {
       "type": "p",

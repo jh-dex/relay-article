@@ -21,8 +21,7 @@
       "type": "figure",
       "video": "https://video.twimg.com/amplify_video/2089757457241550848/vid/avc1/1280x720/MMeV2vStWxRVW8do.mp4?tag=14",
       "alt": "컴피 MCP 로컬 모드 시연 영상",
-      "caption": "<b>컴피 MCP 로컬 모드.</b> 에이전트가 로컬 ComfyUI 설치본의 노드와 모델을 파악한 뒤 워크플로를 구성하고 실행합니다.",
-      "credit": "영상: ComfyUI 공식 X 계정"
+      "caption": "<b>컴피 MCP 로컬 모드.</b> 로컬 설치본의 노드와 모델을 파악한 뒤 구성되는 워크플로."
     },
     {
       "type": "p",
@@ -66,8 +65,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/seesee75-commits/ComfyUI-MiniMaxH3-Director/main/docs/images/workflow-overview.png",
       "alt": "MiniMax H3 Director 워크플로 전경",
-      "caption": "<b>H3 디렉터 워크플로.</b> 트랙에 이미지·영상·음악을 배치하고 샷마다 프롬프트를 적는 타임라인 구조입니다.",
-      "credit": "이미지: seesee75-commits/ComfyUI-MiniMaxH3-Director"
+      "caption": "<b>H3 디렉터 워크플로.</b> 트랙에 이미지·영상·음악을 배치하고 샷마다 프롬프트를 적는 타임라인."
     },
     {
       "type": "p",
@@ -165,8 +163,7 @@
       "type": "figure",
       "img": "https://i.ytimg.com/vi/B1rx4AAhrT0/maxresdefault.jpg",
       "alt": "MiniMax H3 가속 방식 비교 영상 썸네일",
-      "caption": "<b>H3 가속 비교.</b> 동일한 프롬프트·시드·해상도로 터보 LoRA와 키친 어텐션을 나란히 놓고 측정한 결과입니다.",
-      "credit": "이미지: PixelEasel 유튜브 채널"
+      "caption": "<b>H3 가속 비교.</b> 같은 프롬프트·시드·해상도로 나란히 놓은 터보 LoRA와 키친 어텐션."
     },
     {
       "type": "p",
@@ -202,8 +199,7 @@
       "type": "figure",
       "img": "https://arxiv.org/html/2608.16328v1/first_img.png",
       "alt": "GRNEdit 편집 결과 예시",
-      "caption": "<b>GRNEdit 편집 결과.</b> 지시문 기반 영상 편집을 두 단계 경량 프레임워크로 처리합니다.",
-      "credit": "이미지: GRNEdit 논문(arXiv:2608.16328)"
+      "caption": "<b>GRNEdit 편집 결과.</b> 지시문 기반 영상 편집을 두 단계로 처리한 경량 프레임워크."
     },
     {
       "type": "p",
@@ -235,8 +231,7 @@
       "type": "figure",
       "img": "https://serin-yoon.github.io/projects/anytalk/static/images/overview.png",
       "alt": "AnyTalk 파이프라인 개요도",
-      "caption": "<b>AnyTalk 파이프라인.</b> 캐릭터별 파인튜닝과 블렌드셰이프 최적화를 거쳐 2D 영상을 3D 애니메이션 파라미터로 변환합니다.",
-      "credit": "이미지: AnyTalk 프로젝트 페이지"
+      "caption": "<b>AnyTalk 파이프라인.</b> 캐릭터별 파인튜닝과 블렌드셰이프 최적화를 거친 2D→3D 변환."
     },
     {
       "type": "p",
@@ -272,8 +267,7 @@
       "type": "figure",
       "img": "https://expmaster.github.io/megaparts_webpage/assets/web/articulation.webp",
       "alt": "MegaParts 관절 구조 생성 결과",
-      "caption": "<b>파트 단위 생성.</b> 경첩이나 내부 구조처럼 기존 방식이 뭉개던 요소를 개별 파트로 남깁니다.",
-      "credit": "이미지: MegaParts 프로젝트 페이지"
+      "caption": "<b>파트 단위 생성.</b> 경첩과 내부 구조처럼 기존 방식이 뭉개던 요소의 개별 분리."
     },
     {
       "type": "p",
@@ -309,8 +303,7 @@
       "type": "figure",
       "video": "https://video.twimg.com/amplify_video/2089521290776653824/vid/avc1/1280x720/dqIqQeR_4SseaGMx.mp4?tag=14",
       "alt": "ComfyUI에서 실행한 시댄스 2.5 1080p 결과 영상",
-      "caption": "<b>시댄스 2.5 1080p.</b> ComfyUI 파트너 노드에서 곧바로 호출할 수 있게 됐습니다.",
-      "credit": "영상: ComfyUI 공식 X 계정"
+      "caption": "<b>시댄스 2.5 1080p.</b> ComfyUI 파트너 노드에서 곧바로 호출 가능한 구성."
     },
     {
       "type": "p",
@@ -410,8 +403,7 @@
       "type": "figure",
       "img": "https://cdn.kyongbuk.co.kr/news/photo/202608/4081400_817084_1011.jpg",
       "alt": "2026 경북 국제 AI·메타버스 영상제 발표 현장",
-      "caption": "<b>경북 AI 영상제 발표.</b> 시상 중심 행사에서 투자·수출 연결 플랫폼으로 방향을 전환합니다.",
-      "credit": "이미지: 경북일보"
+      "caption": "<b>경북 AI 영상제.</b> 시상 중심에서 투자·수출 연결 플랫폼으로의 전환."
     },
     {
       "type": "p",
