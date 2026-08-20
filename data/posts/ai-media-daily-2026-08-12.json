@@ -21,7 +21,7 @@
       "type": "figure",
       "video": "https://videos.ctfassets.net/jdtwqhzvc2n1/5adJeC4rAKJuVrvBnKC90K/2bee7cfaeaf1925f8a19ceaa1f314319/Model_Output_-_Cliffs.mp4",
       "alt": "LTX-2.5로 생성한 절벽 장면 영상",
-      "caption": "<b>LTX-2.5.</b> 새 디퓨전 디코더와 멀티샷 생성을 적용한 출력 예시."
+      "caption": "새 디퓨전 디코더와 멀티샷 생성을 적용한 출력 예시."
     },
     {
       "type": "p",
@@ -125,7 +125,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-10-minimax-h3-realism-people-lora/hero-grid16.jpg",
       "alt": "H3 Realism People LoRA로 생성한 인물 이미지 그리드",
-      "caption": "<b>H3 Realism People LoRA.</b> 피부 질감과 눈, 미세 표정을 겨냥한 인물 특화 어댑터의 출력."
+      "caption": "피부 질감과 눈, 미세 표정을 겨냥한 인물 특화 어댑터의 출력."
     },
     {
       "type": "p",
@@ -157,7 +157,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-08-minimax-h3-turbo-v4/example-1.jpg",
       "alt": "H3 터보 LoRA v4로 생성한 예시 프레임",
-      "caption": "<b>H3 터보 LoRA v4.</b> 새 학습 레시피로 미세 디테일을 다듬은 증류 가중치의 출력."
+      "caption": "새 학습 레시피로 미세 디테일을 다듬은 증류 가중치의 출력."
     },
     {
       "type": "p",
@@ -227,7 +227,7 @@
       "type": "figure",
       "img": "https://youjunzhao.github.io/MirrorWorld/static/images/framework.webp",
       "alt": "MirrorWorld 프레임워크 구조도",
-      "caption": "<b>MirrorWorld.</b> 의미 관계 증류와 기하 변환 정렬을 결합한 프레임워크 구조."
+      "caption": "의미 관계 증류와 기하 변환 정렬을 결합한 프레임워크 구조."
     },
     {
       "type": "p",
@@ -293,7 +293,7 @@
       "type": "figure",
       "img": "https://techcrunch.com/wp-content/uploads/2026/08/AI-Personas-Header.jpg?w=1024",
       "alt": "스포티파이 AI 페르소나 라벨 소개 이미지",
-      "caption": "<b>AI 페르소나.</b> AI로 만든 아티스트 정체성에 붙는 배지와 추천 기본 제외."
+      "caption": "AI로 만든 아티스트 정체성에 붙는 배지와 추천 기본 제외."
     },
     {
       "type": "p",
@@ -325,7 +325,7 @@
       "type": "figure",
       "img": "https://cdn.aitimes.com/news/photo/202608/213821_217386_2538.jpg",
       "alt": "앤트로픽 클로드 워터마크 도입 소개 이미지",
-      "caption": "<b>클로드 워터마크.</b> 텍스트는 토큰 생성 단계, 이미지·파일은 C2PA 서명으로 심는 표시."
+      "caption": "텍스트는 토큰 생성 단계, 이미지·파일은 C2PA 서명으로 심는 표시."
     },
     {
       "type": "p",
@@ -361,7 +361,7 @@
       "type": "figure",
       "img": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/reference-mode.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400",
       "alt": "iOS 27 베타의 애플 레퍼런스 이미지 기능 화면",
-      "caption": "<b>Apple Reference Image.</b> iOS 27 베타에서 발견된 촬영 시점 출처 증명 기능."
+      "caption": "iOS 27 베타에서 발견된 촬영 시점 출처 증명 기능."
     },
     {
       "type": "p",
@@ -401,7 +401,7 @@
       "type": "figure",
       "img": "https://img.etnews.com/news/article/2026/08/09/news-p.v1.20260809.3607b3c978214fc787875fe26bedd1de_P1.jpg",
       "alt": "뉴스 영상 저작권 판결 관련 이미지",
-      "caption": "<b>뉴스도 저작물.</b> 방송 뉴스 영상을 무단 편집한 쇼츠 채널 운영자에 대한 벌금형."
+      "caption": "방송 뉴스 영상을 무단 편집한 쇼츠 채널 운영자에 대한 벌금형."
     },
     {
       "type": "p",

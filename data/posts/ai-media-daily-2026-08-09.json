@@ -21,7 +21,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-07-wan-animate-2/pipeline-v1.png",
       "alt": "Wan Animate 2 파이프라인 구조도",
-      "caption": "<b>Wan Animate 2.</b> 모션 추출기 없이 구동 영상을 직접 소비하는 엔드투엔드 구조."
+      "caption": "모션 추출기 없이 구동 영상을 직접 소비하는 엔드투엔드 구조."
     },
     {
       "type": "p",
@@ -87,7 +87,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-05-kijai-minimax-h3-w4a8/pr90-w4a8-demo-poster.jpg",
       "alt": "Kijai의 MiniMax H3 4비트 양자화 데모",
-      "caption": "<b>MiniMax H3 w4a8.</b> 4비트 저장·int8 연산으로 12.5GB까지 낮춘 FL2VA 체크포인트."
+      "caption": "4비트 저장·int8 연산으로 12.5GB까지 낮춘 FL2VA 체크포인트."
     },
     {
       "type": "p",
@@ -175,7 +175,7 @@
       "type": "figure",
       "img": "https://the-decoder.com/wp-content/uploads/2026/08/xai_image2.png",
       "alt": "xAI 이매진 이미지 2.0 생성 예시",
-      "caption": "<b>이매진 이미지 2.0.</b> 영역 지정 편집과 배경 제거, 다중 참조를 묶은 편집 중심 구성."
+      "caption": "영역 지정 편집과 배경 제거, 다중 참조를 묶은 편집 중심 구성."
     },
     {
       "type": "p",
@@ -233,7 +233,7 @@
       "type": "figure",
       "img": "https://img.etnews.com/news/article/2026/08/07/news-p.v1.20260807.e66d5886f93345718593f91768574de4_P1.jpg",
       "alt": "제1회 AI 이미지 챌린지 포스터",
-      "caption": "<b>AI 이미지 챌린지.</b> 직접 촬영한 사진을 생성형 AI로 재구성해 출품하는 공모전."
+      "caption": "직접 촬영한 사진을 생성형 AI로 재구성해 출품하는 공모전."
     },
     {
       "type": "p",

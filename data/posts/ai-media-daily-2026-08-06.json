@@ -21,7 +21,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/jd-opensource/JoyAI-Video-Edit/main/assets/teaser.jpg",
       "alt": "JoyAI-Video-Edit 편집 예시",
-      "caption": "<b>JoyAI-Video-Edit.</b> 지시어로 피사체·배경·스타일·모션을 실시간 편집한 사례."
+      "caption": "지시어로 피사체·배경·스타일·모션을 실시간 편집한 사례."
     },
     {
       "type": "p",

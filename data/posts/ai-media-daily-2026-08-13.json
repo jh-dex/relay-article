@@ -10,7 +10,7 @@
   "cover": {
     "img": "https://raw.githubusercontent.com/shootthesound/ComfyUI-H3Studio/master/docs/images/editor-overview.png",
     "alt": "ComfyUI H3 Studio의 전체화면 편집기 화면",
-    "caption": "<b>H3 Studio.</b> 키프레임과 타임라인, 클립 연결과 릴 편집을 담은 단일 ComfyUI 노드."
+    "caption": "키프레임과 타임라인, 클립 연결과 릴 편집을 담은 단일 ComfyUI 노드."
   },
   "body": [
     {
@@ -26,7 +26,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/shootthesound/ComfyUI-H3Studio/master/docs/images/timeline-filmstrip.png",
       "alt": "H3 Studio의 필름스트립 타임라인 편집 화면",
-      "caption": "<b>필름스트립 타임라인.</b> 키프레임 마커 이동과 특정 순간의 텍스트 비트 삽입."
+      "caption": "키프레임 마커 이동과 특정 순간의 텍스트 비트 삽입."
     },
     {
       "type": "p",
@@ -100,7 +100,7 @@
       "type": "figure",
       "video": "https://huggingface.co/Abiray/LTX-2.5-Distilled-GGUF/resolve/main/video/LTX_2.5_t2v.mp4",
       "alt": "LTX-2.5 증류 GGUF로 생성한 텍스트-투-비디오 예시",
-      "caption": "<b>GGUF 변환판 생성 예시.</b> 배포자가 모델 카드에 함께 올린 텍스트-투-비디오 샘플."
+      "caption": "배포자가 모델 카드에 함께 올린 텍스트-투-비디오 샘플."
     },
     {
       "type": "p",
@@ -136,7 +136,7 @@
       "type": "figure",
       "img": "https://s.comfyui-wiki.com/news/2026-08-07-minimax-h3-turbo-lightx2v/example-t2v-frame.jpg",
       "alt": "미니맥스 H3 터보 LoRA 생성 예시 프레임",
-      "caption": "<b>터보 LoRA 생성 예시.</b> lightx2v 계열 증류 가중치로 뽑은 프레임."
+      "caption": "lightx2v 계열 증류 가중치로 뽑은 프레임."
     },
     {
       "type": "p",
@@ -292,7 +292,7 @@
       "type": "figure",
       "img": "https://microsoft.ai/wp-content/uploads/2026/08/No2_1_1.webp",
       "alt": "MAI-Image-2.6의 아레나 2위 발표 이미지",
-      "caption": "<b>MAI-Image-2.6.</b> 텍스트-이미지 아레나 2위 발표 이미지."
+      "caption": "텍스트-이미지 아레나 2위 발표 이미지."
     },
     {
       "type": "p",
@@ -328,7 +328,7 @@
       "type": "figure",
       "img": "https://cdn.arstechnica.net/wp-content/uploads/2026/08/GettyImages-2286491305-1024x648.jpg",
       "alt": "노트북 위 스마트폰에 표시된 트위치 로고",
-      "caption": "<b>트위치.</b> 아마존이 2014년 인수한 스트리밍 플랫폼."
+      "caption": "아마존이 2014년 인수한 스트리밍 플랫폼."
     },
     {
       "type": "p",
@@ -386,7 +386,7 @@
       "type": "figure",
       "img": "https://tech42.shoplic.cloud/wp-content/uploads/2026/08/436882194-1024x684.png",
       "alt": "유튜브 파트너 프로그램 기준 변경을 다룬 기사 이미지",
-      "caption": "<b>진입 기준 상향.</b> 2027년 2월부터 두 배로 오르는 광고 수익 진입 조건."
+      "caption": "2027년 2월부터 두 배로 오르는 광고 수익 진입 조건."
     },
     {
       "type": "p",

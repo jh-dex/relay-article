@@ -21,7 +21,7 @@
       "type": "figure",
       "img": "https://github.com/user-attachments/assets/4414cb0f-3b82-4826-ba7d-9665f795d480",
       "alt": "ComfyUI 캔버스에 배치된 Raon-OpenTTS 노드 구성",
-      "caption": "<b>세 개 노드로 끝나는 목소리 복제.</b> 한 화면에 놓인 모델 로더와 생성기, 위스퍼 전사 노드."
+      "caption": "한 화면에 놓인 모델 로더와 생성기, 위스퍼 전사 노드."
     },
     {
       "type": "p",
@@ -70,7 +70,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/1038lab/ComfyUI-MiniMax-H3-Promptor/main/example_workflows/MiniMax-H3-Promptor.jpg",
       "alt": "MiniMax H3-Promptor 예제 워크플로 화면",
-      "caption": "<b>레퍼런스 다중 입력의 재구성.</b> 이미지와 영상, 오디오를 노드 위에 직접 얹는 방식."
+      "caption": "이미지와 영상, 오디오를 노드 위에 직접 얹는 방식."
     },
     {
       "type": "p",
@@ -106,7 +106,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/Damkohler/JLC-Flux2-ControlNet/main/assets/workflows/Release_1.1.0/jlc_flux2_fp8_multicontrol_workflow.png",
       "alt": "FP8 멀티 컨트롤넷 구성 워크플로",
-      "caption": "<b>정밀도 혼재의 흡수.</b> 같은 로더 목록에 나란히 놓인 조밀·혼합 정밀도 체크포인트."
+      "caption": "같은 로더 목록에 나란히 놓인 조밀·혼합 정밀도 체크포인트."
     },
     {
       "type": "p",
@@ -134,7 +134,7 @@
       "type": "figure",
       "img": "https://i.ytimg.com/vi/d1h5-E7NpuY/maxresdefault.jpg",
       "alt": "미니맥스 H3 v2v 얼굴 보정 시연 영상 화면",
-      "caption": "<b>재통과 한 번으로 얻는 얼굴.</b> 480p 생성 결과를 낮은 디노이즈로 다시 통과시키는 구성."
+      "caption": "480p 생성 결과를 낮은 디노이즈로 다시 통과시키는 구성."
     },
     {
       "type": "p",
@@ -170,7 +170,7 @@
       "type": "figure",
       "img": "https://news.mit.edu/sites/default/files/images/202608/dai-gifford-ai-image-training-data-00_0.png",
       "alt": "생성된 초상과 학습 데이터 제거 실험 결과 비교",
-      "caption": "<b>제외해도 달라지지 않는 결과물.</b> 개별 작가를 학습에서 제외하고 뽑은 200여 장의 결과."
+      "caption": "개별 작가를 학습에서 제외하고 뽑은 200여 장의 결과."
     },
     {
       "type": "p",
@@ -206,7 +206,7 @@
       "type": "figure",
       "img": "https://arxiv.org/html/2608.18063v1/motivation_nips.png",
       "alt": "EditBridge 접근과 기존 초해상도 방식의 비교 도식",
-      "caption": "<b>초해상도 경유의 한계.</b> 저해상도 편집 후 확대하는 경로에서 생기는 허위 디테일과 질감 붕괴."
+      "caption": "저해상도 편집 후 확대하는 경로에서 생기는 허위 디테일과 질감 붕괴."
     },
     {
       "type": "p",
@@ -242,7 +242,7 @@
       "type": "figure",
       "img": "https://coinve200k.github.io/assets/images/framework.png",
       "alt": "CoinVE-Edit 모델 구조도",
-      "caption": "<b>영역 인지 어텐션.</b> 한 클립에 걸린 여러 편집 지시의 영역별 분리 처리."
+      "caption": "한 클립에 걸린 여러 편집 지시의 영역별 분리 처리."
     },
     {
       "type": "p",
@@ -278,7 +278,7 @@
       "type": "figure",
       "img": "https://raw.githubusercontent.com/csslc/PixRestore/main/figs/fig1-new.jpg",
       "alt": "PixRestore의 복원 성능 비교와 결과 예시",
-      "caption": "<b>여덟 종 열화의 단일 모델 처리.</b> 파라미터 5000만 개 규모로 여러 열화를 담당하는 한 모델."
+      "caption": "파라미터 5000만 개 규모로 여러 열화를 담당하는 한 모델."
     },
     {
       "type": "p",
@@ -366,7 +366,7 @@
       "type": "figure",
       "img": "https://images.stripeassets.com/fzn2n1nzq965/4s6Ecd4RcY8gtjy4XEMr2Z/5dd00575d6fc483775abc360af9345be/OpenRouter_Stripe_lockup_Center_aligned.png",
       "alt": "스트라이프와 오픈라우터 로고 결합 이미지",
-      "caption": "<b>결제망과 모델 라우팅의 결합.</b> 스트라이프가 직접 확보한 토큰 소비 계층."
+      "caption": "스트라이프가 직접 확보한 토큰 소비 계층."
     },
     {
       "type": "p",
@@ -402,7 +402,7 @@
       "type": "figure",
       "img": "https://tech42.shoplic.cloud/wp-content/uploads/2026/08/856960250.png",
       "alt": "디지털카메라 출하량 추이를 표현한 이미지",
-      "caption": "<b>출하 대수의 반등.</b> 2023년 770만 대까지 줄었다 2024년부터 다시 늘어난 시장."
+      "caption": "2023년 770만 대까지 줄었다 2024년부터 다시 늘어난 시장."
     },
     {
       "type": "p",

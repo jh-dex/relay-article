@@ -21,7 +21,7 @@
       "type": "figure",
       "img": "https://pbs.twimg.com/media/HO5h_MRWwAED0RS.jpg",
       "alt": "토파즈 원더 3.5·블룸 2 업스케일 비교",
-      "caption": "<b>원더 3.5·블룸 2.</b> 일반 이미지와 AI 생성 이미지를 각각 겨냥한 두 종의 업스케일러."
+      "caption": "일반 이미지와 AI 생성 이미지를 각각 겨냥한 두 종의 업스케일러."
     },
     {
       "type": "p",
@@ -79,7 +79,7 @@
       "type": "figure",
       "img": "https://cdn.sanity.io/images/2gpum2i6/production/281b2003f8a62e07391c6085a69ed91eb574d08c-1900x1264.png",
       "alt": "FLUX 3 비디오 생성 예시",
-      "caption": "<b>FLUX 3 비디오.</b> 텍스트·이미지에서 뽑는 최대 20초 네이티브 오디오 영상."
+      "caption": "텍스트·이미지에서 뽑는 최대 20초 네이티브 오디오 영상."
     },
     {
       "type": "p",

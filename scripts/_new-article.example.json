@@ -11,7 +11,7 @@
   "cover": {
     "img": "https://commons.wikimedia.org/wiki/Special:FilePath/파일명.png?width=1600",
     "alt": "대체 텍스트",
-    "caption": "<b>커버 이름.</b> 명사로 끝나는 짧은 설명."
+    "caption": "명사로 끝나는 한 줄 설명."
   },
   "body": [
     {"type": "h2", "text": "소제목"},
@@ -20,7 +20,7 @@
       "<strong>항목1</strong> — 설명",
       "<strong>항목2</strong> — 설명"
     ]},
-    {"type": "figure", "img": "https://.../image.png?width=1200", "alt": "alt", "caption": "<b>그림 이름.</b> 명사로 끝나는 짧은 설명."},
+    {"type": "figure", "img": "https://.../image.png?width=1200", "alt": "alt", "caption": "명사로 끝나는 한 줄 설명."},
     {"type": "h2", "text": "다음 소제목"},
     {"type": "p", "html": "본문 계속."}
   ]
