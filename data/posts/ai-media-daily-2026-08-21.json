@@ -1,0 +1,459 @@
+{
+  "id": "ai-media-daily-2026-08-21",
+  "category": "AI Media",
+  "title": "AI 이미지·영상 생성 동향 · 8월 21일",
+  "source": "RELAY Briefing",
+  "sourceUrl": "",
+  "date": "2026.08.21",
+  "read": "약 8분",
+  "summary": "엔비디아 연구조직이 선형 어텐션 비중을 75%까지 끌어올린 5B급 영상 모델 SANA-Video 2.0을 아파치 2.0으로 공개했고, 라이트X2V는 85% 희소 어텐션을 적용한 미니맥스 H3 4스텝 증류판을 내놓아 RTX 5090 기준 약 2.5배 가속을 제시했습니다. 같은 희소 어텐션을 LoRA 없이 적용하는 ComfyUI 노드와 LTX 2.5의 스미어링을 줄이는 노드도 커뮤니티에서 잇따라 공개됐습니다. 업계에서는 어도비가 파이어플라이의 음악·음성·효과음 생성을 정식 출시하고 제미나이 옴니 플래시를 파트너 모델로 추가했습니다.",
+  "body": [
+    {
+      "type": "group",
+      "text": "로컬 모델 · 도구"
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 20일",
+      "text": "SANA-Video 2.0 5B — 선형 어텐션 중심 720p 영상 모델의 아파치 2.0 공개"
+    },
+    {
+      "type": "figure",
+      "video": "https://huggingface.co/datasets/Efficient-Large-Model/Sana-assets/resolve/main/Video2/assets/release-demo/sana_video2_5b_720p_rooster.mp4",
+      "alt": "SANA-Video 2.0 5B 720p 공개 데모 영상",
+      "caption": "공개 체크포인트에서 시드 0으로 생성한 1280×736, 24fps, 8.04초 결과."
+    },
+    {
+      "type": "p",
+      "html": "엔비디아 연구조직 NVlabs가 영상 생성 모델 <strong>SANA-Video 2.0</strong>의 5B급 체크포인트를 8월 20일 허깅페이스에 공개했습니다. 텍스트-투-비디오와 텍스트·이미지-투-비디오를 함께 후학습한 단일 가중치이며, 라이선스는 아파치 2.0입니다."
+    },
+    {
+      "type": "p",
+      "html": "구조상 특징은 어텐션 구성입니다. 모델 카드 기준 전체 어텐션의 75%를 게이트가 달린 양방향 선형 어텐션으로 처리하고, 나머지 25%만 조밀 소프트맥스 앵커로 남겼습니다. 여기에 8개 층마다 시점과 무관하게 집계되는 공유 어텐션 잔차를 두어 장거리 정보를 전달합니다. 텍스트 조건화에는 Gemma 2 2B IT를, 잠재 공간에는 LTX 2.3 VAE 규약(잠재 채널 128, 압축 스트라이드 8·32·32)을 그대로 씁니다."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "학습 파라미터 44억 6698만 개, 트랜스포머 32층, 은닉 차원 2560",
+        "출력 규격 736×1280, 193프레임, 24fps(약 8초)",
+        "권장 추론 설정 BF16, CFG 8, flow shift 12, 50스텝, 모션 스코어 20",
+        "체크포인트는 EMA 가중치와 ReFL 후학습 어댑터를 병합한 추론 전용 산출물"
+      ]
+    },
+    {
+      "type": "p",
+      "html": "추론은 SANA 저장소의 <code>release/sana-video-2.0</code> 브랜치가 담당하며, 해당 브랜치의 최신 커밋은 8월 20일에 기록됐습니다. 디퓨저스 경로를 쓰려면 LTX 2.3 VAE를 별도로 물려야 합니다. 모델 카드는 복잡한 장면에서 모션과 해부 구조, 텍스트 렌더링, 물체 영속성이 흔들릴 수 있고 지시가 길거나 모호할수록 프롬프트 준수가 떨어진다고 한계를 명시했습니다."
+    },
+    {
+      "type": "p",
+      "html": "선형 어텐션 비중이 높은 구조는 같은 VRAM에서 더 긴 시퀀스를 다루는 데 유리합니다. 8초 단일 샷을 로컬에서 반복 생성해야 하는 프리비즈 단계라면 후보로 검토할 만합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Hugging Face — SANA-Video 2.0 5B 720p",
+          "u": "https://huggingface.co/Efficient-Large-Model/SANA-Video_2.0_5B_720p"
+        },
+        {
+          "t": "GitHub — NVlabs/Sana",
+          "u": "https://github.com/NVlabs/Sana"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "오픈 웨이트 · 8월 20일",
+      "text": "미니맥스 H3 터보-SLA — 85% 희소 어텐션을 적용한 4스텝 증류판"
+    },
+    {
+      "type": "figure",
+      "video": "https://cdn-uploads.huggingface.co/production/uploads/680de13385293771bc57400b/HXV6GbED84PeLteFXqK5l.mp4",
+      "alt": "미니맥스 H3 30스텝 원본과 4스텝 터보-SLA 결과 비교 영상",
+      "caption": "30스텝 베이스 모델과 4스텝 터보-SLA를 나란히 놓은 비교."
+    },
+    {
+      "type": "p",
+      "html": "라이트X2V(LightX2V) 팀이 미니맥스 H3용 <strong>Turbo-SLA</strong> 체크포인트를 8월 20일 공개했습니다. 30스텝 베이스 모델을 4스텝으로 증류한 FL2V 어댑터에 칭화대 계열 연구팀의 SLA(Sparse-Linear Attention)를 결합한 것으로, 어텐션 희소도는 85%입니다."
+    },
+    {
+      "type": "p",
+      "html": "저장소 설명 기준 라이트X2V 구성에서 RTX 5090으로 측정했을 때 약 2.5배의 추론 가속을 얻으면서 화질을 유지했다고 밝히고 있습니다. 다만 해상도와 길이, 소프트웨어 환경과 하드웨어에 따라 실제 성능은 달라진다는 단서가 함께 붙어 있습니다. 지원 해상도는 768p FL2V입니다."
+    },
+    {
+      "type": "p",
+      "html": "배포 형태는 LoRA 가중치이므로 원본 미니맥스 H3가 필요합니다. 체크포인트는 라이트X2V 네이티브 BF16과 ComfyUI 변환 BF16 두 종으로 나뉘어 있어, 별도 변환 없이 ComfyUI 워크플로에 바로 걸 수 있습니다. 어댑터 가중치는 아파치 2.0이고 베이스 모델은 자체 라이선스를 따릅니다. 참조 설정 파일은 희소도 0.85와 sage2 연산자, 영상 flow shift 6.0, 오디오 flow shift 3.0을 사용합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Hugging Face — lightx2v/Minimax-h3-Turbo-SLA",
+          "u": "https://huggingface.co/lightx2v/Minimax-h3-Turbo-SLA"
+        },
+        {
+          "t": "GitHub — ModelTC/LightX2V",
+          "u": "https://github.com/ModelTC/LightX2V"
+        },
+        {
+          "t": "GitHub — thu-ml/SLA",
+          "u": "https://github.com/thu-ml/SLA"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 20일",
+      "text": "ComfyUI-PlagueKind-Nodes — 희소 어텐션의 LoRA 비의존 노드화"
+    },
+    {
+      "type": "p",
+      "html": "같은 날 SLA 희소 어텐션을 ComfyUI 노드로 직접 구현한 결과물도 나왔습니다. 개발자 Plague_Kind가 자신의 노드팩에 미니맥스 H3용 SLA 노드를 추가하고 레딧 r/StableDiffusion에 공개했으며, 저장소 최신 푸시는 8월 20일, 라이선스는 MIT입니다."
+    },
+    {
+      "type": "p",
+      "html": "게시자에 따르면 이 노드는 SLA LoRA를 요구하지 않고 임의의 터보 LoRA와 함께 쓸 수 있으며, 최대 2.5배의 속도 향상을 얻습니다. OOM이 발생하면 앞단에 컴피 키친 어텐션을 함께 두어 5~10%를 추가로 줄일 수 있다고 설명했습니다. 설계는 pl0x가 맡았고 배포만 대신하고 있다고 밝혔습니다."
+    },
+    {
+      "type": "p",
+      "html": "적용 조건은 까다로운 편입니다. 최신 파이토치와 CUDA 13.0 환경이 필요하고, 노드는 LoRA 로더 뒤이자 체인의 가장 마지막에 두어 가이더와 스케줄러에 직접 연결해야 합니다. 저해상도 짧은 영상에서 가속이 보이지 않거나 블록이 희소화되지 않는다는 메시지가 뜨면 최소 시퀀스 길이를 조정하라고 안내합니다. 블랙웰 세대에서 이득이 가장 크다는 것도 게시자의 관찰입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — PlagueKind/ComfyUI-PlagueKind-Nodes",
+          "u": "https://github.com/PlagueKind/ComfyUI-PlagueKind-Nodes"
+        },
+        {
+          "t": "Reddit — r/StableDiffusion",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vtwtyw/sparse_attention_for_h3_minimax_enjoy_up_to_25x/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 20일",
+      "text": "ComfyUI-LTX23-MAINodes — LTX 2.5 스미어링 저감 노드의 이식"
+    },
+    {
+      "type": "p",
+      "html": "미니맥스 H3의 빠른 모션 아티팩트를 정리하려고 만들어진 MAINodes를 LTX 2.3·2.5용으로 옮긴 노드팩이 8월 20일 공개됐습니다. 저장소는 같은 날 생성돼 GPL-3.0으로 배포되고 있으며, 예제 워크플로가 함께 들어 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "게시자 설명에 따르면 처리 흐름은 이렇습니다. 이른바 저크 오라클(jerk oracle)이 프레임별 스미어링 양을 측정해 그만큼의 홀드 프레임을 새로 만들고, 이를 추가 샘플링 단계에 넣어 번짐을 완화한 뒤, 마지막에 홀드 프레임을 잘라내 원래 프레임 수를 되돌립니다. 결과적으로 프레임 개수는 그대로인 채 시간적 일관성만 개선되는 구조입니다."
+    },
+    {
+      "type": "p",
+      "html": "효과에 대한 판단은 아직 게시자 단일 관찰에 근거하고 있으므로 확정된 수치로 받아들이기는 이릅니다. 설치에는 KJNodes와 ComfyUI Easy Media 등 외부 노드가 함께 필요합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — sillylilithhh/ComfyUI-LTX23-MAINodes",
+          "u": "https://github.com/sillylilithhh/ComfyUI-LTX23-MAINodes"
+        },
+        {
+          "t": "GitHub — matlowai/ComfyUI-MAINodes",
+          "u": "https://github.com/matlowai/ComfyUI-MAINodes"
+        },
+        {
+          "t": "Reddit — r/StableDiffusion",
+          "u": "https://www.reddit.com/r/StableDiffusion/comments/1vtvrss/i_found_a_way_to_reduce_ltx_25s_horrible_smearing/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 20일",
+      "text": "픽사로마 프롬프트 노드 — 로컬 언어모델을 붙인 프롬프트 생성과 뮤직 3 경량 워크플로"
+    },
+    {
+      "type": "figure",
+      "img": "https://i.ytimg.com/vi/IsMHkddDNxk/maxresdefault.jpg",
+      "alt": "픽사로마 31화 영상 표지 화면",
+      "caption": "프롬프트 생성 노드와 미니맥스 뮤직 3 워크플로를 함께 다룬 31화."
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI 튜토리얼 채널 픽사로마가 8월 20일 31화를 공개하고 새로 만든 AI Prompt Pixaroma 노드를 소개했습니다. 로컬 언어모델을 ComfyUI 안에서 호출해 이미지 프롬프트와 음악 캡션, 가사를 생성하는 노드입니다."
+    },
+    {
+      "type": "p",
+      "html": "영상에서는 프롬프트 공식을 모델별 프리셋으로 저장해 크레아 2나 Z 이미지 터보처럼 서로 다른 모델에 맞춰 쓰는 방법, 이미지에서 프롬프트를 역으로 뽑는 방법, 온도와 시드를 제어하는 방법을 다룹니다. 이어 미니맥스 뮤직 3을 로컬에 설치해 캡션과 가사를 생성하고, 곡이 일찍 끝나거나 잘리는 현상과 시드의 영향을 설명합니다. VRAM이 부족한 환경을 위해 타일 오디오 디코딩과 프롬프트 생성 후 VRAM 해제도 함께 소개합니다. 워크플로는 채널 웹사이트에서 무료로 배포됩니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "YouTube — pixaroma Ep31",
+          "u": "https://www.youtube.com/watch?v=IsMHkddDNxk"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "도구 · 노드 · 8월 20일",
+      "text": "AIPLAY-Studio — ComfyUI를 외부 프로세스로 감싼 로컬 음악·영상 앱"
+    },
+    {
+      "type": "figure",
+      "img": "https://senzube4n.github.io/AIPLAY-Studio/shots/create.png",
+      "alt": "AIPLAY-Studio 메인 창 화면",
+      "caption": "곡 생성과 커버아트, 편집 트랙을 한 창에 모은 구성."
+    },
+    {
+      "type": "p",
+      "html": "ComfyUI를 재구현하지 않고 그 위에 얹는 방식의 데스크톱 앱 <strong>AIPLAY-Studio</strong>가 8월 20일 갱신돼 레딧 r/comfyui에 공개됐습니다. ComfyUI를 별도 프로세스로 기동한 뒤 HTTP API로 그래프를 제출하는 구조라 기존 설치본을 수정하거나 번들하지 않습니다. 라이선스는 아파치 2.0입니다."
+    },
+    {
+      "type": "p",
+      "html": "실무에서 눈여겨볼 부분은 파이프라인이 <code>workflows/</code> 디렉터리에 일반 API 포맷 JSON으로 그대로 배포된다는 점입니다. 캔버스에 끌어다 놓으면 모든 값이 들어 있고, 그 값들이 어떻게 정해졌는지 확인할 수 있도록 측정 스크립트도 <code>scripts/</code>에 함께 들어 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "기능은 스타일 설명과 가사로 곡을 만드는 미니맥스 뮤직 3 생성, 대기 시간에 그리는 커버아트, 스템 분리, 단어 단위 가사 타이밍, LTX 2.5와 미니맥스 H3 기반 영상 클립, 비트 그리드에 맞춰 자르는 멀티트랙 편집, 야간 배치 실행으로 구성됩니다. 최근 추가된 오디오 반응형 영상은 ComfyUI_Yvann-Nodes를 쓰는데, 해당 노드팩이 GPL-3.0이어서 번들하지 않고 사용자가 따로 준비한 두 번째 ComfyUI 인스턴스에서 실행됩니다. 모델 가중치는 배포하지 않고 내려받기 전에 용량과 라이선스를 화면에 표시합니다. 성능 측정은 윈도우 환경의 RTX 4070 Ti SUPER 기준입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "GitHub — Senzube4n/AIPLAY-Studio",
+          "u": "https://github.com/Senzube4n/AIPLAY-Studio"
+        },
+        {
+          "t": "Reddit — r/comfyui",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vttxja/i_built_a_local_ai_music_studio_on_top_of_comfyui/"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "연구"
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 20일",
+      "text": "VA-Judger — 영상·오디오 동시 생성용 인간 선호 보상 모델"
+    },
+    {
+      "type": "figure",
+      "img": "https://arxiv.org/html/2608.18607v1/main_picture_final.png",
+      "alt": "VA-Judger 보상 모델 구조와 평가 결과 도식",
+      "caption": "품질 차원을 쪼개 조밀한 학습 신호를 만드는 보상 설계."
+    },
+    {
+      "type": "p",
+      "html": "연구진이 영상과 오디오를 함께 생성하는 모델의 강화학습용 보상 모델 <strong>VA-Judger</strong>를 공개했습니다. 논문은 8월 19일 아카이브에 올라왔고 8월 20일 2판이 갱신됐으며, 코드는 깃허브에 공개돼 있습니다."
+    },
+    {
+      "type": "p",
+      "html": "문제 제기는 명확합니다. 지금까지는 오디오 품질과 영상 품질, 동기화 정확도를 각각 재서 합치는 방식이 쓰였는데, 이런 조합은 의미적 일관성과 시간적 정렬을 놓치기 때문에 지표 점수는 올라가는데 실제 결과는 어긋나는 상태로 최적화된다는 것입니다."
+    },
+    {
+      "type": "p",
+      "html": "연구진은 프롬프트 9000개에 비교 주석 1만 300여 건을 붙인 인간 선호 데이터셋 VAPref-10K와 평가용 벤치마크를 함께 구축했습니다. VA-Judger는 사고 연쇄 추론을 쓰며, 품질 차이가 뚜렷한 쌍부터 학습한 뒤 거절 샘플링으로 판별이 어려운 쌍을 정교화합니다. 피드백을 세분화된 품질 차원으로 분해해, 이진 선호 레이블만 쓸 때보다 조밀한 학습 신호를 얻는 구조입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.18607",
+          "u": "https://arxiv.org/abs/2608.18607"
+        },
+        {
+          "t": "Hugging Face Papers",
+          "u": "https://huggingface.co/papers/2608.18607"
+        },
+        {
+          "t": "GitHub — ShareLab-SII/VA-Judger",
+          "u": "https://github.com/ShareLab-SII/VA-Judger"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "연구 · 8월 18일",
+      "text": "SemComp-Bench — 영상 생성의 의도한 결과 달성 여부 측정"
+    },
+    {
+      "type": "figure",
+      "img": "https://arxiv.org/html/2608.17426v1/Demo1.png",
+      "alt": "SemComp-Bench 평가 예시 화면",
+      "caption": "레퍼런스 이미지와 지시, 결과 중심 클립을 한 묶음으로 두는 평가 단위."
+    },
+    {
+      "type": "p",
+      "html": "연구진이 영상 생성 모델을 화질이나 모션이 아니라 <strong>지시한 결과에 실제로 도달했는가</strong>로 평가하는 벤치마크 SemComp-Bench를 8월 18일 아카이브에 올렸습니다. 8월 20일 허깅페이스 데일리 페이퍼에도 올라왔습니다."
+    },
+    {
+      "type": "p",
+      "html": "평가 데이터 SemComp-Data는 여섯 개 도메인에 걸쳐 있고, 각 인스턴스는 레퍼런스 이미지와 상세·간략 두 가지 지시, 결과 중심 영상 클립으로 구성됩니다. 채점은 시각언어모델이 맡으며 지표는 두 가지입니다. 의도한 결과에 도달했는지를 보는 OA 점수와, 레퍼런스 이미지의 과제 관련 의미를 유지했는지를 보는 GR 점수입니다."
+    },
+    {
+      "type": "p",
+      "html": "기존 영상 생성 모델을 측정한 결과, 레퍼런스에 묶인 의미를 유지하면서 지시한 결과까지 도달하는 일은 여전히 어렵다는 것이 연구진의 결론입니다. 레퍼런스 이미지를 놓고 특정 상태 변화를 요구하는 작업이 잦은 현장이라면 모델 선택 기준으로 참고할 만합니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "arXiv 2608.17426",
+          "u": "https://arxiv.org/abs/2608.17426"
+        },
+        {
+          "t": "Hugging Face Papers",
+          "u": "https://huggingface.co/papers/2608.17426"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "text": "업계 · 시장"
+    },
+    {
+      "type": "h3",
+      "kicker": "서비스 · 플랫폼 · 8월 20일",
+      "text": "어도비 파이어플라이 — 오디오 생성 3종 정식 출시와 제미나이 옴니 플래시 추가"
+    },
+    {
+      "type": "figure",
+      "img": "https://blog.adobe.com/en/publish/2026/08/20/media_17b9d423833b7a2ade0ab2b04d359394f8ccbb73d.jpg?width=1200&format=pjpg&optimize=medium",
+      "alt": "어도비 파이어플라이로 생성한 뱀 이미지",
+      "caption": "이미지와 영상, 오디오, 디자인을 한 스튜디오로 묶으려는 파이어플라이."
+    },
+    {
+      "type": "p",
+      "html": "어도비가 8월 20일 파이어플라이의 오디오 생성 기능 세 가지를 베타에서 정식으로 전환했습니다. 음악을 만드는 Generate Music, 대본을 내레이션으로 바꾸는 Generate Speech, 장면에 맞는 효과음을 만드는 Generate Sound Effects입니다."
+    },
+    {
+      "type": "p",
+      "html": "각 기능은 서로 다른 모델이 담당합니다. 음악은 파이어플라이 뮤직 모델이 영상 길이와 분위기에 맞춰 범용 라이선스 트랙을 만들고, 음성은 파이어플라이 스피치 모델을 쓰되 일레븐랩스를 선택할 수 있으며 목소리와 속도, 감정을 조절합니다. 효과음은 파이어플라이 오디오 모델이 동작과 타이밍에 맞춰 생성합니다. 어도비는 세 기능 모두 상업적으로 안전한 라이선스 상태로 제공된다는 점을 반복해 강조했습니다."
+    },
+    {
+      "type": "p",
+      "html": "파이어플라이 AI 어시스턴트에는 스토리보드 생성과 브랜드 키트 생성 스킬이 추가됐고, 구독자로 제한하던 접근을 풀어 하루 생성량이 정해진 무료 체험이 도입됐습니다. 파트너 모델 목록에는 구글의 제미나이 옴니 플래시가 새로 들어갔습니다. 영상과 오디오, 이미지를 텍스트와 함께 입력으로 받는 모델로, 기존의 구글·클링 AI·루마 AI·오픈AI·런웨이 모델과 나란히 선택할 수 있습니다. 같은 날 어도비는 개편한 파이어플라이 이미지·영상 작업 환경도 퍼블릭 베타로 열었습니다."
+    },
+    {
+      "type": "p",
+      "html": "음원 라이선스 확인에 시간을 쓰던 작업이라면 검토 대상입니다. 어도비가 인용한 버클리 음대 조사에서는 응답한 영상 크리에이터와 뮤지션, 마케터의 80%가 매일 또는 주 수회 영상을 게시하며 전원이 영상에 음악을 쓴다고 답했습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "Adobe Blog",
+          "u": "https://blog.adobe.com/en/publish/2026/08/20/adobe-firefly-expands-its-creative-ai-studio-generate-music-speech-and-sound-effects-in-one-place"
+        },
+        {
+          "t": "X — @AdobeFirefly",
+          "u": "https://x.com/AdobeFirefly/status/2090499143156339094"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "정책 · 저작권 · 8월 20일",
+      "text": "404 미디어 — 실사 사진을 미세 변형한 비동의 이미지의 확산"
+    },
+    {
+      "type": "p",
+      "html": "404 미디어가 8월 20일 X에서 번지고 있는 새로운 형태의 비동의 합성 이미지를 보도했습니다. 매체가 서틀페이크(subtlefake)라고 부른 이 이미지들은 나체 생성이나 얼굴 교체가 아니라, 실제 인물 사진의 옷을 비치게 만들거나 신체 비율과 포즈를 조금씩 바꾸는 방식입니다."
+    },
+    {
+      "type": "p",
+      "html": "판별이 어려운 이유가 여기에 있습니다. 명백히 조작된 정황이 남지 않아 원본과 구분하기 힘들고, 대부분의 상용 생성 도구가 나체가 아닌 실존 인물 이미지 편집은 막지 않기 때문에 일반 도구로도 만들어집니다. 매체는 일부 이미지에서 X의 그록 생성기 워터마크를 확인했다고 밝혔습니다. 이미지들은 X의 수익 배분 프로그램과 맞물려 수백만 조회를 얻고 있으며, X는 취재 요청에 답하지 않았습니다."
+    },
+    {
+      "type": "p",
+      "html": "이미지 포렌식 연구자 하니 파리드는 이 물량과 정교함은 전례가 없다고 말했습니다. 실존 인물을 다루는 상업 작업에서 레퍼런스 수집과 결과물 출처 표기를 어디까지 기록해 둘 것인지 재검토할 필요를 시사하는 사안입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "404 Media",
+          "u": "https://www.404media.co/subtlefakes-slightly-altered-nonconsensual-ai-images-are-taking-over-x/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "산업 동향 · 8월 20일",
+      "text": "컴피 오알지·미니맥스 싱크 사운드 챌린지 — 9월 1일까지 접수"
+    },
+    {
+      "type": "figure",
+      "img": "https://pbs.twimg.com/amplify_video_thumb/2090485287931797504/img/Qqpzcs7kJ2AskSYa.jpg",
+      "alt": "컴피 H3 싱크 사운드 챌린지 공지 영상 표지",
+      "caption": "소리와 움직임을 분리할 수 없게 만드는 것을 조건으로 건 공모."
+    },
+    {
+      "type": "p",
+      "html": "컴피 오알지가 미니맥스 AI와 함께 여는 <strong>H3 싱크 사운드 챌린지</strong>가 8월 20일 시작됐습니다. 접수는 9월 1일까지이며, 9월 2일 초청 심사위원이 참여하는 라이브스트림에서 수상작을 발표합니다."
+    },
+    {
+      "type": "p",
+      "html": "제출 조건은 90초 이내 영상이고, 영상과 오디오의 핵심 생성이 ComfyUI 안의 H3에서 이뤄져야 합니다. 최종 영상과 워크플로 JSON, 신청서를 함께 내야 하며 1인 1건, 비허가 IP는 금지입니다. 상은 대상 RTX 5090 한 대와 기술·워크플로, 크리에이티브, MCP 활용 보너스 각 부문 RTX 5060 Ti로 구성됩니다. 국제 배송과 관세는 주최 측이 부담하고 배송이 제한되는 지역은 현금 상당액으로 대체합니다."
+    },
+    {
+      "type": "p",
+      "html": "심사 기준에 워크플로의 재현성과 커뮤니티 기여도가 명시돼 있어, 수상작 워크플로가 공개 자산으로 남을 가능성이 큽니다. 오디오 동기가 걸린 H3 워크플로를 정리해 둘 유인이 생긴 셈입니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "ComfyUI Blog",
+          "u": "https://blog.comfy.org/p/comfy-h3-sync-sound-community-challenge"
+        },
+        {
+          "t": "X — @ComfyUI",
+          "u": "https://x.com/ComfyUI/status/2090485510787784994"
+        },
+        {
+          "t": "Reddit — r/comfyui",
+          "u": "https://www.reddit.com/r/comfyui/comments/1vtnmz1/comfy_h3_sync_challenge_820_91_win_an_rtx_5090/"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "kicker": "산업 동향 · 8월 20일",
+      "text": "독자 AI 파운데이션 모델 2차 평가 — 항목별 1위 추가 공개에도 남은 불투명성"
+    },
+    {
+      "type": "figure",
+      "img": "https://cdn.aitimes.com/news/photo/202608/214172_217826_547.jpg",
+      "alt": "과학기술정보통신부 관련 이미지",
+      "caption": "2차 평가 결과 발표 이틀 만에 나온 추가 공개."
+    },
+    {
+      "type": "p",
+      "html": "과학기술정보통신부가 8월 18일 발표한 독자 AI 파운데이션 모델 개발 사업 2차 평가 결과를 두고 불투명성 논란이 일자, 8월 20일 항목별 1위 기업과 일부 점수를 추가로 공개했습니다. 다만 전체 합산 점수와 세부 평가 기준, 문항 단위 데이터는 여전히 공개되지 않았습니다."
+    },
+    {
+      "type": "p",
+      "html": "추가 공개된 내용은 다음과 같습니다. 40점 배점의 벤치마크 평가에서 4개 정예팀 평균은 22.5점, 1위와 4위의 격차는 4.0점이었고, 아티피셜 애널리시스 인텔리전스 인덱스에서는 모티프테크놀로지스가 11.9점, NIA 벤치마크에서는 SKT 정예팀이 13.4점으로 각각 1위였습니다. 35점 배점의 전문가 평가에서는 LG AI연구원 정예팀이 29.5점으로 최고점을 받았고, 25점 배점의 사용자 평가에서는 전문 사용자 부문 SKT 11.6점, 일반 국민 부문 LG AI연구원 7.6점이 1위였습니다."
+    },
+    {
+      "type": "p",
+      "html": "과기정통부는 1차 평가 때 항목별 1위를 공개한 결과 나머지 기업에 대한 낙인 효과가 지적돼 이번에는 비공개했으나, 생태계에 도움이 되지 않는다고 판단해 1차와 같은 수준으로 공개했다고 설명했습니다. 사용자 평가에서 1위와 4위 격차가 5.0점으로 가장 크게 벌어진 만큼 세부 데이터 요구는 이어지고 있고, 3차 평가부터 검토 중인 벤치마크 비중 축소를 두고도 의견이 갈리고 있습니다."
+    },
+    {
+      "type": "src",
+      "links": [
+        {
+          "t": "AI타임스",
+          "u": "https://www.aitimes.com/news/articleView.html?idxno=214172"
+        },
+        {
+          "t": "디지털데일리",
+          "u": "https://www.ddaily.co.kr/page/view/2026082015230192681"
+        }
+      ]
+    }
+  ]
+}
