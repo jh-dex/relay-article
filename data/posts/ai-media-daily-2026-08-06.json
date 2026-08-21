@@ -77,11 +77,11 @@
     {
       "type": "h3",
       "kicker": "도구 · 노드 · 8월 5일",
-      "text": "ComfyUI-sol-attn — 블랙웰 GPU용 희소 어텐션 커널과 H3 전용 노드"
+      "text": "ComfyUI-sol-attn — 블랙웰 GPU용 sparse attention 커널과 H3 전용 노드"
     },
     {
       "type": "p",
-      "html": "소비자용 블랙웰 그래픽카드(RTX 50 시리즈)를 겨냥한 커스텀 노드 <strong>ComfyUI-sol-attn</strong>이 8월 5일 0.5 계열로 갱신되었습니다. 엔비디아 Sol-Attn 희소 어텐션 커널을 Triton으로 구현해, 미니맥스 H3의 융합 qkv를 복사 없이 참조하는 메모리 효율 어텐션, 샘플링 단계별로 희소도를 조절하는 스케줄드 어텐션, 피드포워드 정점 메모리를 낮추는 청크 노드를 제공합니다."
+      "html": "소비자용 블랙웰 그래픽카드(RTX 50 시리즈)를 겨냥한 커스텀 노드 <strong>ComfyUI-sol-attn</strong>이 8월 5일 0.5 계열로 갱신되었습니다. 엔비디아 Sol-Attn sparse attention 커널을 Triton으로 구현해, 미니맥스 H3의 융합 qkv를 복사 없이 참조하는 메모리 효율 어텐션, 샘플링 단계별로 sparsity를 조절하는 스케줄드 어텐션, 피드포워드 정점 메모리를 낮추는 청크 노드를 제공합니다."
     },
     {
       "type": "p",
